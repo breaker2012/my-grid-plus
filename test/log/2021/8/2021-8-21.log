@@ -1,0 +1,192 @@
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init5142146002609194591.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Connecting to local nREPL server...
+nREPL server started on port 49956 on host 127.0.0.1 - nrepl://127.0.0.1:49956
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        )
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+(list + 1 2)
+=> (#object[clojure.core$_PLUS_ 0x5b9c313e "clojure.core$_PLUS_@5b9c313e"] 1 2)
+(do ~@(list + 1 2))
+Execution error (IllegalStateException) at core/eval1564 (form-init5142146002609194591.clj:1).
+Attempting to call unbound fn: #'clojure.core/unquote-splicing
+~@(list + 1 2)
+Execution error (IllegalStateException) at core/eval1568 (form-init5142146002609194591.clj:1).
+Attempting to call unbound fn: #'clojure.core/unquote-splicing
+(eval (list + 1 2))
+=> 3
+(to-array-2d [[1 2 3][4 5 6]])
+=> #object["[[Ljava.lang.Object;" 0x811a7af "[[Ljava.lang.Object;@811a7af"]
+(def a (to-array-2d [[1 2 3][4 5 6]]))
+=> #'core/a
+(alength a)
+=> 2
+(apply + 1 2)
+Execution error (IllegalArgumentException) at core/eval1588 (form-init5142146002609194591.clj:1).
+Don't know how to create ISeq from: java.lang.Long
+(apply + [1 2])
+=> 3
+(type (list + 1 2))
+=> clojure.lang.PersistentList
+(concat [+ 1 2])
+=> (#object[clojure.core$_PLUS_ 0x5b9c313e "clojure.core$_PLUS_@5b9c313e"] 1 2)
+(eval (concat [+ 1 2]))
+=> 3
+(defn add [a b] (+ a b))
+=> #'core/add
+(defn print-add [f & arg]
+    (f arg))
+=> #'core/print-add
+(print-add add 1 2)
+Execution error (ArityException) at core/print-add (form-init5142146002609194591.clj:2).
+Wrong number of args (1) passed to: core/add
+(print-add add [1 2])
+Execution error (ArityException) at core/print-add (form-init5142146002609194591.clj:2).
+Wrong number of args (1) passed to: core/add
+(defn print-add [f n]
+    (f n n))
+=> #'core/print-add
+(print-add add 1)
+=> 2
+(defn print-add [f & arg]
+    (f arg))
+=> #'core/print-add
+(print-add add 1 2)
+Execution error (ArityException) at core/print-add (form-init5142146002609194591.clj:2).
+Wrong number of args (1) passed to: core/add
+(print-add add '(1 2))
+Execution error (ArityException) at core/print-add (form-init5142146002609194591.clj:2).
+Wrong number of args (1) passed to: core/add
+(defn print-add [f & arg]
+    (apple f arg))
+Syntax error compiling at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init5142146002609194591.clj:2:5).
+Unable to resolve symbol: apple in this context
+(defn print-add [f & arg]
+    (apply f arg))
+=> #'core/print-add
+(print-add add '(1 2))
+Execution error (ArityException) at core/print-add (form-init5142146002609194591.clj:2).
+Wrong number of args (1) passed to: core/add
+(print-add add [1])
+Execution error (ArityException) at core/print-add (form-init5142146002609194591.clj:2).
+Wrong number of args (1) passed to: core/add
+(print-add add 1)
+Execution error (ArityException) at core/print-add (form-init5142146002609194591.clj:2).
+Wrong number of args (1) passed to: core/add
+(apply add [1 2])
+=> 3
+(defn print-add [f arg]
+    (apply f arg))
+=> #'core/print-add
+(print-add add '(1 2))
+=> 3
+; 判断符号优先级
+; f symbol 的优先级大于等于 s 返回 true 否则返回 false
+(defn is-symbol-priority [f s]
+    (cond (or (= (-> f :operation_symbol) "*") (= (-> f :operation_symbol) "/")) true
+          (and (or (= (-> f :operation_symbol) "+") (= (-> f :operation_symbol) "-")) (or (= (-> f :operation_symbol) "+") (= (-> f :operation_symbol) "-"))) true
+          :else
+          false))
+=> #'core/is-symbol-priority
+(def lst [1 2 3 4 5])
+=> #'core/lst
+(pop lst)
+=> [1 2 3 4]
+(pop (pop lst))
+=> [1 2 3]
+(conj (pop (pop lst)) "吴大富")
+=> [1 2 3 "吴大富"]
+; 将运算表达式中缀转前缀
+(defn mid_to_forwrod [[f & r] stack_number stack_symbol]
+    (if (some? f)
+        (cond (contains? f :operation_symbol) (cond
+                                                  ; 若符号栈为空，则符号直接压入符号栈
+                                                  (= (count stack_symbol) 0) (recur r stack_number (conj stack_symbol f))
+                                                  ; f 符号的优先级高于或等于符号栈栈顶的优先级，则直接入栈
+                                                  (is-symbol-priority f (peek stack_symbol)) (recur r stack_number (conj stack_symbol f))
+                                                  ; f 符号的优先级低于栈顶的优先级，则将符号栈顶，弹出参与计算后，在压入，数据栈
+                                                  :else
+                                                  (let [first_item (peek stack_number) second_item (peek (pop stack_number)) top_symbol (peek stack_symbol)]
+                                                      (recur r (conj (pop (pop stack_number)) (concat [top_symbol first_item second_item])) (conj stack_symbol f)))
+                                                  )
+              :else
+              (recur r (conj stack_number f) stack_symbol))
+        (if (= (count stack_symbol) 1) (concat [{:keyword "("} (pop stack_symbol) stack_number {:keyword ")"}])
+                                       (throw (Exception. "表达式有错误")))))
+=> #'core/mid_to_forwrod
+; 将运算表达式中缀转前缀
+(defn mid_to_forwrod [[f & r] stack_number stack_symbol]
+    (if (some? f)
+        (cond (contains? f :operation_symbol) (cond
+                                                  ; 若符号栈为空，则符号直接压入符号栈
+                                                  (= (count stack_symbol) 0) (recur r stack_number (conj stack_symbol f))
+                                                  ; f 符号的优先级高于或等于符号栈栈顶的优先级，则直接入栈
+                                                  (is-symbol-priority f (peek stack_symbol)) (recur r stack_number (conj stack_symbol f))
+                                                  ; f 符号的优先级低于栈顶的优先级，则将符号栈顶，弹出参与计算后，在压入，数据栈
+                                                  :else
+                                                  (let [first_item (peek stack_number) second_item (peek (pop stack_number)) top_symbol (peek stack_symbol)]
+                                                      (recur r (conj (pop (pop stack_number)) (concat [top_symbol first_item second_item])) (conj (pop stack_symbol) f)))
+                                                  )
+              :else
+              (recur r (conj stack_number f) stack_symbol))
+        (if (= (count stack_symbol) 1) (concat [{:keyword "("} (pop stack_symbol) stack_number {:keyword ")"}])
+                                       (throw (Exception. "表达式有错误")))))
+=> #'core/mid_to_forwrod
+(eval (concat [+ 1 2 '(* 3 4)]))
+=> 15
+; 生成最终结果
+; 生成最终结果
+(defn run-express [stack_number stack_symbo]
+    (if (some? (peek stack_symbo))
+        (let [first_item (peek stack_number) second_item (peek (pop stack_number)) top_symbol (peek stack_symbol)]
+            (recur (conj (pop (pop stack_number)) (concat [top_symbol first_item second_item])) (pop stack_symbo))) stack_number))
+Syntax error compiling at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init5142146002609194591.clj:4:95).
+Unable to resolve symbol: stack_symbol in this context
+; 生成最终结果
+(defn run-express [stack_number stack_symbo]
+    (if (some? (peek stack_symbo))
+        (let [first_item (peek stack_number) second_item (peek (pop stack_number)) top_symbol (peek stack_symbo)]
+            (recur (conj (pop (pop stack_number)) (concat [top_symbol first_item second_item])) (pop stack_symbo))) stack_number))
+=> #'core/run-express
+; 将运算表达式中缀转前缀
+(defn mid_to_forwrod [[f & r] stack_number stack_symbol]
+    (if (some? f)
+        (cond (contains? f :operation_symbol) (cond
+                                                  ; 若符号栈为空，则符号直接压入符号栈
+                                                  (= (count stack_symbol) 0) (recur r stack_number (conj stack_symbol f))
+                                                  ; f 符号的优先级高于或等于符号栈栈顶的优先级，则直接入栈
+                                                  (is-symbol-priority f (peek stack_symbol)) (recur r stack_number (conj stack_symbol f))
+                                                  ; f 符号的优先级低于栈顶的优先级，则将符号栈顶，弹出参与计算后，在压入，数据栈
+                                                  :else
+                                                  (let [first_item (peek stack_number) second_item (peek (pop stack_number)) top_symbol (peek stack_symbol)]
+                                                      (recur r (conj (pop (pop stack_number)) (concat [top_symbol first_item second_item])) (conj (pop stack_symbol) f)))
+                                                  )
+              :else
+              (recur r (conj stack_number f) stack_symbol))
+        (run-express stack_number stack_symbol)))
+=> #'core/mid_to_forwrod
+(mid_to_forwrod (get (my-select/get-token (my-lexical/to-back "a+b*c")) :operation) [] [])
+=>
+[({:operation_symbol "+"}
+  ({:operation_symbol "*"}
+   {:table_alias "", :item_name "c", :item_type "", :java_item_type nil, :const false}
+   {:table_alias "", :item_name "b", :item_type "", :java_item_type nil, :const false})
+  {:table_alias "", :item_name "a", :item_type "", :java_item_type nil, :const false})]

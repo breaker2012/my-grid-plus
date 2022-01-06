@@ -1,0 +1,87 @@
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+
+    (require
+            '[org.gridgain.plus.dml.my-select :as my-select]
+            '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+            '[org.gridgain.plus.context.my-context :as my-context]
+            '[clojure.core.reducers :as r]
+            '[clojure.string :as str]
+            '[clojure.walk :as w])
+        (import (org.apache.ignite Ignite IgniteCache)
+                 (org.apache.ignite.internal IgnitionEx)
+                 (com.google.common.base Strings)
+                 (org.apache.ignite.configuration CacheConfiguration)
+                 (org.apache.ignite.cache CacheMode)
+                 (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+                 (org.gridgain.meta.cache MyContextCacheUtil)
+                 )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+(def funcCache (.cache ignite "my_meta_cache_all_func"))
+
+
+(def line "select l.Language as Language, c.Name, c1.population, c2.District from CountryLanguage as l, City as c,\n(select g.code as code, (g.population + c.population) * 0.001 as population from country as g, city as c \nwhere g.code = c.CountryCode and g.name = 'United States') as c1,\n(SELECT c.id, c.District FROM City AS c WHERE c.name = 'Oxnard') AS c2,\nmy_func(a, b) as c3\nwhere \nl.CountryCode = c.CountryCode \nand c1.code = c.CountryCode \nAND c2.id = c.ID")
+(def lst (my-lexical/get-segments line))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

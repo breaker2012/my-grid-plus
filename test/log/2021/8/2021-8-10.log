@@ -1,0 +1,771 @@
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init15508534273685004653.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Compiling org.gridgain.plus.dml.my-select
+Connecting to local nREPL server...
+nREPL server started on port 49718 on host 127.0.0.1 - nrepl://127.0.0.1:49718
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+八月 10, 2021 9:22:04 上午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[09:22:05]    __________  ________________
+[09:22:05]   /  _/ ___/ |/ /  _/_  __/ __/
+[09:22:05]  _/ // (7 7    // /  / / / _/
+[09:22:05] /___/\___/_/|_/___/ /_/ /___/
+[09:22:05]
+[09:22:05] ver. 8.7.24#20210810-sha1:DEV
+[09:22:05] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[09:22:05]
+[09:22:05] Ignite documentation: http://gridgain.com
+[09:22:05]
+[09:22:05] Quiet mode.
+[09:22:05]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[09:22:05]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[09:22:05]
+[09:22:05] OS: Mac OS X 10.12.1 x86_64
+[09:22:05] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[09:22:05] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[09:22:05] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[09:22:05] Configured plugins:
+[09:22:05]   ^-- None
+[09:22:05]
+[09:22:05] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[09:22:06] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[09:22:06] Security status [authentication=off, tls/ssl=off]
+[09:22:08] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[09:22:11] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[09:22:11] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[09:22:11]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[09:22:11]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[09:22:11]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[09:22:11]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[09:22:11] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[09:22:11]
+[09:22:11] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[09:22:11]
+[09:22:11] Ignite node started OK (id=4ed84ce6, instance name=服务网格专用部署)
+[09:22:11] Topology snapshot [ver=2, locNode=4ed84ce6, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[09:22:11]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+(declare item-to-line table-to-line func-to-line select-to-sql token-to-sql map-token-to-sql)
+
+; 转换成查询字符串
+(defn item-to-line [m]
+    (let [{table_alias :table_alias item_name :item_name alias :alias} m]
+        (cond
+            (and (not (= table_alias "")) (not (= alias ""))) (str/join [table_alias "." item_name " as " alias])
+            (and (not (= table_alias "")) (= alias "")) (str/join [table_alias "." item_name])
+            (and (= table_alias "") (= alias "")) item_name
+            )))
+
+(defn table-to-line [m] ())
+
+(defn func-to-line [m] ())
+
+(defn select-to-sql [ignite group_id ast]
+    (if (and (some? ast) (map? ast))
+        (when-let [{query-items :query-items table-items :table-items where-items :where-items group-by :group-by having :having order-by :order-by limit :limit} ast]
+            (cond (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["limit"] (token-to-sql ignite group_id limit))
+
+                  ))))
+
+
+(defn token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond (instance? clojure.lang.LazySeq m) (map (partial token-to-sql ignite group_id) m)
+              (map? m) (map-token-to-sql ignite group_id m))))
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")"])))
+
+(defn map-token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond
+            (contains? m :sql_obj) (if (not (nil? (get m :sql_obj))) (select-to-sql ignite group_id (get m :sql_obj)) (throw (Exception. "select 语句错误！")))
+            (and (contains? m :func-name) (contains? m :lst_ps)) (func-to-line ignite group_id m)
+            (contains? m :and_or_symbol) (get m :and_or_symbol)
+            (contains? m :comparison_symbol) (get m :comparison_symbol)
+            (contains? m :in_symbol) (get m :in_symbol)
+            (contains? m :operation_symbol) (get m :operation_symbol)
+            (contains? m :comma_symbol) (get m :comma_symbol)
+            (contains? m :item_name) (item-to-line m)
+            (contains? m :table_name) (table-to-line m)
+            (contains? m :parenthesis) (concat ["("] (token-to-sql ignite group_id (get m :parenthesis)) [")"])
+            )))
+=> #'core/map-token-to-sql
+=> #'core/item-to-line
+=> #'core/func-to-line
+=> #'core/table-to-line
+=> #'core/select-to-sql
+=> #'core/token-to-sql
+=> #'core/func-to-line
+=> #'core/map-token-to-sql
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" nil "," nil ")")
+(my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))
+=>
+{:func-name "round",
+ :lst_ps ({:operation ({:func-name "nvl",
+                        :lst_ps ({:func-name "sum",
+                                  :lst_ps ({:func-name "nvl",
+                                            :lst_ps ({:item_name "data", :table_alias "b", :const false}
+                                                     {:comma_symbol ","}
+                                                     {:table_alias "",
+                                                      :item_name "0",
+                                                      :item_type "",
+                                                      :java_item_type java.lang.Integer,
+                                                      :const true})})}
+                                 {:comma_symbol ","}
+                                 {:table_alias "",
+                                  :item_name "0",
+                                  :item_type "",
+                                  :java_item_type java.lang.Integer,
+                                  :const true})}
+                       {:operation_symbol "*"}
+                       {:item_name "12", :table_alias "0", :const false})}
+          {:comma_symbol ","}
+          {:table_alias "", :item_name "2", :item_type "", :java_item_type java.lang.Integer, :const true})}
+
+(defn map-token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond
+            (contains? m :sql_obj) (if (not (nil? (get m :sql_obj))) (select-to-sql ignite group_id (get m :sql_obj)) (throw (Exception. "select 语句错误！")))
+            (and (contains? m :func-name) (contains? m :lst_ps)) (func-to-line ignite group_id m)
+            (contains? m :and_or_symbol) (get m :and_or_symbol)
+            (contains? m :operation) (map (partial token-to-sql ignite group_id) (get m :operation))
+            (contains? m :comparison_symbol) (get m :comparison_symbol)
+            (contains? m :in_symbol) (get m :in_symbol)
+            (contains? m :operation_symbol) (get m :operation_symbol)
+            (contains? m :comma_symbol) (get m :comma_symbol)
+            (contains? m :item_name) (item-to-line m)
+            (contains? m :table_name) (table-to-line m)
+            (contains? m :parenthesis) (concat ["("] (token-to-sql ignite group_id (get m :parenthesis)) [")"])
+            )))
+=> #'core/map-token-to-sql
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=>
+("round" "(" (("nvl" "(" ("sum" "(" ("nvl" "(" "b.data as " "," nil ")") ")") "," nil ")") "*" "0.12 as ") "," nil ")")
+(defn item-to-line [m]
+    (let [{table_alias :table_alias item_name :item_name alias :alias} m]
+        (cond
+            (and (not (= table_alias "")) (not (nil? alias)) (not (Strings/isNullOrEmpty alias)) (str/join [table_alias "." item_name " as " alias])
+            (and (not (= table_alias "")) (Strings/isNullOrEmpty alias)) (str/join [table_alias "." item_name])
+            (and (= table_alias "") (= alias "")) item_name
+            ))))
+Syntax error macroexpanding cond at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init15508534273685004653.clj:3:9).
+cond requires an even number of forms
+(defn item-to-line [m]
+    (let [{table_alias :table_alias item_name :item_name alias :alias} m]
+        (cond
+            (and (not (Strings/isNullOrEmpty table_alias)) (not (nil? alias)) (not (Strings/isNullOrEmpty alias))) (str/join [table_alias "." item_name " as " alias])
+            (and (not (Strings/isNullOrEmpty table_alias)) (Strings/isNullOrEmpty alias)) (str/join [table_alias "." item_name])
+            (and (Strings/isNullOrEmpty table_alias) (Strings/isNullOrEmpty alias)) item_name
+            )))
+=> #'core/item-to-line
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" (("nvl" "(" ("sum" "(" ("nvl" "(" "b.data" "," "0" ")") ")") "," "0" ")") "*" "0.12") "," "2" ")")
+(-> (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")) :func-name)
+=> "round"
+(defn token-to-line ([ignite group_id lst_tokens] (token-to-sql ignite group_id lst_tokens []))
+    ([ignite group_id [f & r] lst]
+     (if (some? f)
+         (recur ignite group_id r (concat (token-to-sql ignite group_id f))) lst)))
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps)) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps)) [")"])))
+
+=> #'core/token-to-line
+=> #'core/func-to-line
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+Execution error (ArityException) at core/token-to-line (form-init15508534273685004653.clj:1).
+Wrong number of args (4) passed to: core/token-to-sql
+(defn token-to-line ([ignite group_id lst_tokens] (token-to-sql ignite group_id lst_tokens []))
+    ([ignite group_id [f & r] lst]
+     (if (some? f)
+         (recur ignite group_id r (concat (token-to-sql ignite group_id f))) lst)))
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps)) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps)) [")"])))
+
+=> #'core/token-to-line
+=> #'core/func-to-line
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+Execution error (ArityException) at core/token-to-line (form-init15508534273685004653.clj:1).
+Wrong number of args (4) passed to: core/token-to-sql
+(defn token-to-line ([ignite group_id lst_tokens] (token-to-sql ignite group_id lst_tokens []))
+    ([ignite group_id [f & r] lst]
+     (if (some? f)
+         (recur ignite group_id r (concat (token-to-sql ignite group_id f))) lst)))
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps) []) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps) []) [")"])))
+
+=> #'core/token-to-line
+=> #'core/func-to-line
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" \2 ")")
+(defn token-to-line ([ignite group_id lst_tokens] (token-to-sql ignite group_id lst_tokens []))
+    ([ignite group_id [f & r] lst]
+     (if (some? f)
+         (recur ignite group_id r (concat lst (token-to-sql ignite group_id f))) lst)))
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps) []) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (token-to-line ignite group_id (-> m :lst_ps) []) [")"])))
+
+=> #'core/token-to-line
+=> #'core/func-to-line
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" ("nvl" "(" "sum" "(" "nvl" "(" \b \. \d \a \t \a \, \0 ")" ")" \, \0 ")") "*" "0.12" \, \2 ")")
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")"])))
+=> #'core/func-to-line
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" (("nvl" "(" ("sum" "(" ("nvl" "(" "b.data" "," "0" ")") ")") "," "0" ")") "*" "0.12") "," "2" ")")
+(func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" (("nvl" "(" ("sum" "(" ("nvl" "(" "b.data" "," "0" ")") ")") "," "0" ")") "*" "0.12") "," "2" ")")
+(doto (StringBuffer.) (.append "吴") (.append "大") (.append "富"))
+=> #object[java.lang.StringBuffer 0x37e35cff "吴大富"]
+(def sb (doto (StringBuffer.) (.append "吴") (.append "大") (.append "富")))
+=> #'core/sb
+(println (.toString sb))
+吴大富
+=> nil
+(def sb (StringBuilder.))
+=> #'core/sb
+(println (.toString (.append sb "吴大富")))
+吴大富
+=> nil
+(println (.toString (.append (.append sb "吴") "大富")))
+吴大富吴大富
+=> nil
+(def sb (StringBuilder.))
+=> #'core/sb
+(println (.toString (.append (.append sb "吴") "大富")))
+吴大富
+=> nil
+(defn ar-to-sql [[f & rs] ^StringBuffer sb]
+    (if (some? f)
+        (cond (instance? String) (ar-to-sql rs (.append (.append sb f) " "))
+              (instance? clojure.lang.LazySeq f) (ar-to-sql rs (.append (.append sb (.toString (ar-to-sql f (StringBuffer.)))) " "))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))))
+Execution error (ArityException) at core/eval2381 (form-init15508534273685004653.clj:1).
+Wrong number of args (1) passed to: core/ar-to-sql
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String) (ar-to-sql rs (.append (.append sb f) " "))
+              (instance? clojure.lang.LazySeq f) (ar-to-sql rs (.append (.append sb (.toString (ar-to-sql f (StringBuilder.)))) " "))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+Execution error (ArityException) at core/ar-to-sql (form-init15508534273685004653.clj:3).
+Wrong number of args (1) passed to: clojure.core/instance?--5404
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (ar-to-sql rs (.append (.append sb f) " "))
+              (instance? clojure.lang.LazySeq f) (ar-to-sql rs (.append (.append sb (.toString (ar-to-sql f (StringBuilder.)))) " "))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x6911362c "round ( nvl ( sum ( nvl ( b.data , 0 )  )  , 0 )  * 0.12  , 2 ) "]
+(Character/isLetter "L")
+Execution error (IllegalArgumentException) at core/eval2407 (form-init15508534273685004653.clj:1).
+No matching method isLetter found taking 1 args
+(defn is-char? [line]
+    (re-find #"^(?i)\w" line))
+=> #'core/is-char?
+(def line "abc")
+=> #'core/line
+(is-char? (last line))
+Execution error (ClassCastException) at core/is-char? (form-init15508534273685004653.clj:2).
+java.lang.Character cannot be cast to java.lang.CharSequence
+(last line)
+=> \c
+(String. (last line))
+Execution error (IllegalArgumentException) at core/eval2424 (form-init15508534273685004653.clj:1).
+No matching ctor found for class java.lang.String
+(String. "a")
+=> "a"
+(String. 'c')
+Execution error (IllegalArgumentException) at core/eval2432 (form-init15508534273685004653.clj:1).
+No matching ctor found for class java.lang.String
+(str/join [(last line)])
+=> "c"
+(is-char? (str/join [(last line)]))
+=> "c"
+(is-char? (str/join [(last "abc(")]))
+=> nil
+(def sql_symbol #{\( \) \/ \* \- \+ \= \> \<})
+=> #'core/sql_symbol
+(not (contains? sql_symbol (last "abc")))
+=> true
+(not (contains? sql_symbol (last "abc(")))
+=> false
+(last "abc(")
+=> \(
+(reverse "abc(")
+=> (\( \c \b \a)
+(first (reverse "abc("))
+=> \(
+(second (reverse "abc("))
+=> \c
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (if (not (contains? sql_symbol (last f)))
+                                       (recur rs (.append (.append sb f) " "))
+                                       (recur rs (.append sb f)))
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (recur f (StringBuilder.)))]
+                                                     (cond (= (last f_sb) \space) (recur rs (.append sb f_sb))
+                                                           (contains? sql_symbol (last f_sb)) (recur rs (.append sb f_sb))
+                                                           (and (not (contains? sql_symbol (last f_sb))) (not (= (last f_sb) \space))) (recur rs (.append (.append sb f_sb) " "))
+                                                           ))) sb))
+Syntax error (UnsupportedOperationException) compiling recur at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init15508534273685004653.clj:6:72).
+Can only recur from tail position
+八月 10, 2021 8:13:12 下午 org.apache.ignite.logger.java.JavaLogger error
+严重: Blocked system-critical thread has been detected. This can lead to cluster-wide undefined behaviour [workerName=grid-nio-worker-tcp-comm-2, threadName=grid-nio-worker-tcp-comm-2-#25%TcpCommunicationSpi%, blockedFor=5796s]
+[20:13:12] Possible failure suppressed accordingly to a configured handler [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]], failureCtx=FailureContext [type=SYSTEM_WORKER_BLOCKED, err=class o.a.i.IgniteException: GridWorker [name=grid-nio-worker-tcp-comm-2, igniteInstanceName=TcpCommunicationSpi, finished=false, heartbeatTs=1628591795103]]]
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (if (not (contains? sql_symbol (last f)))
+                                       (ar-to-sql rs (.append (.append sb f) " "))
+                                       (ar-to-sql rs (.append sb f)))
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (= (last f_sb) \space) (ar-to-sql rs (.append sb f_sb))
+                                                           (contains? sql_symbol (last f_sb)) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (not (contains? sql_symbol (last f_sb))) (not (= (last f_sb) \space))) (ar-to-sql rs (.append (.append sb f_sb) " "))
+                                                           ))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x6c830a52 "round (nvl (sum (nvl (b.data , 0 )), 0 )*0.12 , 2 )"]
+(def sql_symbol #{\( \) \/ \* \- \+ \= \> \< \,})
+=> #'core/sql_symbol
+(ar-to-sql (func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x32703f48 "round (nvl (sum (nvl (b.data ,0 )),0 )*0.12 ,2 )"]
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (last f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (not (= (last (.toString sb)) \space)) (contains? sql_symbol (last f))) (ar-to-sql rs (.append sb f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (last f)))) (ar-to-sql rs (.append (.append sb f) " "))
+                                         (and (not (= (last (.toString sb)) \space)) (not (contains? sql_symbol (last f)))) (ar-to-sql rs (.append (.append (.append sb " ") f) " "))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (= (last f_sb) \space) (ar-to-sql rs (.append sb f_sb))
+                                                           (contains? sql_symbol (last f_sb)) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (not (contains? sql_symbol (last f_sb))) (not (= (last f_sb) \space))) (ar-to-sql rs (.append (.append sb f_sb) " "))
+                                                           ))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x743904d8 " round( nvl( sum( nvl( b.data, 0)), 0)* 0.12, 2)"]
+(println (.toString sb))
+吴大富
+=> nil
+(def sb (StringBuilder.))
+=> #'core/sb
+(.append sb "吴大富")
+=> #object[java.lang.StringBuilder 0x75fae953 "吴大富"]
+(.append (.deleteCharAt sb (- (.length sb) 1)) "贵")
+=> #object[java.lang.StringBuilder 0x75fae953 "吴大贵"]
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                         :else
+                                         (ar-to-sql rs (.append sb f))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                           (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                           :else
+                                                           (ar-to-sql rs (.append sb f_sb))
+                                                           ))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x11a156d9 "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"]
+(ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x17437999 "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"]
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init7534942299703298180.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Compiling org.gridgain.plus.dml.my-select
+Connecting to local nREPL server...
+nREPL server started on port 58535 on host 127.0.0.1 - nrepl://127.0.0.1:58535
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+八月 10, 2021 10:50:25 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[22:50:25]    __________  ________________
+[22:50:25]   /  _/ ___/ |/ /  _/_  __/ __/
+[22:50:25]  _/ // (7 7    // /  / / / _/
+[22:50:25] /___/\___/_/|_/___/ /_/ /___/
+[22:50:25]
+[22:50:25] ver. 8.7.24#20210810-sha1:DEV
+[22:50:25] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[22:50:25]
+[22:50:25] Ignite documentation: http://gridgain.com
+[22:50:25]
+[22:50:25] Quiet mode.
+[22:50:25]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[22:50:25]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[22:50:25]
+[22:50:26] OS: Mac OS X 10.12.1 x86_64
+[22:50:26] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[22:50:26] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[22:50:26] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[22:50:26] Configured plugins:
+[22:50:26]   ^-- None
+[22:50:26]
+[22:50:26] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[22:50:26] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[22:50:26] Security status [authentication=off, tls/ssl=off]
+[22:50:27] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[22:50:30] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[22:50:30] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[22:50:30]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[22:50:30]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[22:50:30]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[22:50:30]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[22:50:30] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[22:50:30]
+[22:50:30] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[22:50:30]
+[22:50:30] Ignite node started OK (id=363f770b, instance name=服务网格专用部署)
+[22:50:30] Topology snapshot [ver=4, locNode=363f770b, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[22:50:30]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+[22:50:57] New version is available at gridgain.com: 8.8.7
+(declare ar-to-sql item-to-line table-to-line func-to-line select-to-sql token-to-sql map-token-to-sql)
+
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                         :else
+                                         (ar-to-sql rs (.append sb f))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                           (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                           :else
+                                                           (ar-to-sql rs (.append sb f_sb))
+                                                           ))) sb))
+
+(defn item-to-line [m]
+    (let [{table_alias :table_alias item_name :item_name alias :alias} m]
+        (cond
+            (and (not (Strings/isNullOrEmpty table_alias)) (not (nil? alias)) (not (Strings/isNullOrEmpty alias))) (str/join [table_alias "." item_name " as " alias])
+            (and (not (Strings/isNullOrEmpty table_alias)) (Strings/isNullOrEmpty alias)) (str/join [table_alias "." item_name])
+            (and (Strings/isNullOrEmpty table_alias) (Strings/isNullOrEmpty alias)) item_name
+            )))
+
+; table item 转换成 line
+(defn table-to-line [m] ())
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")"])))
+
+(defn select-to-sql [ignite group_id ast]
+    (if (and (some? ast) (map? ast))
+        (when-let [{query-items :query-items table-items :table-items where-items :where-items group-by :group-by having :having order-by :order-by limit :limit} ast]
+            (cond (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["limit"] (token-to-sql ignite group_id limit))
+
+                  ))))
+
+
+(defn token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond (instance? clojure.lang.LazySeq m) (map (partial token-to-sql ignite group_id) m)
+              (map? m) (map-token-to-sql ignite group_id m))))
+
+; map token to sql
+(defn map-token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond
+            (contains? m :sql_obj) (if (not (nil? (get m :sql_obj))) (select-to-sql ignite group_id (get m :sql_obj)) (throw (Exception. "select 语句错误！")))
+            (and (contains? m :func-name) (contains? m :lst_ps)) (.toString (ar-to-sql (func-to-line ignite group_id m) (StringBuilder.)))
+            (contains? m :and_or_symbol) (get m :and_or_symbol)
+            (contains? m :comparison_symbol) (get m :comparison_symbol)
+            (contains? m :in_symbol) (get m :in_symbol)
+            (contains? m :comma_symbol) (get m :comma_symbol)
+            (contains? m :item_name) (item-to-line m)
+            (contains? m :table_name) (table-to-line m)
+            (contains? m :parenthesis) (.toString (ar-to-sql (concat ["("] (token-to-sql ignite group_id (get m :parenthesis)) [")"]) (StringBuilder.)))
+            )))
+Syntax error compiling at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init7534942299703298180.clj:5:80).
+Unable to resolve symbol: sql_symbol in this context
+=> #'core/map-token-to-sql
+=> #'core/item-to-line
+=> #'core/table-to-line
+=> #'core/func-to-line
+=> #'core/select-to-sql
+=> #'core/token-to-sql
+=> #'core/map-token-to-sql
+(def sql_symbol #{\( \) \/ \* \- \+ \= \> \<})
+=> #'core/sql_symbol
+(declare ar-to-sql item-to-line table-to-line func-to-line select-to-sql token-to-sql map-token-to-sql)
+(def sql_symbol #{\( \) \/ \* \- \+ \= \> \<})
+
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                         :else
+                                         (ar-to-sql rs (.append sb f))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                           (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                           :else
+                                                           (ar-to-sql rs (.append sb f_sb))
+                                                           ))) sb))
+
+(defn item-to-line [m]
+    (let [{table_alias :table_alias item_name :item_name alias :alias} m]
+        (cond
+            (and (not (Strings/isNullOrEmpty table_alias)) (not (nil? alias)) (not (Strings/isNullOrEmpty alias))) (str/join [table_alias "." item_name " as " alias])
+            (and (not (Strings/isNullOrEmpty table_alias)) (Strings/isNullOrEmpty alias)) (str/join [table_alias "." item_name])
+            (and (Strings/isNullOrEmpty table_alias) (Strings/isNullOrEmpty alias)) item_name
+            )))
+
+; table item 转换成 line
+(defn table-to-line [m] ())
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")"])))
+
+(defn select-to-sql [ignite group_id ast]
+    (if (and (some? ast) (map? ast))
+        (when-let [{query-items :query-items table-items :table-items where-items :where-items group-by :group-by having :having order-by :order-by limit :limit} ast]
+            (cond (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["limit"] (token-to-sql ignite group_id limit))
+
+                  ))))
+
+
+(defn token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond (instance? clojure.lang.LazySeq m) (map (partial token-to-sql ignite group_id) m)
+              (map? m) (map-token-to-sql ignite group_id m))))
+
+; map token to sql
+(defn map-token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond
+            (contains? m :sql_obj) (if (not (nil? (get m :sql_obj))) (select-to-sql ignite group_id (get m :sql_obj)) (throw (Exception. "select 语句错误！")))
+            (and (contains? m :func-name) (contains? m :lst_ps)) (.toString (ar-to-sql (func-to-line ignite group_id m) (StringBuilder.)))
+            (contains? m :and_or_symbol) (get m :and_or_symbol)
+            (contains? m :comparison_symbol) (get m :comparison_symbol)
+            (contains? m :in_symbol) (get m :in_symbol)
+            (contains? m :comma_symbol) (get m :comma_symbol)
+            (contains? m :item_name) (item-to-line m)
+            (contains? m :table_name) (table-to-line m)
+            (contains? m :parenthesis) (.toString (ar-to-sql (concat ["("] (token-to-sql ignite group_id (get m :parenthesis)) [")"]) (StringBuilder.)))
+            )))
+=> #'core/map-token-to-sql
+=> #'core/sql_symbol
+=> #'core/ar-to-sql
+=> #'core/func-to-line
+=> #'core/table-to-line
+=> #'core/item-to-line
+=> #'core/select-to-sql
+=> #'core/token-to-sql
+=> #'core/map-token-to-sql
+(ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> nil
+(my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))
+=>
+{:func-name "round",
+ :lst_ps ({:operation ({:func-name "nvl",
+                        :lst_ps ({:func-name "sum",
+                                  :lst_ps ({:func-name "nvl",
+                                            :lst_ps ({:item_name "data", :table_alias "b", :const false}
+                                                     {:comma_symbol ","}
+                                                     {:table_alias "",
+                                                      :item_name "0",
+                                                      :item_type "",
+                                                      :java_item_type java.lang.Integer,
+                                                      :const true})})}
+                                 {:comma_symbol ","}
+                                 {:table_alias "",
+                                  :item_name "0",
+                                  :item_type "",
+                                  :java_item_type java.lang.Integer,
+                                  :const true})}
+                       {:operation_symbol "*"}
+                       {:item_name "12", :table_alias "0", :const false})}
+          {:comma_symbol ","}
+          {:table_alias "", :item_name "2", :item_type "", :java_item_type java.lang.Integer, :const true})}
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> "round("
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> "round("
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> "round("
+(func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" nil "," "2" ")")
+(defn map-token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond
+            (contains? m :sql_obj) (if (not (nil? (get m :sql_obj))) (select-to-sql ignite group_id (get m :sql_obj)) (throw (Exception. "select 语句错误！")))
+            (and (contains? m :func-name) (contains? m :lst_ps)) (func-to-line ignite group_id m)
+            (contains? m :and_or_symbol) (get m :and_or_symbol)
+            (contains? m :comparison_symbol) (get m :comparison_symbol)
+            (contains? m :in_symbol) (get m :in_symbol)
+            (contains? m :comma_symbol) (get m :comma_symbol)
+            (contains? m :item_name) (item-to-line m)
+            (contains? m :table_name) (table-to-line m)
+            (contains? m :parenthesis) (concat ["("] (token-to-sql ignite group_id (get m :parenthesis)) [")"])
+            )))
+=> #'core/map-token-to-sql
+(func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" nil "," "2" ")")
+(ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x1c309f91 "round("]
+(func-to-line ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" nil "," "2" ")")
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> ("round" "(" nil "," "2" ")")

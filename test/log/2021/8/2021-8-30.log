@@ -1,0 +1,50 @@
+(require
+        '[org.gridgain.plus.dml.my-select :as my-select]
+            '[org.gridgain.plus.dml.my-insert :as my-insert]
+            '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+            '[org.gridgain.plus.context.my-context :as my-context]
+            '[clojure.core.reducers :as r]
+            '[clojure.string :as str]
+    (import (org.apache.ignite Ignite IgniteCache)
+             (org.apache.ignite.internal IgnitionEx)
+             (com.google.common.base Strings)
+             (org.tools MyConvertUtil MySqlFunc)
+             (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+             (cn.plus.tools KvSql)
+             (org.gridgain.dml.util MyCacheExUtil)
+             (org.apache.ignite.configuration CacheConfiguration)
+             (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+             (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+             (org.gridgain.meta.cache MyContextCacheUtil)
+             (org.gridgain.mydml MyTransUtil)
+             (java.util ArrayList Date Iterator)
+             (java.sql Timestamp))
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

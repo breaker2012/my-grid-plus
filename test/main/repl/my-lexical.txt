@@ -1,0 +1,70 @@
+(my-lexical/get-segments "select * from m union selec * from n")
+=> {:query-items (("*")), :table-items nil}
+(my-lexical/get-segments "select * from m")
+=> {:query-items (("*")), :table-items nil}
+(my-lexical/get-segments "select m.name from m")
+=> {:query-items (("m.name")), :table-items nil}
+(my-lexical/get-segments "select m.name as name, m.age age from m")
+=> {:query-items (("m.name" "as" "name") ["m.age" "age"]), :table-items nil}
+
+
+(defn get-segments [select-sql]
+    (when-let [lst (my-lexical/to-back select-sql)]
+        (let [{query-items :query-items rs-lst-query :rs-lst} (my-lexical/query-items-line lst)]
+            (if (some? rs-lst-query)
+                (let [{table-items :table-items rs-lst-tables :rs-lst} (my-lexical/tables-items-line rs-lst-query)]
+                    (if (some? rs-lst-tables)
+                        (let [{where-items :where-items rs-lst-where :rs-lst} (my-lexical/where-items-line rs-lst-tables)]
+                            (if (some? rs-lst-where)
+                                (let [{group-by :group-by having :having order-by :order-by limit :limit} (my-lexical/where-extend-line rs-lst-where)]
+                                    {:query-items query-items :table-items table-items :where-items where-items :group-by group-by :having having :order-by order-by :limit limit})
+                                {:query-items query-items :table-items table-items :where-items where-items}))
+                        {:query-items query-items :table-items rs-lst-query}))))))
+=> #'core/get-segments
+(get-segments "select * from m")
+=> {:query-items (("*")), :table-items ("m")}
+(get-segments "select m.name, n.age from table_a m left join table_b n on m.id = n.id where m.address = n.city")
+=>
+{:query-items (("m.name") ["n.age"]),
+ :table-items [["table_a" "m" "left" "join" "table_b" "n" "on" "m.id" "=" "n.id"]],
+ :where-items ["m.address" "=" "n.city"],
+ :group-by nil,
+ :having nil,
+ :order-by nil,
+ :limit nil}
+(get-segments "select m.name, n.age from table_a m left join table_b n on m.id = n.id where m.address = n.city GROUP BY c.CountryName HAVING count(m.ID) >= 19 ORDER BY count(*) ASC limit 0, 10")
+=>
+{:query-items (("m.name") ["n.age"]),
+ :table-items [["table_a" "m" "left" "join" "table_b" "n" "on" "m.id" "=" "n.id"]],
+ :where-items ["m.address" "=" "n.city"],
+ :group-by ["c.CountryName"],
+ :having ["count" "(" "m.ID" ")" ">=" "19"],
+ :order-by ["count" "(" "*" ")" "ASC"],
+ :limit ("0" "," "10")}
+(get-segments "select m.name, n.age from table_a m left join table_b n on m.id = n.id where m.address = n.city GROUP BY c.CountryName ORDER BY count(*) ASC limit 0, 10")
+=>
+{:query-items (("m.name") ["n.age"]),
+ :table-items [["table_a" "m" "left" "join" "table_b" "n" "on" "m.id" "=" "n.id"]],
+ :where-items ["m.address" "=" "n.city"],
+ :group-by ["c.CountryName"],
+ :having nil,
+ :order-by ["count" "(" "*" ")" "ASC"],
+ :limit ("0" "," "10")}
+(get-segments "select m.name, n.age from table_a m left join table_b n on m.id = n.id where m.address = n.city GROUP BY c.CountryName")
+=>
+{:query-items (("m.name") ["n.age"]),
+ :table-items [["table_a" "m" "left" "join" "table_b" "n" "on" "m.id" "=" "n.id"]],
+ :where-items ["m.address" "=" "n.city"],
+ :group-by ["c.CountryName"],
+ :having nil,
+ :order-by nil,
+ :limit nil}
+(get-segments "select m.name, n.age from table_a m left join table_b n on m.id = n.id where m.address = n.city ORDER BY count(*) ASC limit 0, 10")
+=>
+{:query-items (("m.name") ["n.age"]),
+ :table-items [["table_a" "m" "left" "join" "table_b" "n" "on" "m.id" "=" "n.id"]],
+ :where-items ["m.address" "=" "n.city"],
+ :group-by nil,
+ :having nil,
+ :order-by ["count" "(" "*" ")" "ASC"],
+ :limit ("0" "," "10")}

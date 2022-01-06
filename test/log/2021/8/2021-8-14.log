@@ -1,0 +1,96 @@
+(def group (-> (nth (my-select/sql-to-ast (my-lexical/to-back "select * from table_a a GROUP BY a.id")) 0) :sql_obj :group-by))
+=> #'core/group
+(first group)
+=> [:item_name "id"]
+(string? nil)
+=> false
+(map? nil)
+=> false
+(my-select/sql-to-ast (my-lexical/to-back "select * from table_a a GROUP BY a.id order by m.name desc"))
+=>
+({:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_a", :table_alias "a"}),
+            :where-items nil,
+            :group-by {:item_name "id", :table_alias "a", :const false},
+            :having nil,
+            :order-by {:order-item ({:item_name "name", :table_alias "m", :const false}), :order "desc"},
+            :limit nil}})
+(my-select/sql-to-ast (my-lexical/to-back "select * from table_a a GROUP BY a.id order by m.name desc limit 0, m.count"))
+=>
+({:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_a", :table_alias "a"}),
+            :where-items nil,
+            :group-by {:item_name "id", :table_alias "a", :const false},
+            :having nil,
+            :order-by {:order-item ({:item_name "name", :table_alias "m", :const false}), :order "desc"},
+            :limit ({:table_alias "", :item_name "0", :item_type "", :java_item_type java.lang.Integer, :const true}
+                    {:comma_symbol ","}
+                    {:item_name "count", :table_alias "m", :const false})}})
+(my-select/sql-to-ast (my-lexical/to-back "select * from table_a a GROUP BY a.id having (a.id) > 10 order by m.name desc limit 0, m.count"))
+=>
+({:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_a", :table_alias "a"}),
+            :where-items nil,
+            :group-by {:item_name "id", :table_alias "a", :const false},
+            :having (nil
+                     {:comparison_symbol ">"}
+                     {:table_alias "", :item_name "10", :item_type "", :java_item_type java.lang.Integer, :const true}),
+            :order-by {:order-item ({:item_name "name", :table_alias "m", :const false}), :order "desc"},
+            :limit ({:table_alias "", :item_name "0", :item_type "", :java_item_type java.lang.Integer, :const true}
+                    {:comma_symbol ","}
+                    {:item_name "count", :table_alias "m", :const false})}})
+(my-select/sql-to-ast (my-lexical/to-back "select * from table_a a GROUP BY a.id having count(a.id) > 10 order by m.name desc limit 0, m.count"))
+=>
+({:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_a", :table_alias "a"}),
+            :where-items nil,
+            :group-by {:item_name "id", :table_alias "a", :const false},
+            :having ({:func-name "count", :lst_ps ({:item_name "id", :table_alias "a", :const false})}
+                     {:comparison_symbol ">"}
+                     {:table_alias "", :item_name "10", :item_type "", :java_item_type java.lang.Integer, :const true}),
+            :order-by {:order-item ({:item_name "name", :table_alias "m", :const false}), :order "desc"},
+            :limit ({:table_alias "", :item_name "0", :item_type "", :java_item_type java.lang.Integer, :const true}
+                    {:comma_symbol ","}
+                    {:item_name "count", :table_alias "m", :const false})}})
+(my-select/sql-to-ast (my-lexical/to-back "select * from table_a a GROUP BY a.id having count(a.id) > 10 order by m.name desc limit 0, m.count union select * from table_b b"))
+=>
+({:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_a", :table_alias "a"}),
+            :where-items nil,
+            :group-by {:item_name "id", :table_alias "a", :const false},
+            :having ({:func-name "count", :lst_ps ({:item_name "id", :table_alias "a", :const false})}
+                     {:comparison_symbol ">"}
+                     {:table_alias "", :item_name "10", :item_type "", :java_item_type java.lang.Integer, :const true}),
+            :order-by {:order-item ({:item_name "name", :table_alias "m", :const false}), :order "desc"},
+            :limit ({:table_alias "", :item_name "0", :item_type "", :java_item_type java.lang.Integer, :const true}
+                    {:comma_symbol ","}
+                    {:item_name "count", :table_alias "m", :const false})}}
+ {:keyword "union"}
+ {:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_b", :table_alias "b"}),
+            :where-items nil,
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})
+(my-select/sql-to-ast (my-lexical/to-back "select * from table_a a GROUP BY a.id having count(a.id) > 10 order by m.name desc limit 0, m.count union all select * from table_b b"))
+=>
+({:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_a", :table_alias "a"}),
+            :where-items nil,
+            :group-by {:item_name "id", :table_alias "a", :const false},
+            :having ({:func-name "count", :lst_ps ({:item_name "id", :table_alias "a", :const false})}
+                     {:comparison_symbol ">"}
+                     {:table_alias "", :item_name "10", :item_type "", :java_item_type java.lang.Integer, :const true}),
+            :order-by {:order-item ({:item_name "name", :table_alias "m", :const false}), :order "desc"},
+            :limit ({:table_alias "", :item_name "0", :item_type "", :java_item_type java.lang.Integer, :const true}
+                    {:comma_symbol ","}
+                    {:item_name "count", :table_alias "m", :const false})}}
+ {:keyword "union all"}
+ {:sql_obj {:query-items ({:operation_symbol "*", :alias nil}),
+            :table-items ({:table_name "table_b", :table_alias "b"}),
+            :where-items nil,
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})

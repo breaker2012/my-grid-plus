@@ -1,0 +1,109 @@
+(def sql_line_scenes "{\n   name: query_salary,\n   params: [{param_name: um_number, param_type: String},\n            {param_name: date, param_type: date}],\n   sql: select m.salary from employees_salary m where m.um_number = :um_number and m.date = :data\n}")
+
+(def sql_line_scenes "{\n   name: query_salary,\n   params: [{param_name: um_number, param_type: String},\n            {param_name: date, param_type: date}],\n   sql: select m.salary from employees_salary m where m.um_number = :um_number and m.date = :data\n}")
+
+(my-scenes-util/my_scenes_obj sql_line_scenes)
+
+
+(def sql_line_tran "{\n   name: 名字,\n   descrip: 吴大富是大帅哥,\n   is_batch: true,\n   params: [{param_name: a, param_type: 'String'},\n           {param_name: b, param_type: Double}],\n   trans: {\n      -- 声明变量\n      val table_id = auto_id(\"Person\");\n      execute:\n      -- 执行语句\n      insert into Person (id, name, age) values (:table_id, 'person', 1);\n      insert into sales (id, city, person_id) values (auto_id(\"sales\"), 'id', 'cd', :table_id);\n   }\n}")
+
+(my-scenes-util/my_scenes_obj sql_line_tran)
+
+(def sql_line_tran "{\n   name: 名字,\n   descrip: 吴大富是大帅哥,\n   is_batch: true,\n   params: [{param_name: a, param_type: 'String'},\n           {param_name: b, param_type: Double}],\n   trans: {\n      -- 声明变量\n      val table_id = auto_id(\"Person\");\n      execute:\n      -- 执行语句\n      insert into Person (id, name, age) values (:table_id, 'person', 1);\n      insert into sales (id, city, person_id) values (auto_id(\"sales\"), 'id', 'cd', :table_id);\n   }\n}")
+
+(my-scenes-util/my_scenes_obj sql_line_tran)
+
+(def sql_line_cron "{\n   name: '名字',\n   descrip: '描述',\n   params: [{param_name: '参数名字', param_type: 'String'}],\n   batch: {map:[f(a), g(b)], reduce: f1(a, b)},\n   cron: {1, 3} * * * * *\n}")
+
+(my-scenes-util/my_scenes_obj sql_line_cron)
+
+
+
+(defn my-map
+    ([lst] (my-map lst '(pvalues)))
+    ([[f & r] lst]
+     (if (some? f)
+         (recur r (concat lst [f]))
+         lst)))
+(eval (my-map ['(calc_1 1 2) '(calc_2 3 4)]))
+=> #'core/my-map
+=> (3 -1)
+
+
+(def sql_line_cron "{\n   name: '名字',\n   descrip: '描述',\n   params: [{param_name: '参数名字', param_type: 'String'}],\n   batch: {map:[f(a), g(b)], reduce: f1(a, b)},\n   cron: {1, 3} * * * * *\n}")
+
+(my-scenes-util/my_scenes_obj sql_line_cron)
+=> nil
+=> org.gridgain.MyParamsUtil
+=> #'core/sql_line_cron
+=>
+{:scenes_type "cron",
+ :obj {:name "名字",
+       :params [#object[cn.plus.model.db.MyScenesParams 0x79d2741f "cn.plus.model.db.MyScenesParams@79d2741f"]],
+       :batch {:map (["f" "(" "a" ")"] ["g" "(" "b" ")"]), :reduce ("f1" "(" "a" "," "b" ")")},
+       :descrip ("'描述'"),
+       :cron ("{" "1" "," "3" "}" "*" "*" "*" "*" "*")}}
+(def m (my-scenes-util/my_scenes_obj sql_line_cron))
+=> #'core/m
+(let [{{{my-map :map my-reduce :reduce} :batch} :obj} m]
+    (println my-map))
+([f ( a )] [g ( b )])
+=> nil
+(let [{{{my-map :map my-reduce :reduce} :batch} :obj} m]
+    (println my-map)
+    (println my-reduce))
+([f ( a )] [g ( b )])
+(f1 ( a , b ))
+
+(def my-map (-> (-> (-> m :obj) :batch) :map))
+(def my-reduce (-> (-> (-> m :obj) :batch) :reduce))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

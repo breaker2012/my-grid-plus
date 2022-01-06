@@ -1,0 +1,4 @@
+my-insert.clj 改到了
+insert_select_obj_with_log_fun
+
+1、为 my-select.clj 添加 fun 的处理

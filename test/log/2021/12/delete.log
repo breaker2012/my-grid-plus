@@ -1,0 +1,92 @@
+(def sql_line (str/lower-case "DELETE FROM ORDERDETAILS WHERE ORDERID IN (10248)"))
+(my-delete/get_delete_obj ignite 1 sql_line)
+
+(def delete_obj (my-delete/get_delete_obj ignite 1 sql_line))
+(def table_name (-> delete_obj :table_name))
+(def sql (-> delete_obj :sql))
+(def pk_lst (-> delete_obj :pk_lst))
+(def lst (-> delete_obj :lst))
+(def dic (-> delete_obj :dic))
+
+(def it (.iterator (.query (.cache ignite (format "f_%s" table_name)) (doto (SqlFieldsQuery. sql)
+                                                                          (.setLazy true)))))
+
+(my-delete/delete_run_log ignite 1 sql_line)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

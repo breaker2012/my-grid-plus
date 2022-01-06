@@ -1,0 +1,193 @@
+(require
+    '[org.gridgain.plus.ddl.my-create-table :as my-create-table]
+    '[org.gridgain.plus.ddl.my-alter-table :as my-alter-table]
+    '[org.gridgain.plus.ddl.my-create-index :as my-create-index]
+    '[org.gridgain.plus.ddl.my-drop-index :as my-drop-index]
+    '[org.gridgain.plus.ddl.my-drop-table :as my-drop-table]
+    '[org.gridgain.plus.ddl.my-create-dataset :as my-create-dataset]
+    '[org.gridgain.plus.ddl.my-alter-dataset :as my-alter-dataset]
+    '[org.gridgain.plus.ddl.my-drop-dataset :as my-drop-dataset]
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-select-plus :as my-select-plus]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.my-delete :as my-delete]
+    '[org.gridgain.plus.dml.my-trans :as my-trans]
+    '[org.gridgain.plus.dml.my-scenes :as my-scenes]
+    '[org.gridgain.plus.dml.my-scenes-util :as my-scenes-util]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[org.gridgain.plus.init.plus-init-sql :as plus-init-sql]
+    '[org.gridgain.plus.init.plus-init :as plus-init]
+    '[org.gridgain.plus.tools.my-util :as my-util]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType MyLog)
+        (org.tools MyConvertUtil KvSql)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType DdlLog DataSetDdlLog)
+        (cn.plus.model.ddl MyDataSet MyDatasetTable MyDatasetRealTable MyDatasetTablePK MyDeleteViews MyInsertViews MySelectViews MyTable MyTableIndex MyTableIndexItem MyTableItem MyTableItemPK MyTableObj MyUpdateViews MyViewObj ViewOperateType ViewType)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.ddl MyCreateTableUtil MyDdlUtil)
+        (java.util List ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        (org.tools MyTools)
+        (org.gridgain MyParamsUtil)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources/default-config.xml"))
+
+
+(def sql_line (str/lower-case "update OrderDetails set Discount = 12, UnitPrice = Discount * 2 + Quantity where OrderID = 10248"))
+(my-update/get_update_obj ignite 1 sql_line)
+(def update_obj (my-update/get_update_obj ignite 1 sql_line))
+
+(def table_name (-> update_obj :table_name))
+
+(def sql (-> update_obj :sql))
+
+(def items (-> update_obj :items))
+
+(def pk_lst (-> update_obj :pk_lst))
+
+(def dic (-> update_obj :dic))
+
+(def lst (-> update_obj :lst))
+
+(def it (.iterator (.query (.cache ignite (format "f_%s" table_name)) (doto (SqlFieldsQuery. sql)
+                                                                            (.setLazy true)))))
+
+
+(defn item_value_tokens [^Ignite ignite lst_tokens ^BinaryObject binaryObject dic]
+                   (cond (contains? lst_tokens :item_name) (my-expression/item_type_binaryObj (-> lst_tokens :java_item_type) (-> lst_tokens :item_name) binaryObject dic)
+                         (contains? lst_tokens :parenthesis) (my-expression/mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> lst_tokens :parenthesis)))
+                         (contains? lst_tokens :operation) (my-expression/mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> lst_tokens :operation)))
+                         ))
+(defn get_key_obj [^Ignite ignite ^String table_name row pk_lst]
+             (if-let [keyBuilder (.builder (.binary ignite) (KvSql/getKeyType ignite (format "f_%s" table_name)))]
+                 (loop [[f & r] row [f_pk & r_pk] pk_lst kp keyBuilder]
+                     (if (and (some? f) (some? f_pk))
+                         (recur r r_pk (doto kp (.setField (format "%s_pk" (-> f_pk :item_name)) (my-lexical/get_jave_vs (-> f_pk :item_type) f))))
+                         (.build kp)))))
+(defn get_value_obj [^Ignite ignite ^String table_name pk items dic]
+               (if-let [valueBinaryObject (.toBuilder (.get (.withKeepBinary (.cache ignite (format "f_%s" table_name))) pk))]
+                   (loop [[f & r] items vp valueBinaryObject]
+                       (if (some? f)
+                           (let [my_vs (item_value_tokens ignite (-> f :item_obj) (.build vp) dic)]
+                               (if (and (vector? my_vs) (map? (first my_vs)))
+                                   (recur r (doto vp (.setField (-> f :item_name) (my-lexical/get_jave_vs (-> f :type) (-> (first my_vs) :express)))))
+                                   (recur r (doto vp (.setField (-> f :item_name) (my-lexical/get_jave_vs (-> f :type) (my-lexical/get_jave_vs (-> f :type) my_vs)))))))
+                           (.build vp)))))
+(defn get_cache_pk [^Ignite ignite ^String table_name it pk_lst]
+              (loop [itr it lst []]
+                  (if (.hasNext itr)
+                      (if-let [row (.next itr)]
+                          (cond (= (count pk_lst) 1) (recur itr (conj lst (my-lexical/get_jave_vs (-> (first pk_lst) :item_type) (.get row 0))))
+                                (> (count pk_lst) 1) (recur itr (conj lst (get_key_obj ignite table_name row pk_lst)))
+                                :else
+                                (throw (Exception. "表没有主键！"))
+                                ))
+                      lst)))
+(defn get_cache_data [^Ignite ignite ^String table_name it pk_lst items dic]
+                (if-let [lst_pk (get_cache_pk ignite table_name it pk_lst)]
+                    (loop [[f_pk & r_pk] lst_pk ms items lst_rs []]
+                        (if (some? f_pk)
+                            (recur r_pk ms (conj lst_rs (MyCacheEx. (.cache ignite (format "f_%s" table_name)) f_pk (get_value_obj ignite table_name f_pk ms dic) (SqlType/UPDATE))))
+                            lst_rs))))
+
+(def lst_pk (get_cache_pk ignite table_name it pk_lst))
+(def f_pk (first lst_pk))
+(def pk (first f_pk))
+
+(def valueBinaryObject (.toBuilder (.get (.withKeepBinary (.cache ignite (format "f_%s" table_name))) pk)))
+(def binaryObject (.build valueBinaryObject))
+
+(defn mid_to_forwrod_binaryObject
+    ([^Ignite ignite ^BinaryObject binaryObject dic lst_tokens] (mid_to_forwrod_binaryObject ignite binaryObject dic lst_tokens [] []))
+    ([^Ignite ignite ^BinaryObject binaryObject dic lst_tokens stack_number stack_symbol]
+     (cond (map? lst_tokens) (cond (contains? lst_tokens :parenthesis) (mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> lst_tokens :parenthesis)))
+                                   (contains? lst_tokens :operation) (mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> lst_tokens :operation)))
+                                   (and (contains? lst_tokens :item_name) (= String (-> lst_tokens :java_item_type))) {:express (my-expression/item_type (-> lst_tokens :java_item_type) (-> lst_tokens :item_name)) :java_type java.lang.String :item_type ""}
+                                   :else
+                                   (throw (Exception. "字符串串错误！")))
+           (list? lst_tokens) (let [f (first lst_tokens) r (rest lst_tokens)]
+                                  (if (some? f)
+                                      (cond (contains? f :operation_symbol) (cond
+                                                                                ; 若符号栈为空，则符号直接压入符号栈
+                                                                                (= (count stack_symbol) 0) (recur ignite binaryObject dic r stack_number (conj stack_symbol f))
+                                                                                ; f 符号的优先级高于或等于符号栈栈顶的优先级，则直接入栈
+                                                                                (my-expression/is-symbol-priority f (peek stack_symbol)) (recur ignite binaryObject dic r stack_number (conj stack_symbol f))
+                                                                                ; f 符号的优先级低于栈顶的优先级，则将符号栈顶，弹出参与计算后，在压入，数据栈
+                                                                                :else
+                                                                                (let [first_item (peek stack_number) second_item (peek (pop stack_number)) top_symbol (peek stack_symbol)]
+                                                                                    (recur ignite binaryObject dic r (conj (pop (pop stack_number)) (my-expression/get_express_obj top_symbol first_item second_item)) (conj (pop stack_symbol) f)))
+                                                                                )
+                                            (contains? f :parenthesis) (when-let [m (mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> f :parenthesis)))]
+                                                                           (recur ignite binaryObject dic r (conj stack_number (first m)) stack_symbol))
+                                            (contains? f :item_name) (let [{table_alias :table_alias item_name :item_name java_item_type :java_item_type item_type :item_type} f]
+                                                                         (if (and (contains? dic item_name) (.hasField binaryObject item_name))
+                                                                             (println (format "%s  %s" item_name (.field binaryObject item_name))))
+
+                                                                         (if (and (contains? dic item_name) (.hasField binaryObject item_name))
+                                                                             (recur ignite binaryObject dic r (conj stack_number (assoc (my-lexical/convert_to_java_type (.get dic item_name)) :express (.field binaryObject item_name) :item_type (.get dic item_name))) stack_symbol)
+                                                                             (if (= table_alias "")
+                                                                                 (recur ignite binaryObject dic r (conj stack_number {:express item_name :java_type java_item_type :item_type item_type}) stack_symbol)))
+                                                                         )
+                                            (contains? f :func-name) (recur ignite binaryObject dic r (conj stack_number (my-expression/func_eval_binary ignite f binaryObject dic)) stack_symbol)
+                                            :else
+                                            (recur ignite binaryObject dic r (conj stack_number f) stack_symbol))
+                                      (my-expression/run-express stack_number stack_symbol))))))
+
+(-> (-> (second (-> update_obj :items)) :item_obj) :operation)
+(println binaryObject)
+(mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> (-> (second (-> update_obj :items)) :item_obj) :operation)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

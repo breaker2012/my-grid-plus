@@ -1,0 +1,108 @@
+1、处理常量
+   例如：m.name
+        100
+        true
+        等等
+2、处理函数
+   例如：函数 function 例如： f(g(x) + 10, c, a)
+3、处理四则运算
+   例如：a + b * (c - d)
+4、对括号的处理
+   例如：(a + b * c)
+5、对判断的处理  不需要处理，只需要解析出函数即可
+   例如：b.j_date>=p_sdate
+6、in 或者 not in 符号（symbol） 不需要处理，只需要解析出函数即可
+   例如：a.name in ('a', 'b')
+        a.name not in ('a', 'b')
+7、between 表达式  不需要处理，只需要解析出函数即可
+   例如：p_date between start_date and a.end_date
+        p_date between start_date and ((a.end_date is null or a.end_date>p_sdate) and a.start_date<=p_edate)
+8、处理子查询
+   例如：(select ... from ... where ...)
+9、处理 not exists 或者 exists
+   例如：not exists (select 1 from staff_info c, cs_prem_info b where b.busi_src = 'P')
+        exists (select 1 from staff_info c, cs_prem_info b where b.busi_src = 'P')
+
+
+方法说明：
+get-query-items(输入 query list 字符) : 输出 query object 列表
+get-table-items(输入 table list 字符) : 输出 table object 列表
+get-where-items(输入 where list 字符) : 输出 where object 列表
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

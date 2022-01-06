@@ -1,0 +1,47 @@
+(defn append [[f & rs] lst1]
+    (if (empty? rs)
+        (if (some? f) (cons f lst1) lst1)
+        (let [m (append rs lst1)]
+            (if (some? m) (cons f m)))))
+
+;累积器
+(defn accumulate [op initial sequence]
+  (if (empty? sequence) initial
+                        (op (first sequence) (accumulate op initial (rest sequence)))))
+
+;将proc函数作用于seq的每一项，再以append调用累加器
+(defn flatmap [proc seq]
+  (accumulate append nil (map proc seq)))
+
+(defn enumerate-interval [low high]
+  (if (> low high) nil
+                   (cons low (enumerate-interval (+ low 1) high))))
+
+(defn adjoin-position [new-row rest-of-queens]
+  (cons new-row rest-of-queens))
+
+(defn safe? [positions]
+  (letfn [(iter [ex-row ex1 ex2 lst]
+            (if (empty? lst) true
+                             (if (or (= ex-row (first lst))
+                                     (= ex1 (first lst))
+                                     (= ex2 (first lst))) false
+                                                          (iter ex-row (- ex1 1) (+ ex2 1) (rest lst)))))]
+    (iter (first positions) (- (first positions) 1) (+ (first positions) 1) (rest positions)))
+  )
+
+(defn queens [board-size]
+  (letfn [(queen-cols [k]
+            (if (= k 0) (list '())
+                        (filter (fn [positions]
+                                  (safe? positions))
+                                (flatmap
+                                  (fn [rest-of-queens]
+                                    (map (fn [new-row]
+                                           (adjoin-position new-row rest-of-queens))
+                                         (enumerate-interval 1 board-size)))
+                                  (queen-cols (- k 1))))))]
+    (queen-cols board-size)))
+
+
+

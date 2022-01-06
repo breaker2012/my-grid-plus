@@ -1,0 +1,34 @@
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+                     (org.apache.ignite.internal IgnitionEx)
+                     (com.google.common.base Strings)
+                     (org.tools MyConvertUtil MySqlFunc)
+                     (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+                     (cn.plus.tools KvSql)
+                     (org.apache.ignite.configuration CacheConfiguration)
+                     (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+                     (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+                     (org.gridgain.meta.cache MyContextCacheUtil)
+                     (org.gridgain.mydml MyInsertUtil)
+                     (java.util ArrayList)
+        )
+
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+(my-lexical/to-back "INSERT INTO Person (id, name, city_id) VALUES (1, 'John Doe', 3)")
+=> ("INSERT" "INTO" "Person" "(" "id" "," "name" "," "city_id" ")" "VALUES" "(" "1" "," "'John Doe'" "," "3" ")")
+; 获取名字 和 键值对
+(defrecord insert_kv [^String item_name iten_value])
+(defrecord insert_obj [^String table_name kv_seq])
+(defn get_insert_cache [[f & r] obj]
+    (if (and (my-lexical/is-eq? f "insert") (my-lexical/is-eq? (first r) "into"))))
+=> core.insert_kv
+=> core.insert_obj
+Syntax error compiling if at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init2590018706722462856.clj:4:5).
+Too few arguments to if

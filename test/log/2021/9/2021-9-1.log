@@ -1,0 +1,67 @@
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil MySqlFunc)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+(def lst_express [{:express "吴" :java_type "Long" :item_type "BIGINT"} {:express "大" :java_type "Integer" :item_type "INT"} {:express "富" :java_type "java.math.BigDecimal" :item_type "DECIMAL"}])
+(my-expression/mid_to_forwrod ignite (reverse (-> (my-select/get-token (my-lexical/to-back "5/2+1 - (3-1)*2")) :operation)))
+
+
+修改 my-insert 中
+
+(-> (nth pk_rs 0) :iten_value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

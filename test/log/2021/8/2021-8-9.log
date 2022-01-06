@@ -1,0 +1,147 @@
+(declare query_authority query_map get_query_table get_query_table_map)
+(defn query_authority [ignite group_id table_alias_ast query_ast]
+    (if (some? query_ast)
+        (cond (instance? clojure.lang.LazySeq query_ast) (map (partial query_authority ignite group_id table_alias_ast) query_ast)
+              (map? query_ast) (if (and (contains? query_ast :query-items) (contains? query_ast :table-items))
+                                   (get_query_table ignite group_id query_ast)
+                                   (query_map ignite group_id table_alias_ast query_ast)))))
+
+(defn query_map
+    ([ignite group_id table_alias_ast query_ast] (query_map ignite group_id table_alias_ast (keys query_ast) query_ast))
+    ([ignite group_id table_alias_ast [f & rs] query_ast]
+     (if (some? f)
+         (let [vs (get query_ast f)]
+             (cond (and (= f :item_name) (= (get query_ast :const) false)) (if (contains? table_alias_ast (get query_ast :table_alias))
+                                                                               ; table_obj 是 table_select_view 的对象
+                                                                               (let [table_obj (get table_alias_ast (get query_ast :table_alias))]
+                                                                                   (if (and (some? table_obj) (some? (get table_obj :ast)) (some? (get (get table_obj :ast) :query-items)))
+                                                                                       (if (contains? (get (:ast table_obj) :query-items) (get query_ast :item_name))
+                                                                                           (my-select/replace_alias (get query_ast :table_alias) (get (get (:ast table_obj) :query-items) (get query_ast :item_name)))
+                                                                                           (throw (Exception. (String/format "没有查询字段(%s)的权限" (object-array [(get query_ast :item_name)])))))
+                                                                                       query_ast)) (throw (Exception. (String/format "没有查询字段(%s)，请仔细检查拼写是否正确？" (object-array [(get query_ast :item_name)])))))
+                   (instance? clojure.lang.LazySeq vs) (recur ignite group_id table_alias_ast rs (assoc query_ast f (map (partial query_authority ignite group_id table_alias_ast) vs)))
+                   (map? vs) (recur ignite group_id table_alias_ast rs (assoc query_ast f (query_authority ignite group_id table_alias_ast vs)))
+                   :else
+                   (recur ignite group_id table_alias_ast rs query_ast))) query_ast)))
+
+; ast 是 select 的树
+(defn get_query_table [ignite group_id ast]
+    (if (and (map? ast) (contains? ast :query-items) (contains? ast :table-items))
+        (let [qt (query_authority ignite group_id (my-select/get_map_table_items ignite group_id (get ast :table-items)) (get ast :query-items))]
+            (assoc ast :query-items qt))
+        (cond (instance? clojure.lang.LazySeq ast) (map (partial get_query_table ignite group_id) ast)
+              (map? ast) (get_query_table_map ignite group_id (keys ast) ast))))
+
+(defn get_query_table_map [ignite group_id [f & rs] ast]
+    (if (some? f)
+        (let [vs (get ast f)]
+            (cond (instance? clojure.lang.LazySeq vs) (recur ignite group_id rs (assoc ast f (map (partial get_query_table ignite group_id) vs)))
+                  (map? vs) (recur ignite group_id rs (assoc ast f (get_query_table ignite group_id vs)))
+                  :else
+                  (recur ignite group_id rs ast))) ast))
+=> #'core/get_query_table_map
+=> #'core/query_authority
+=> #'core/query_map
+=> #'core/get_query_table
+=> #'core/get_query_table_map
+(defn get_query_table [ignite group_id ast]
+    (if (and (map? ast) (contains? ast :query-items) (contains? ast :table-items))
+        (let [qt (query_authority ignite group_id (my-select/get_map_table_items ignite group_id (get ast :table-items)) (get ast :query-items))]
+            (do (println qt)
+                (assoc ast :query-items qt)))
+        (cond (instance? clojure.lang.LazySeq ast) (map (partial get_query_table ignite group_id) ast)
+              (map? ast) (get_query_table_map ignite group_id (keys ast) ast))))
+=> #'core/get_query_table
+(get_query_table ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select c.id, a.name from city c, student a where c.id = a.id")))
+({:func-name dafu, :lst_ps ({:item_name ID, :table_alias c, :const false})} {:comma_symbol ,, :alias nil} {:item_name name, :table_alias a, :const false, :alias nil})
+=>
+({:sql_obj {:query-items ({:func-name "dafu", :lst_ps ({:item_name "ID", :table_alias "c", :const false})}
+                          {:comma_symbol ",", :alias nil}
+                          {:item_name "name", :table_alias "a", :const false, :alias nil}),
+            :table-items ({:table_name "city", :table_alias "c"}
+                          {:comma_symbol ","}
+                          {:table_name "student", :table_alias "a"}),
+            :where-items ({:item_name "id", :table_alias "c", :const false}
+                          {:comparison_symbol "="}
+                          {:item_name "id", :table_alias "a", :const false}),
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})
+(defn get_query_table [ignite group_id ast]
+    (if (and (map? ast) (contains? ast :query-items) (contains? ast :table-items))
+        (let [qt (query_authority ignite group_id (my-select/get_map_table_items ignite group_id (get ast :table-items)) (get ast :query-items))]
+            (do (println (my-select/get_map_table_items ignite group_id (get ast :table-items)))
+                (assoc ast :query-items qt)))
+        (cond (instance? clojure.lang.LazySeq ast) (map (partial get_query_table ignite group_id) ast)
+              (map? ast) (get_query_table_map ignite group_id (keys ast) ast))))
+=> #'core/get_query_table
+(get_query_table ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select c.id, a.name from city c, student a where c.id = a.id")))
+{c #org.gridgain.plus.dml.my_select.table_select_view{:table_name city, :ast {:query-items {id {:func-name dafu, :lst_ps ({:item_name ID, :table_alias m, :const false})}, District nil, Name nil}, :where-items ({:item_name ID, :table_alias m, :const false} {:comparison_symbol =} {:table_alias , :item_name 555, :item_type , :java_item_type java.lang.Integer, :const true})}}, a #org.gridgain.plus.dml.my_select.table_select_view{:table_name student, :ast nil}}
+=>
+({:sql_obj {:query-items ({:func-name "dafu", :lst_ps ({:item_name "ID", :table_alias "c", :const false})}
+                          {:comma_symbol ",", :alias nil}
+                          {:item_name "name", :table_alias "a", :const false, :alias nil}),
+            :table-items ({:table_name "city", :table_alias "c"}
+                          {:comma_symbol ","}
+                          {:table_name "student", :table_alias "a"}),
+            :where-items ({:item_name "id", :table_alias "c", :const false}
+                          {:comparison_symbol "="}
+                          {:item_name "id", :table_alias "a", :const false}),
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})
+(my-select/get-token (my-lexical/to-back "(a.id > 12) and (b.id < 1)"))
+=>
+({:parenthesis ({:item_name "id", :table_alias "a", :const false}
+                {:comparison_symbol ">"}
+                {:table_alias "", :item_name "12", :item_type "", :java_item_type java.lang.Integer, :const true})}
+ {:and_or_symbol "and"}
+ {:parenthesis ({:item_name "id", :table_alias "b", :const false}
+                {:comparison_symbol "<"}
+                {:table_alias "", :item_name "1", :item_type "", :java_item_type java.lang.Integer, :const true})})
+(declare query_authority query_map get_query_table get_query_table_map get_where)
+(defn get_where [[f & r] table_select_view_obj where-items]
+    (if (some? f)
+        (let [table_select (get table_select_view_obj f)]
+            (if (some? table_select)
+                (let [view_where (get (:ast table_select) :where-items)]
+                    (if (some? view_where)
+                        (if (some? where-items) (recur r table_select_view_obj (concat [{:parenthesis (my-select/replace_alias f view_where)} {:and_or_symbol "and"} {:parenthesis where-items}]))
+                                                (recur r table_select_view_obj (my-select/replace_alias f view_where))) (recur r table_select_view_obj where-items))) (recur r table_select_view_obj where-items))) where-items))
+
+(defn get_query_table [ignite group_id ast]
+    (if (and (map? ast) (contains? ast :query-items) (contains? ast :table-items))
+        (let [table_obj (my-select/get_map_table_items ignite group_id (get ast :table-items))]
+            (if (some? table_obj)
+                (let [qt (query_authority ignite group_id table_obj (get ast :query-items)) where (get_where (keys table_obj) table_obj (get ast :where-items))]
+                    (assoc ast :query-items qt :where-items where)) ast))
+        (cond (instance? clojure.lang.LazySeq ast) (map (partial get_query_table ignite group_id) ast)
+              (map? ast) (get_query_table_map ignite group_id (keys ast) ast))))
+=> #'core/get_where
+=> #'core/get_where
+=> #'core/get_query_table
+(get_query_table ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select c.id, a.name from city c, student a where c.id = a.id")))
+=>
+({:sql_obj {:query-items ({:func-name "dafu", :lst_ps ({:item_name "ID", :table_alias "c", :const false})}
+                          {:comma_symbol ",", :alias nil}
+                          {:item_name "name", :table_alias "a", :const false, :alias nil}),
+            :table-items ({:table_name "city", :table_alias "c"}
+                          {:comma_symbol ","}
+                          {:table_name "student", :table_alias "a"}),
+            :where-items ({:parenthesis ({:item_name "ID", :table_alias "c", :const false}
+                                         {:comparison_symbol "="}
+                                         {:table_alias "",
+                                          :item_name "555",
+                                          :item_type "",
+                                          :java_item_type java.lang.Integer,
+                                          :const true})}
+                          {:and_or_symbol "and"}
+                          {:parenthesis ({:item_name "id", :table_alias "c", :const false}
+                                         {:comparison_symbol "="}
+                                         {:item_name "id", :table_alias "a", :const false})}),
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})

@@ -1,0 +1,23 @@
+(def sql_insert "INSERT INTO OrderDetails (OrderID, ProductID, UnitPrice, Quantity, Discount) Values (10248, :productId, 14, 12, 0.0)")
+
+(def insert_obj (my-insert/get_insert_obj ignite sql_insert))
+
+(def view_obj (my-insert/get_view_obj ignite 1 sql_insert))
+
+(def pk_data (my-insert/get_pk_data ignite (-> insert_obj :table_name)))
+
+(def pk_with_data (my-insert/get_pk_data_with_data pk_data insert_obj))
+
+(def table_name (-> insert_obj :table_name))
+(def pk_rs (-> pk_with_data :pk_rs))
+(def data_rs (-> pk_with_data :data_rs))
+
+(def dic_paras {"productid" {:value 123 :type Long}})
+
+; 下面是带方法的测试案例
+(def dic_paras {"wudafu" {:value "吴大富是帅哥！" :type String}})
+(def sql "INSERT INTO Categories (CategoryID, CategoryName, Description, Picture) VALUES(1,'Beverages','Soft drinks, coffees, teas, beers, and ales', f(:wudafu))")
+(def insert_obj (my-insert/get_insert_obj ignite sql))
+(def pk_data (my-insert/get_pk_data ignite (-> insert_obj :table_name)))
+(def pk_with_data (my-insert/get_pk_data_with_data pk_data insert_obj))
+(def data_rs (-> pk_with_data :data_rs))

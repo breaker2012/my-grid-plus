@@ -1,0 +1,185 @@
+(require
+    '[org.gridgain.plus.ddl.my-create-table :as my-create-table]
+    '[org.gridgain.plus.ddl.my-alter-table :as my-alter-table]
+    '[org.gridgain.plus.ddl.my-create-index :as my-create-index]
+    '[org.gridgain.plus.ddl.my-drop-index :as my-drop-index]
+    '[org.gridgain.plus.ddl.my-drop-table :as my-drop-table]
+    '[org.gridgain.plus.ddl.my-create-dataset :as my-create-dataset]
+    '[org.gridgain.plus.ddl.my-alter-dataset :as my-alter-dataset]
+    '[org.gridgain.plus.ddl.my-drop-dataset :as my-drop-dataset]
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-insert-0 :as my-insert-0]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.my-update-0 :as my-update-0]
+    '[org.gridgain.plus.dml.my-delete :as my-delete]
+    '[org.gridgain.plus.dml.my-trans :as my-trans]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[org.gridgain.plus.init.plus-init-sql :as plus-init-sql]
+    '[org.gridgain.plus.init.plus-init :as plus-init]
+    '[org.gridgain.plus.tools.my-util :as my-util]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType MyLog)
+        (org.tools MyConvertUtil)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType DdlLog DataSetDdlLog)
+        (cn.plus.model.ddl MyDataSet MyDatasetTable MyDatasetRealTable MyDatasetTablePK MyDeleteViews MyInsertViews MySelectViews MyTable MyTableIndex MyTableIndexItem MyTableItem MyTableItemPK MyTableObj MyUpdateViews MyViewObj ViewOperateType ViewType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (org.gridgain.ddl MyCreateTableUtil MyDdlUtil)
+        (java.util List ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        (org.tools MyTools)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources/default-config.xml"))
+
+(my-drop-table/drop_table ignite 0 "drop table orderdetails")
+(my-create-table/my_create_table ignite 0 "orderdetails" "" "CREATE TABLE OrderDetails (\n    -- 订单编号\n    OrderID INTEGER NOT NULL comment('订单编号'),\n    -- 产品编号\n    ProductID INTEGER NOT NULL comment('产品编号'),\n    -- 单价\n    UnitPrice DECIMAL(10,4) NOT NULL DEFAULT 0 comment('单价'),\n    -- 订购数量\n    Quantity SMALLINT(2) NOT NULL DEFAULT 1 comment('订购数量'),\n    -- 折扣\n    Discount REAL NOT NULL DEFAULT 0 comment('折扣'),\n    PRIMARY KEY (OrderID, ProductID)\n) WITH \"template=manage\"")
+
+(my-insert/insert_run_log ignite 1 "INSERT INTO OrderDetails (OrderID, ProductID, UnitPrice, Quantity, Discount) Values (10248, 11, 14, 12, 0.0)")
+
+(def sql_insert "INSERT INTO OrderDetails (OrderID, ProductID, UnitPrice, Quantity, Discount) Values (10248, 11, 14, 12, 0.0)")
+
+(def insert_obj (my-insert/get_insert_obj ignite sql_insert))
+
+(def view_obj (my-insert/get_view_obj ignite 1 sql_insert))
+
+(def pk_data (my-insert/get_pk_data ignite (-> insert_obj :table_name)))
+
+(def pk_with_data (my-insert/get_pk_data_with_data pk_data insert_obj))
+
+(def table_name (-> insert_obj :table_name))
+(def pk_rs (-> pk_with_data :pk_rs))
+(def data_rs (-> pk_with_data :data_rs))
+
+(defn get_binaryObject_pk [^BinaryObjectBuilder builder [f & r] ^List lst]
+                     (if (some? f)
+                         (let [key (format "%s_pk" (-> f :column_name)) value (my-lexical/get_jave_vs (-> f :column_type) (my-expression/get_plus_value ignite (-> f :column_type) (-> f :item_value)))]
+                             (recur (doto builder (.setField key value)) r (doto lst (.add (MyKeyValue. key value)))))
+                         [builder lst]))
+(defn get_binaryObject [^BinaryObjectBuilder builder [f & r] ^List lst]
+                  (if (some? f)
+                      (let [key (-> f :column_name) value (my-lexical/get_jave_vs (-> f :column_type) (my-expression/get_plus_value ignite (-> f :column_type) (-> f :item_value)))]
+                          (recur (doto builder (.setField key value)) r (doto lst (.add (MyKeyValue. key value)))))
+                      [builder lst]))
+(defn get_pk_rs [pk]
+           (cond (= (count pk) 1) (cond (true? (-> (first pk) :auto_increment)) (if (re-find #"^(?i)integer$|^(?i)int$" (-> (first pk) :column_type))
+                                                                                    (MyConvertUtil/ConvertToInt (.incrementAndGet (.atomicSequence ignite (format "f_%s" table_name) 0 true)))
+                                                                                    (.incrementAndGet (.atomicSequence ignite (format "f_%s" table_name) 0 true)))
+                                        (false? (-> (first pk) :auto_increment)) (my-lexical/get_jave_vs (-> (first pk) :column_type) (my-expression/get_plus_value ignite (-> (first pk) :column_type) (-> (first pk) :item_value)))
+                                        )
+                 (> (count pk) 1) (if-let [keyBuilder (.builder (.binary ignite) (KvSql/getKeyType ignite (format "f_%s" table_name)))]
+                                      (get_binaryObject_pk keyBuilder pk (ArrayList.))
+                                      (throw (Exception. "表不存在主键！")))
+                 :else
+                 (throw (Exception. "表不存在主键！"))
+                 ))
+(defn get_data_rs [data pk]
+             (if-let [valueBuilder (.builder (.binary ignite) (KvSql/getValueType ignite (format "f_%s" table_name)))]
+                 (cond (= (count pk) 1) (get_binaryObject valueBuilder data (ArrayList.))
+                       (> (count pk) 1) (get_binaryObject valueBuilder (concat (my-insert/get_plus_pk pk) data) (ArrayList.))
+                       :else
+                       (throw (Exception. "表不存在主键！")))
+                 (throw (Exception. "表不存在主键！"))))
+
+; 显示内容
+(def pk (get_pk_rs pk_rs))
+(def data (get_data_rs data_rs pk_rs))
+
+(loop [[f & r] (nth pk 1)]
+    (if (some? f)
+        (do
+            (println (.getName f))
+            (println (.getValue f))
+            (recur r)
+            )))
+
+(loop [[f & r] (nth data 1)]
+    (if (some? f)
+        (do
+            (println (.getName f))
+            (println (.getValue f))
+            (recur r)
+            )))
+
+(def cache (.cache ignite (format "f_%s" "orderdetails")))
+(.put cache (.build (nth pk 0)) (.build (nth data 0)))
+
+(def tokens (-> (second (-> update_obj :items)) :item_obj))
+=> #'core/tokens
+(def binaryObject (.get (.withKeepBinary (.cache ignite "f_orderdetails")) pk))
+(def dic (-> update_obj :dic))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

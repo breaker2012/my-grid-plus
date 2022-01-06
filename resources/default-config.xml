@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--
+    <bean id="grid.cfg" class="org.apache.ignite.configuration.IgniteConfiguration"/>
+	-->
+	<bean id="grid.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+
+        <property name="userAttributes">
+            <map>
+                <entry key="ROLE" value="worker"></entry>
+            </map>
+        </property>
+
+        <property name="clientMode" value="true"/>
+
+        <property name="igniteInstanceName" value="服务网格专用部署"></property>
+
+        <!-- 全局唯一标识符，在节点重启后仍然存在。主要是应对一个台机器，开启多个节点的持久化。
+             并且希望节点在重启后依然有专用目录和数据分区
+
+             如果开启集群的话 ./ignite.sh 使用的配置文件 这个地方名字不能为同一个
+         -->
+        <!--
+        <property name="consistentId" value="plus_service_grid"></property>
+        -->
+
+        <property name="super_admin" value="my_root"/>
+        <property name="super_password" value="my_root"/>
+
+        <!-- 是否启用 Data Set -->
+        <property name="dataSetEnabled" value="true"/>
+
+<!--        <property name="templateConfiguration">-->
+<!--            <map>-->
+<!--                <entry key="base" value="吴大富"/>-->
+<!--                <entry key="manage" value="吴大贵"/>-->
+<!--            </map>-->
+<!--        </property>-->
+
+        <property name="templateConfiguration">
+            <map key-type="java.lang.String" value-type="org.apache.ignite.configuration.TableTemplateConfiguration">
+                <entry key="base">
+                    <bean class="org.apache.ignite.configuration.TableTemplateConfiguration">
+                        <property name="templateValue" value="template=MyMeta_template,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta"></property>
+                        <property name="description" value="吴大富是大帅哥！"></property>
+                    </bean>
+                </entry>
+                <entry key="manage">
+                    <bean class="org.apache.ignite.configuration.TableTemplateConfiguration">
+                        <property name="templateValue" value="template=partitioned,backups=3,ATOMICITY=TRANSACTIONAL_SNAPSHOT"></property>
+                        <property name="description" value="吴大贵是大帅哥！"></property>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+
+        <!-- Set to true to enable distributed class loading for examples, default is false. -->
+        <property name="peerClassLoadingEnabled" value="true"/>
+
+        <!--
+        设置部署模式，默认是 SHARED, 此处设置为 CONTINUOUS
+        即使所有主节点离开集群，类都不会卸载
+        -->
+        <property name="deploymentMode" value="CONTINUOUS"/>
+
+        <!-- 错过的资源缓存的大小，设为0会避免错过的资源缓存。-->
+        <property name="peerClassLoadingMissedResourcesCacheSize" value="0"/>
+
+        <!-- Configure internal thread pool. -->
+        <property name="publicThreadPoolSize" value="64"/>
+
+        <!-- Configure system thread pool. -->
+        <property name="systemThreadPoolSize" value="32"/>
+
+        <property name="dataStorageConfiguration">
+            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+                <!--
+                    Default memory region that grows endlessly. A cache is bound to this memory region
+                    unless it sets another one in its CacheConfiguration.
+                -->
+                <property name="defaultDataRegionConfiguration">
+                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                        <property name="name" value="Default_Region"/>
+                        <!-- 10 MB memory region with disabled eviction -->
+                        <property name="initialSize" value="#{10 * 1024 * 1024}"/>
+                        <!-- 设置最大使用 50 M 内存 -->
+                        <property name="maxSize" value="#{50 * 1024 * 1024}"/>
+
+                        <!--
+                        <property name="persistenceEnabled" value="true"></property>
+                        -->
+                        <!-- 增加写密集型的优化，默认值为 256M。设置为 1G 主要是为了开启写入优化来阻止性能的下降 -->
+                        <!--
+                        <property name="checkpointPageBufferSize" value="#{1024L * 1024 * 1024}"/>
+                         -->
+                    </bean>
+                </property>
+
+                <!-- Defining several data regions for different memory regions -->
+                <property name="dataRegionConfigurations">
+                    <list>
+                        <!--
+                            大小为40 MBps的内存区域，并启用退出策略，退出的算法为 RANDOM_2_LRU
+                        -->
+                        <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                            <property name="name" value="Meta_Region_Eviction"/>
+                            <!-- Memory region of 20 MB initial size. -->
+                            <property name="initialSize" value="#{20 * 1024 * 1024}"/>
+                            <!-- Maximum size is 40 MB. -->
+                            <property name="maxSize" value="#{40 * 1024 * 1024}"/>
+                            <!-- Enabling eviction for this memory region -->
+                            <property name="pageEvictionMode" value="RANDOM_2_LRU"/>
+                            <!-- Setting a name of the swapping file. -->
+                            <property name="swapPath" value="/Users/chenfei/tools/gridgain-community-0/work/swapfile"/>
+                        </bean>
+
+                        <!--
+                            This memory region is backed by a memory-mapped file which names is passed via
+                            'swapFilePath' parameter.
+                        -->
+                        <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                            <property name="name" value="40MB_Region_Eviction"/>
+                            <!-- Memory region of 15 MB initial size. -->
+                            <property name="initialSize" value="#{15 * 1024 * 1024}"/>
+                            <!-- Maximum size is 30 MB. -->
+                            <property name="maxSize" value="#{40 * 1024 * 1024}"/>
+                            <!-- Setting a name of the swapping file. -->
+                            <property name="swapPath" value="/Users/chenfei/tools/apache-ignite-0/swapfile"/>
+
+                        </bean>
+                    </list>
+                </property>
+
+                <!-- Changing WAL Mode. -->
+                <property name="walMode" value="FSYNC"/>
+
+                <!--Checkpointing frequency which is a minimal interval when the dirty pages will be written to the Persistent Store.-->
+                <property name="checkpointFrequency" value="180000"/>
+
+                <!-- Number of threads for checkpointing. -->
+                <property name="checkpointThreads" value="8"/>
+
+                <!-- Number of checkpoints to store in WAL (Write Ahead Log) history -->
+                <property name="walHistorySize" value="2"/>
+
+                <!-- Path where data and indexes will be persisted. -->
+                <!--
+                <property name="storagePath" value="/Users/chenfei/tools/apache-ignite-2.7.0-bin/db" />
+                -->
+
+                <!-- Path to the directory where WAL (Write Ahead Log) is stored. -->
+                <!--
+                <property name="walPath" value="/Users/chenfei/tools/apache-ignite-2.7.0-bin/db/wal" />
+                -->
+
+                <!-- Path to the directory where WAL (Write Ahead Log) archive is stored. -->
+                <!--
+                <property name="walArchivePath" value="/Users/chenfei/tools/apache-ignite-2.7.0-bin/db/wal/archive" />
+                -->
+
+            </bean>
+        </property>
+
+        <!-- 配置服务网格 -->
+        <!--<property name="serviceConfiguration">-->
+            <!--<list>-->
+                <!--&lt;!&ndash;-->
+                  <!--Setting up MaintenanceService. The service will be deployed automatically according to the configuration-->
+                  <!--below.-->
+                  <!--&ndash;&gt;-->
+                <!--<bean class="org.apache.ignite.services.ServiceConfiguration">-->
+                    <!--&lt;!&ndash; Unique service name &ndash;&gt;-->
+                    <!--<property name="name" value="MyDbTools"/>-->
+
+                    <!--&lt;!&ndash; Service implementation's class &ndash;&gt;-->
+                    <!--<property name="service">-->
+                        <!--<bean class="cn.plus.services.MyDbToolsImpl"/>-->
+                    <!--</property>-->
+
+                    <!--&lt;!&ndash; Only one instance of the service will be deployed cluster wide. &ndash;&gt;-->
+                    <!--<property name="totalCount" value="1"/>-->
+
+                    <!--&lt;!&ndash; Only one instance of the service can be deployed on a single node. &ndash;&gt;-->
+                    <!--<property name="maxPerNodeCount" value="1"/>-->
+
+                    <!--&lt;!&ndash;-->
+                      <!--Enabling a special nodes filter for this service. The filter will make sure that the service-->
+                      <!--will be deployed only on the nodes that have 'maintenance.service.node' attribute in the local-->
+                      <!--node map.-->
+                      <!--&ndash;&gt;-->
+                    <!--<property name="nodeFilter">-->
+                        <!--<bean class="cn.plus.common.filters.MyDbToolsServiceFilter"/>-->
+                    <!--</property>-->
+
+                <!--</bean>-->
+            <!--</list>-->
+        <!--</property>-->
+		
+		<!-- Optional transaction configuration. -->
+        <property name="transactionConfiguration">
+            <bean class="org.apache.ignite.configuration.TransactionConfiguration">
+            <!-- Configure TM lookup here. -->
+            </bean>
+        </property>
+
+        <!--
+	    <property name="discoverySpi">
+		    <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+			    <property name="localPort" value="48500"/>
+				<property name="localPortRange" value="20"/>
+				<property name="ipFinder">
+				    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+					    <property name="addresses">
+						    <list>
+                                <value>127.0.0.1:48500..48509</value>
+							</list>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+		-->
+
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <!--
+                        Ignite provides several options for automatic discovery that can be used
+                        instead os static IP based discovery. For information on all options refer
+                        to our documentation: http://apacheignite.readme.io/docs/cluster-config
+                    -->
+                    <!-- Uncomment static IP finder to enable static-based discovery of initial nodes. -->
+                    <!--<bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">-->
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <!-- In distributed environment, replace with actual host IP address. -->
+                                <value>127.0.0.1:47500..47509</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

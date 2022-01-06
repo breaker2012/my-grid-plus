@@ -1,0 +1,1 @@
+(MyMethod/myInvoke "吴大富" (to-array ["是" 1 2 3 "大帅哥"]))

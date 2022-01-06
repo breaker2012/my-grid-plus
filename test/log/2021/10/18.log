@@ -1,0 +1,202 @@
+(require
+    '[org.gridgain.plus.ddl.my-create-table :as my-create-table]
+    '[org.gridgain.plus.ddl.my-alter-table :as my-alter-table]
+    '[org.gridgain.plus.ddl.my-create-index :as my-create-index]
+    '[org.gridgain.plus.ddl.my-drop-index :as my-drop-index]
+    '[org.gridgain.plus.ddl.my-drop-table :as my-drop-table]
+    '[org.gridgain.plus.ddl.my-create-dataset :as my-create-dataset]
+    '[org.gridgain.plus.ddl.my-alter-dataset :as my-alter-dataset]
+    '[org.gridgain.plus.ddl.my-drop-dataset :as my-drop-dataset]
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.my-delete :as my-delete]
+    '[org.gridgain.plus.dml.my-trans :as my-trans]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (org.tools MyConvertUtil)
+        (cn.plus.model.ddl MyDataSet MyDatasetTable MyDatasetRealTable MyDatasetTablePK MyDeleteViews MyInsertViews MySelectViews MyTable MyTableIndex MyTableIndexItem MyTableItem MyTableItemPK MyTableObj MyUpdateViews MyViewObj ViewOperateType ViewType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (org.gridgain.ddl MyCreateTableUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources/default-config.xml"))
+
+(defn show_obj [m]
+    (let [{colums_line :colums} m]
+        (let [{lst_table_item :lst_table_item} colums_line]
+            (loop [[f & r] lst_table_item]
+                (if (some? f)
+                    (do
+                        (println (.getColumn_name f))
+                        (println (.getColumn_type f))
+                        (println (.getColumn_len f))
+                        (println "******************")
+                        (recur r)))))))
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE Customers ADD COLUMN city varchar")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE Customers ADD COLUMN city varchar")
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE Customers ADD COLUMN IF NOT EXISTS population int")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE Customers ADD COLUMN IF NOT EXISTS population int")
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE IF EXISTS Customers ADD COLUMN number long")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE IF EXISTS Customers ADD COLUMN number long")
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE Customers ADD COLUMN (code varchar, gdp double)")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE Customers ADD COLUMN (code varchar, gdp double)")
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE Customers DROP COLUMN city")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE Customers DROP COLUMN city")
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE Customers DROP COLUMN IF EXISTS population")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE Customers DROP COLUMN IF EXISTS population")
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE IF EXISTS Customers DROP COLUMN number")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE IF EXISTS Customers DROP COLUMN number")
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE Customers DROP COLUMN (code, gdp)")
+(my-alter-table/get_ddl_obj ignite "ALTER TABLE Customers DROP COLUMN (code, gdp)")
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+(def colums_line (-> (my-alter-table/get_table_alter_obj "ALTER TABLE Customers DROP COLUMN IF EXISTS population") :colums_line))
+
+(get_items_obj colums_line)
+(get_obj (get_items_obj colums_line))
+
+
+DROP TABLE [IF EXISTS] tableName
+DROP TABLE IF EXISTS "Customers";
+
+CREATE INDEX title_idx ON books (title);
+(my-create-index/get_create_index_obj "CREATE INDEX title_idx ON Customers (CompanyName)")
+(my-create-index/get_ddl_obj ignite "CREATE INDEX title_idx ON Customers (CompanyName)")
+
+CREATE INDEX IF NOT EXISTS name_idx ON persons (firstName DESC);
+(my-create-index/get_create_index_obj "CREATE INDEX IF NOT EXISTS name_idx ON Customers (ContactName DESC)")
+(my-create-index/get_ddl_obj ignite "CREATE INDEX IF NOT EXISTS name_idx ON Customers (ContactName DESC)")
+
+CREATE INDEX city_idx ON sales (country, city);
+(my-create-index/get_create_index_obj "CREATE INDEX city_idx ON Customers (CompanyName, ContactName)")
+(my-create-index/get_ddl_obj ignite "CREATE INDEX city_idx ON Customers (CompanyName, ContactName)")
+
+CREATE INDEX fast_city_idx ON sales (country, city) INLINE_SIZE 60;
+(my-create-index/get_create_index_obj "CREATE INDEX fast_city_idx ON Customers (CompanyName, ContactName) INLINE_SIZE 60")
+(my-create-index/get_ddl_obj ignite "CREATE INDEX fast_city_idx ON Customers (CompanyName, ContactName) INLINE_SIZE 60")
+
+CREATE SPATIAL INDEX idx_person_address ON Customers (address);
+(my-create-index/get_create_index_obj "CREATE SPATIAL INDEX idx_person_address ON Customers (CompanyName)")
+(my-create-index/get_ddl_obj ignite "CREATE SPATIAL INDEX idx_person_address ON Customers (CompanyName)")
+
+(my-drop-index/get_ddl_obj ignite "DROP INDEX my_index_name")
+(my-drop-index/get_ddl_obj ignite "DROP INDEX IF EXISTS my_index_name")
+
+(my-drop-table/get_ddl_obj ignite "DROP TABLE Customers")
+(my-drop-table/get_ddl_obj ignite "DROP TABLE IF EXISTS Customers")
+
+DROP INDEX [IF EXISTS] indexName
+DROP INDEX idx_person_name;
+
+(my-create-dataset/get_create_data_set_obj "CREATE DATASET CRM_DATA_SET (\n   Person,\n   Order\n)")
+(my-create-dataset/get_create_data_set_obj "CREATE DATASET CRM_DATA_SET")
+
+(my-alter-dataset/get_data_set_alter_obj "alter dataset CRM_DATA_SET add (product)")
+(my-alter-dataset/get_data_set_alter_obj "alter dataset CRM_DATA_SET drop (product)")
+
+(my-drop-dataset/get_drop_data_set_obj "DROP DATASET Customers")
+(my-drop-dataset/get_drop_data_set_obj "DROP DATASET IF EXISTS Customers")
+
+
+(my-alter-table/get_table_alter_obj "ALTER TABLE Customers ADD COLUMN city varchar")
+=> nil
+=> cn.plus.model.scene.MyInputParamEx
+[[city {:type varchar}]]
+=>
+{:alter_table "ALTER TABLE ",
+ :table_name "Customers ",
+ :add_or_drop "ADD COLUMN ",
+ :colums_line {:lst_table_item [#object[cn.plus.model.ddl.MyTableItem
+                                        0x54c53460
+                                        "cn.plus.model.ddl.MyTableItem@54c53460"]],
+               :code_sb #object[java.lang.StringBuilder 0x3948d434 "city varchar,"]}}
+(my-create-table/to_item [["city" {:type "varchar"}]])
+=> nil
+(my-create-table/to_item ["city" {:type "varchar"}])
+=>
+{:table_item #object[cn.plus.model.ddl.MyTableItem 0x1b111b91 "cn.plus.model.ddl.MyTableItem@1b111b91"],
+ :code #object[java.lang.StringBuilder 0x2ebae83f "city varchar"],
+ :pk #{}}
+(last (.trim (.toString (-> (my-create-table/to_item ["city" {:type "varchar"}]) :code))))
+=> \r
+
+
+
+; 获取 mycacheex
+(defn myIndexToMyCacheEx [^Ignite ignite index_obj]
+    (let [id (.incrementAndGet (.atomicSequence ignite "table_index" 0 true)) {table_name :table_name index_name :index_name index_items_obj :index_items_obj} index_obj]
+        (if-let [table_ids (first (.getAll (.query (.cache ignite "table_index") (.setArgs (SqlFieldsQuery. "select m.id from my_meta_tables as m where m.table_name = ?") (to-array [table_name])))))]
+            (if (> (count table_ids) 0)
+                (MyCacheEx. (.cache ignite "table_index") ))))
+    (MyTableIndex. (.incrementAndGet (.atomicSequence ignite "table_index" 0 true))))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

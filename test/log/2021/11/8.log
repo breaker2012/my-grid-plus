@@ -1,0 +1,68 @@
+(defn show_table_item_pk [^MyTableItemPK myTableItemPK]
+    (do
+        (println (format "id: %s" (.getId myTableItemPK)))
+        (println (format "table_id: %s" (.getTable_id myTableItemPK)))
+        (println "***********************")))
+
+
+(defn show_table_index [^MyTableIndex myTableIndex]
+    (do
+        (println (format "id: %s" (.getId myTableIndex)))
+        (println (format "index_name: %s" (.getIndex_name myTableIndex)))
+        (println (format "spatial: %s" (.getSpatial myTableIndex)))
+        (println (format "table_id: %s" (.getTable_id myTableIndex)))
+        (println "***********************")))
+
+(defn show_table_index_item [^MyTableIndexItem myTableIndexItem]
+    (do
+        (println (format "id: %s" (.getId myTableIndexItem)))
+        (println (format "index_item: %s" (.getIndex_item myTableIndexItem)))
+        (println (format "sort_order: %s" (.getSort_order myTableIndexItem)))
+        (println (format "index_no: %s" (.getIndex_no myTableIndexItem)))
+        (println "***********************")))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

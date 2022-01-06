@@ -1,0 +1,53 @@
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.my-delete :as my-delete]
+    '[org.gridgain.plus.dml.my-trans :as my-trans]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+; 实现一个添加权限视图
+(def trans_sql "begin:
+var table_id = auto_id('categories');
+var group_view_id = auto_id('my_group_view');
+execute:
+INSERT into my_group_view (id, my_group_id, view_id, view_type) VALUES (:group_view_id, 0, :table_id, '增');
+INSERT INTO my_insert_views (id, view_name, table_name, code) VALUES (:table_id, 'categories_view_1', 'categories', 'INSERT INTO categories (categoryid, categoryname)');
+end;
+")
+
+(def trans_lst (my-lexical/to-back trans_sql))
+(def trans_dic (my-trans/get_segment trans_lst))
+(def segment_init (my-trans/get_segment_lst (-> trans_dic :init)))
+(def segment_body (my-trans/get_segment_lst (-> trans_dic :body)))
+
+(defn get_vars_params [[f & r] lst_MyInputParam lst_vars]
+    (if (some? f)
+        ()))
+
+(defn get_inputParams_fun [^Ignite ignite ^Long group_id vars lst_MyInputParam])

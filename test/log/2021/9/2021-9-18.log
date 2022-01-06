@@ -1,0 +1,49 @@
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.my-delete :as my-delete]
+    '[org.gridgain.plus.dml.my-trans :as my-trans]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+(def delete_sql "DELETE FROM categories WHERE categoryname = '食品'")
+(def delete_sql_1 "DELETE FROM ORDERDETAILS WHERE PRODUCTID = 11")
+
+(def obj (my-delete/get-authority ignite 0 delete_sql))
+(my-delete/get_delete_query_sql ignite obj)
+
+(def obj_json (my-delete/get_delete_query_sql ignite obj))
+(def sql (-> obj_json :sql))
+(def pk_lst (-> obj_json :pk_lst))
+(def lst (-> obj_json :lst))
+(def dic (-> obj_json :dic))
+
+(def it_no_fun (.iterator (.query (.cache ignite "public_meta") (doto (SqlFieldsQuery. sql)
+                                                             (.setLazy true)))))
+
+

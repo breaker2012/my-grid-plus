@@ -1,0 +1,89 @@
+(def sql_line (str/lower-case "begin:\nexecute:\nINSERT INTO Categories VALUES(8,'Seafood','Seaweed and fish', '');\nINSERT INTO OrderDetails (OrderID, ProductID, UnitPrice, Quantity, Discount) Values (10248, 11, 14, 12, 0.0);\nend;"))
+
+(def sql_line_1 (str/lower-case "begin:\n-- 调用 auto_id 函数获取 Person 表的唯一值作为主键索引\n     val table_id = auto_id(\"Categories\");\n     val OrderDetails_id = auto_id(\"OrderDetails\");\nexecute:\nINSERT INTO Categories VALUES(:table_id,'Seafood','Seaweed and fish', '');\nINSERT INTO OrderDetails (OrderID, ProductID, UnitPrice, Quantity, Discount) Values (:OrderDetails_id, :table_id, 14, 12, 0.0);\nend;"))
+
+(def sql_line_2 "{\n   name: '名字',\n   params: [{param_name: '参数名字', param_type: 'String'}],\n   trans: {\n      -- 声明变量\n      val table_id = auto_id(\"Person\");\n      execute:\n      -- 执行语句\n      insert into Person (id, name, age) values (:table_id, 'person', 1);\n      insert into sales (id, city, person_id) values (auto_id(\"sales\"), 'id', 'cd', :table_id);\n   }\n}")
+
+(def sql_line_3 "{\n   name: '名字',\n   params: [{param_name: a, param_type: 'String'},\n           {param_name: b, param_type: Double}],\n   trans: {\n      -- 声明变量\n      val table_id = auto_id(\"Person\");\n      execute:\n      -- 执行语句\n      insert into Person (id, name, age) values (:table_id, 'person', 1);\n      insert into sales (id, city, person_id) values (auto_id(\"sales\"), 'id', 'cd', :table_id);\n   }\n}")
+
+
+
+{
+   name: 名字,
+   descrip: 吴大富是大帅哥,
+   is_batch: true,
+   params: [{param_name: a, param_type: 'String'},
+           {param_name: b, param_type: Double}],
+   trans: {
+      -- 声明变量
+      val table_id = auto_id("Person");
+      execute:
+      -- 执行语句
+      insert into Person (id, name, age) values (:table_id, 'person', 1);
+      insert into sales (id, city, person_id) values (auto_id("sales"), 'id', 'cd', :table_id);
+   }
+}
+
+{
+   name: query_salary,
+   params: [{param_name: um_number, param_type: String},
+            {param_name: date, param_type: date}],
+   sql: select m.salary from employees_salary m where m.um_number = :um_number and m.date = :data
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

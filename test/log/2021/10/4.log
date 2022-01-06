@@ -1,0 +1,139 @@
+(require
+    '[org.gridgain.plus.ddl.my-create-table :as my-create-table]
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.my-delete :as my-delete]
+    '[org.gridgain.plus.dml.my-trans :as my-trans]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (org.tools MyConvertUtil)
+        (cn.plus.model.ddl MyDataSet MyDatasetTable MyDatasetRealTable MyDatasetTablePK MyDeleteViews MyInsertViews MySelectViews MyTable MyTableIndex MyTableIndexItem MyTableItem MyTableItemPK MyTableObj MyUpdateViews MyViewObj ViewOperateType ViewType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (org.gridgain.ddl MyCreateTableUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources/default-config.xml"))
+
+(def sql "CREATE TABLE IF NOT EXISTS Categories (\n     -- 产品类型ID\n    CategoryID INTEGER NOT NULL auto comment('产品类型ID'),\n    -- 产品类型名\n    CategoryName VARCHAR(15) NOT NULL comment('产品类型名'),\n    -- 类型说明\n    Description VARCHAR comment('类型说明'),\n    -- 产品样本\n    Picture VARCHAR comment('产品样本'),\n    PRIMARY KEY (CategoryID)\n) WITH \"template=manage\"")
+(def sql (my-create-table/get_sql sql))
+
+(my-create-table/get_table_line_obj sql)
+(my-create-table/get_table_line_obj "CREATE TABLE Person (\n  id int PRIMARY KEY,\n  city_id int,\n  name varchar,\n  age int,\n  company varchar\n) WITH \"atomicity=transactional,cachegroup=somegroup\"")
+(def sql_obj (my-create-table/get_table_line_obj sql))
+(def sql_obj_1 (my-create-table/get_table_line_obj ignite "CREATE TABLE Person (\n  id int PRIMARY KEY,\n  city_id int,\n  name varchar,\n  age int,\n  company varchar\n) WITH \"atomicity=transactional,cachegroup=somegroup\""))
+(def sql_obj_2 (my-create-table/get_table_line_obj ignite "CREATE TABLE OrderDetails (\n    -- 订单编号\n    OrderID INTEGER NOT NULL comment('订单编号'),\n    -- 产品编号\n    ProductID INTEGER NOT NULL comment('产品编号'),\n    -- 单价\n    UnitPrice DECIMAL(10,4) NOT NULL DEFAULT 0 comment('单价'),\n    -- 订购数量\n    Quantity SMALLINT(2) NOT NULL DEFAULT 1 comment('订购数量'),\n    -- 折扣\n    Discount REAL NOT NULL DEFAULT 0 comment('折扣'),\n    PRIMARY KEY (OrderID, ProductID)\n) WITH \"template=manage\""))
+(my-create-table/get_table_line_obj ignite "CREATE TABLE OrderDetails (\n    -- 订单编号\n    OrderID INTEGER NOT NULL comment('订单编号'),\n    -- 产品编号\n    ProductID INTEGER NOT NULL comment('产品编号'),\n    -- 单价\n    UnitPrice DECIMAL(10,4) NOT NULL DEFAULT 0 comment('单价'),\n    -- 订购数量\n    Quantity SMALLINT(2) NOT NULL DEFAULT 1 comment('订购数量'),\n    -- 折扣\n    Discount REAL NOT NULL DEFAULT 0 comment('折扣'),\n    PRIMARY KEY (OrderID, ProductID)\n) WITH \"template=manage\"")
+
+(def items (-> sql_obj :items))
+(def items_1 (-> sql_obj_1 :items))
+(def items_2 (-> sql_obj_2 :items))
+
+(my-create-table/get_items (rest (my-lexical/to-back items)))
+(my-create-table/get_items (rest (my-lexical/to-back items_1)))
+
+(def lst_items (my-create-table/get_items (rest (my-lexical/to-back items))))
+(def lst_items_1 (my-create-table/get_items (rest (my-lexical/to-back items_1))))
+
+
+
+
+(defn to_item [[f & r] ^MyTableItem m]
+    (if (some? f)
+        (cond (instance? f String) (.setColumn_name m (str/lower-case f))
+              (and (map? f) (contains? f :type)) (.setColumn_type m (-> f :type)))))
+
+(defn to_items_code [[f & r] ^ArrayList lst_items ^StringBuilder sb_code]
+    (if (some? f)
+        ))
+
+(to_item (first items))
+
+(defn to_item [[f & r] ^MyTableItem m ^StringBuilder code_line]
+    (if (some? f)
+        (cond (instance? f String) (let [column_name (str/lower-case f)]
+                                       (.setColumn_name m column_name)
+                                       (.append code_line column_name)
+                                       (recur r m code_line))
+              (and (map? f) (contains? f :type)) (do (.setColumn_type m (-> f :type))
+                                                     (.append code_line " ")
+                                                     (.append code_line (-> f :type))
+                                                     (if (contains? f :vs)
+                                                         (cond (= (count (-> f :vs)) 1) (let [len (nth (-> f :vs) 0)]
+                                                                                            (.setColumn_len m len)
+                                                                                            (.append code_line "(")
+                                                                                            (.append code_line len)
+                                                                                            (.append code_line ")"))
+                                                               (= (count (-> f :vs)) 3) (let [len (nth (-> f :vs) 0) scale (nth (-> f :vs) 2)]
+                                                                                            (.setColumn_len m len)
+                                                                                            (.setScale m scale)
+                                                                                            (.append code_line "(")
+                                                                                            (.append code_line len)
+                                                                                            (.append code_line ",")
+                                                                                            (.append code_line scale)
+                                                                                            (.append code_line ")"))
+                                                               ))
+                                                     (recur r m code_line))
+              (and (map? f) (contains? f :not_null)) (do (.setNot_null m (-> f :not_null))
+                                                         (.append code_line " not null ")
+                                                         (recur r m code_line))
+              (and (map? f) (contains? f :default)) (do (.setDefault_value m (-> f :default))
+                                                        (.append code_line (.concat " DEFAULT " (-> f :default)))
+                                                        (recur r m code_line))
+              (and (map? f) (contains? f :auto)) (do (.setAuto_increment m (-> f :auto))
+                                                        (recur r m code_line))
+              )))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

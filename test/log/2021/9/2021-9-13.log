@@ -1,0 +1,115 @@
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+(my-update/get-authority ignite 0 "update categories set categoryname = '瓜子' where description = '喝的'")
+
+(def obj (my-update/get-authority ignite 0 "update categories set categoryname = '瓜子' where description = '喝的'"))
+
+(def it (.iterator (.query (.cache ignite "public_meta") (doto (SqlFieldsQuery. (-> obj :sql))
+                                                             (.setLazy true)))))
+
+(def items (-> (my-update/get_json "update categories set categoryname = '瓜子' where description = '喝的'") :items))
+
+(def lst (-> (my-update/get_pk_def ignite (-> obj :table_name)) :lst))
+
+(defn get_item_data [column_name [f & r]]
+    (if (some? f)
+        (if (my-lexical/is-eq? column_name (-> f :item_name))
+            f
+            (recur column_name r))
+        ))
+
+(defn merge_data [[column_f & column_r] items lst_rs]
+    (if (some? column_f)
+        (if-let [m (get_item_data column_f items)]
+            (recur column_r items (conj lst_rs m))
+            (recur column_r items (conj lst_rs column_f)))
+        lst_rs))
+
+
+(def sql_update "update categories set categoryname = concat('喝', categoryid + 1) where description = '喝的'")
+(my-update/get-authority ignite 0 sql_update)
+(def obj (my-update/get-authority ignite 0 sql_update))
+(def items (-> obj :items))
+(def lst (-> (my-update/get_pk_def ignite (-> obj :table_name)) :lst))
+(def lst_pk (-> (my-update/get_pk_def ignite (-> obj :table_name)) :lst_pk))
+
+(def query_sql (-> (my-update/get_update_query_sql ignite obj) :sql))
+(def it (.iterator (.query (.cache ignite "public_meta") (doto (SqlFieldsQuery. query_sql)
+                                                             (.setLazy true)))))
+
+
+(def pk_id (.get (.next it) 0))
+(.get (.withKeepBinary (.cache ignite (-> obj :table_name))) pk_id)
+(def category_data (.get (.withKeepBinary (.cache ignite (-> obj :table_name))) pk_id))
+
+(my-update/merge_data lst items)
+
+
+(defn item_value_tokens [^Ignite ignite lst_tokens ^BinaryObject binaryObject dic]
+    (cond (contains? lst_tokens :item_name) (my-expression/item_type_binaryObj (-> lst_tokens :java_item_type) (-> lst_tokens :item_name) binaryObject dic)
+          (contains? lst_tokens :parenthesis) (my-expression/mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> lst_tokens :parenthesis)))
+          (contains? lst_tokens :operation) (my-expression/mid_to_forwrod_binaryObject ignite binaryObject dic (reverse (-> lst_tokens :operation)))
+          ))
+
+(defn get_kv [^Ignite ignite ^BinaryObject binaryObject [f & r] lst dic]
+    (if (some? f)
+        (if (string? f)
+            (recur binaryObject r (doto lst (.add (MyKeyValue. f (.field binaryObject f)))))
+            (if (contains? dic (-> f :item_name))
+                (recur binaryObject r (doto lst (.add (MyKeyValue. (-> f :item_name) (item_value_tokens ignite (-> f :item_name) binaryObject dic)))))
+                (throw (Exception. (format "不能修改表中不存在的字段（s%）" (-> f :item_name)))))
+            )
+        lst))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

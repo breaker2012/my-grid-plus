@@ -1,0 +1,566 @@
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init8228701465346828065.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+nREPL server started on port 54049 on host 127.0.0.1 - nrepl://127.0.0.1:54049
+Connecting to local nREPL server...
+Clojure 1.10.1
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil MySqlFunc)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        )
+
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> java.sql.Timestamp
+=> nil
+九月 06, 2021 4:01:38 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[16:01:39]    __________  ________________
+[16:01:39]   /  _/ ___/ |/ /  _/_  __/ __/
+[16:01:39]  _/ // (7 7    // /  / / / _/
+[16:01:39] /___/\___/_/|_/___/ /_/ /___/
+[16:01:39]
+[16:01:39] ver. 8.7.24#20210906-sha1:DEV
+[16:01:39] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[16:01:39]
+[16:01:39] Ignite documentation: http://gridgain.com
+[16:01:39]
+[16:01:39] Quiet mode.
+[16:01:39]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[16:01:39]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[16:01:39]
+[16:01:39] OS: Mac OS X 10.12.1 x86_64
+[16:01:39] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[16:01:39] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[16:01:39] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[16:01:39] Configured plugins:
+[16:01:39]   ^-- None
+[16:01:39]
+[16:01:39] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[16:01:40] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[16:01:40] Security status [authentication=off, tls/ssl=off]
+[16:01:42] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[16:01:44] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[16:01:44] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[16:01:44]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[16:01:44]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[16:01:44]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[16:01:44]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[16:01:44] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[16:01:44]
+[16:01:44] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[16:01:44]
+[16:01:44] Ignite node started OK (id=399ffacb, instance name=服务网格专用部署)
+[16:01:44] Topology snapshot [ver=4, locNode=399ffacb, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[16:01:44]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+[16:01:53] New version is available at gridgain.com: 8.8.7
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil MySqlFunc)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        )
+=> java.sql.Timestamp
+(doto (MySelectScenes.)
+    (.setSelect_sql "select * from table_a")
+    (.setIndexs (to-array [1 2 3 2 2]))
+    (.setLst_ps (doto (java.util.ArrayList.)
+                    (.add (MyScenesPs. String "吴"))
+                    (.add (MyScenesPs. String "大"))
+                    (.add (MyScenesPs. String "富"))))
+    )
+Execution error (ClassCastException) at core/eval1647 (form-init8228701465346828065.clj:3).
+java.lang.String cannot be cast to java.lang.Integer
+(doto (MySelectScenes.)
+    (.setSelect_sql "select * from table_a")
+    (.setIndexs (to-array [1 2 3 2 2]))
+    )
+=> #object[cn.plus.model.db.MySelectScenes 0x50baf556 "cn.plus.model.db.MySelectScenes@50baf556"]
+(doto (java.util.ArrayList.)
+    (.add (MyScenesPs. String "吴"))
+    (.add (MyScenesPs. String "大"))
+    (.add (MyScenesPs. String "富")))
+Execution error (ClassCastException) at core/eval1658 (form-init8228701465346828065.clj:1).
+java.lang.String cannot be cast to java.lang.Integer
+(doto (java.util.ArrayList.)
+    (.add (MyScenesPs. String 1))
+    (.add (MyScenesPs. String 2))
+    (.add (MyScenesPs. String 3)))
+Execution error (ClassCastException) at core/eval1663 (form-init8228701465346828065.clj:1).
+java.lang.Long cannot be cast to java.lang.Integer
+(MyScenesPs. String 3)
+Execution error (ClassCastException) at core/eval1667 (form-init8228701465346828065.clj:1).
+java.lang.Long cannot be cast to java.lang.Integer
+(doto (MyScenesPs.)
+    (.setPs_type String)
+    (.setIndex 1))
+Execution error (ClassCastException) at core/eval1672 (form-init8228701465346828065.clj:2).
+java.lang.Long cannot be cast to java.lang.Integer
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init14580317927856974294.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Connecting to local nREPL server...
+nREPL server started on port 55379 on host 127.0.0.1 - nrepl://127.0.0.1:55379
+Clojure 1.10.1
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil MySqlFunc)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        )
+
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> java.sql.Timestamp
+=> nil
+九月 06, 2021 5:08:28 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[17:08:29]    __________  ________________
+[17:08:29]   /  _/ ___/ |/ /  _/_  __/ __/
+[17:08:29]  _/ // (7 7    // /  / / / _/
+[17:08:29] /___/\___/_/|_/___/ /_/ /___/
+[17:08:29]
+[17:08:29] ver. 8.7.24#20210906-sha1:DEV
+[17:08:29] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[17:08:29]
+[17:08:29] Ignite documentation: http://gridgain.com
+[17:08:29]
+[17:08:29] Quiet mode.
+[17:08:29]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[17:08:29]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[17:08:29]
+[17:08:29] OS: Mac OS X 10.12.1 x86_64
+[17:08:29] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[17:08:29] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[17:08:29] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[17:08:29] Configured plugins:
+[17:08:29]   ^-- None
+[17:08:29]
+[17:08:29] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[17:08:29] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[17:08:30] Security status [authentication=off, tls/ssl=off]
+[17:08:31] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[17:08:33] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[17:08:33] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[17:08:33]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[17:08:33]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[17:08:33]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[17:08:33]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[17:08:33] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[17:08:33]
+[17:08:33] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[17:08:33]
+[17:08:33] Ignite node started OK (id=d33322a0, instance name=服务网格专用部署)
+[17:08:33] Topology snapshot [ver=6, locNode=d33322a0, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[17:08:33]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil MySqlFunc)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        )
+=> java.sql.Timestamp
+(MyScenesPs. String 3)
+=> #object[cn.plus.model.db.MyScenesPs 0x4c62f19d "cn.plus.model.db.MyScenesPs@4c62f19d"]
+(doto (MySelectScenes.)
+    (.setSelect_sql "select * from table_a")
+    (.setIndexs (to-array [1 2 3 2 2]))
+    (.setLst_ps (doto (java.util.ArrayList.)
+                    (.add (MyScenesPs. String 1))
+                    (.add (MyScenesPs. String 2))
+                    (.add (MyScenesPs. String 3))))
+    )
+=> #object[cn.plus.model.db.MySelectScenes 0x7a21c8fe "cn.plus.model.db.MySelectScenes@7a21c8fe"]
+(.put (.cache ignite "my_scenes") "场景一" (doto (MyScenesCache.)
+                                         (.setScenes_name "场景一")
+                                         (.setScenes_code "select * from table")
+                                         (.setDescrip "描述")
+                                         (.setVersion "版本")
+                                         (.setScenes (doto (MySelectScenes.)
+                                                         (.setSelect_sql "select * from table_a")
+                                                         (.setIndexs (to-array [1 2 3 2 2]))
+                                                         (.setLst_ps (doto (java.util.ArrayList.)
+                                                                         (.add (MyScenesPs. String 1))
+                                                                         (.add (MyScenesPs. String 2))
+                                                                         (.add (MyScenesPs. String 3))))
+                                                         ))
+                                         (.setIs_batch false)
+                                         (.setActive true)
+                                         ))
+Execution error (ClassCastException) at core/eval1644 (form-init14580317927856974294.clj:9).
+cn.plus.model.db.MySelectScenes cannot be cast to cn.plus.model.db.Scenes
+(.put (.cache ignite "my_scenes") "场景一" (doto (MyScenesCache.)
+                                         (.setScenes_name "场景一")
+                                         (.setScenes_code "select * from table")
+                                         (.setDescrip "描述")
+                                         (.setVersion "版本")
+                                         (.setScenes (Scenes (Scenes_type/select) (doto (MySelectScenes.)
+                                                                                      (.setSelect_sql "select * from table_a")
+                                                                                      (.setIndexs (to-array [1 2 3 2 2]))
+                                                                                      (.setLst_ps (doto (java.util.ArrayList.)
+                                                                                                      (.add (MyScenesPs. String 1))
+                                                                                                      (.add (MyScenesPs. String 2))
+                                                                                                      (.add (MyScenesPs. String 3))))
+                                                                                      )))
+                                         (.setIs_batch false)
+                                         (.setActive true)
+                                         ))
+Syntax error compiling at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init14580317927856974294.clj:6:54).
+Expecting var, but Scenes is mapped to class cn.plus.model.db.Scenes
+(.put (.cache ignite "my_scenes") "场景一" (doto (MyScenesCache.)
+                                         (.setScenes_name "场景一")
+                                         (.setScenes_code "select * from table")
+                                         (.setDescrip "描述")
+                                         (.setVersion "版本")
+                                         (.setScenes (Scenes (Scenes_type/select) "wu"))
+                                         (.setIs_batch false)
+                                         (.setActive true)
+                                         ))
+Syntax error compiling at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init14580317927856974294.clj:6:54).
+Expecting var, but Scenes is mapped to class cn.plus.model.db.Scenes
+(.put (.cache ignite "my_scenes") "场景一" (doto (MyScenesCache.)
+                                         (.setScenes_name "场景一")
+                                         (.setScenes_code "select * from table")
+                                         (.setDescrip "描述")
+                                         (.setVersion "版本")
+                                         (.setScenes (Scenes. (Scenes_type/select) (doto (MySelectScenes.)
+                                                                                      (.setSelect_sql "select * from table_a")
+                                                                                      (.setIndexs (to-array [1 2 3 2 2]))
+                                                                                      (.setLst_ps (doto (java.util.ArrayList.)
+                                                                                                      (.add (MyScenesPs. String 1))
+                                                                                                      (.add (MyScenesPs. String 2))
+                                                                                                      (.add (MyScenesPs. String 3))))
+                                                                                      )))
+                                         (.setIs_batch false)
+                                         (.setActive true)
+                                         ))
+=> nil
+(.get (.cache ignite "my_scenes") "场景一")
+=> #object[cn.plus.model.db.MyScenesCache 0x5b8f2592 "cn.plus.model.db.MyScenesCache@5b8f2592"]
+(def m (.get (.cache ignite "my_scenes") "场景一"))
+=> #'core/m
+(.getScenes m)
+=> #object[cn.plus.model.db.Scenes 0x7e6d42c6 "cn.plus.model.db.Scenes@7e6d42c6"]
+(-> m .getScenes)
+=> #object[cn.plus.model.db.Scenes 0x7e6d42c6 "cn.plus.model.db.Scenes@7e6d42c6"]
+(-> m .getScenes .getScenes_obj)
+=> #object[cn.plus.model.db.MySelectScenes 0x45ec695 "cn.plus.model.db.MySelectScenes@45ec695"]
+(-> m .getScenes .getScenes_obj .getIndexs)
+=> #object["[Ljava.lang.Object;" 0x112cb610 "[Ljava.lang.Object;@112cb610"]
+(loop [indexs (-> m .getScenes .getScenes_obj .getIndexs)]
+    (if (some? (first indexs))
+        (do
+            (println (first indexs))
+            (recur (rest indexs)))))
+1
+2
+3
+2
+2
+=> nil
+(loop [indexs (-> m .getScenes .getScenes_obj .getLst_ps)]
+    (if (some? (first indexs))
+        (do
+            (println (first indexs))
+            (recur (rest indexs)))))
+#object[cn.plus.model.db.MyScenesPs 0x673b4008 cn.plus.model.db.MyScenesPs@673b4008]
+#object[cn.plus.model.db.MyScenesPs 0x2e4e142 cn.plus.model.db.MyScenesPs@2e4e142]
+#object[cn.plus.model.db.MyScenesPs 0x23194d6a cn.plus.model.db.MyScenesPs@23194d6a]
+=> nil
+(loop [indexs (-> m .getScenes .getScenes_obj .getLst_ps)]
+    (if (some? (first indexs))
+        (do
+            (println (.getPs_type (first indexs)))
+            (println (.getIndex (first indexs)))
+            (recur (rest indexs)))))
+java.lang.String
+1
+java.lang.String
+2
+java.lang.String
+3
+=> nil
+
+
+
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init5937003140708230153.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Compiling org.gridgain.plus.dml.my-insert
+Syntax error compiling new at (org/gridgain/plus/dml/my_select.clj:918:69).
+Syntax error (IllegalArgumentException) compiling new at (org/gridgain/plus/dml/my_select.clj:918:69).
+Unable to resolve classname: getInput_parasex
+
+Full report at:
+/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/clojure-2037838280354662817.edn
+
+Process finished with exit code 1
+No nREPL ack received
+
+
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init15697375645447704080.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Compiling org.gridgain.plus.dml.my-insert
+Compiling org.gridgain.plus.dml.my-select
+Connecting to local nREPL server...
+nREPL server started on port 49348 on host 127.0.0.1 - nrepl://127.0.0.1:49348
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.tools MyConvertUtil)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache MyScenesPs MySelectScenes Scenes Scenes_type)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+(def sql_select "INSERT INTO categories (categoryid, categoryname, description) (SELECT a.categoryid + 1000, concat(a.categoryname, '吴大富'), a.description FROM categories a WHERE a.categoryid > 1 AND a.categoryid < 10)")
+(def m (my-insert/get_plus_insert ignite 1 sql_select))
+(my-insert/select-kv (my-insert/get_pk_data ignite (:table_name m)) (my-insert/item_seq_index (:item_seq m) 0 []))
+
+=> nil
+=> cn.plus.model.scene.MySences
+九月 06, 2021 11:57:11 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[23:57:11]    __________  ________________
+[23:57:11]   /  _/ ___/ |/ /  _/_  __/ __/
+[23:57:11]  _/ // (7 7    // /  / / / _/
+[23:57:11] /___/\___/_/|_/___/ /_/ /___/
+[23:57:11]
+[23:57:11] ver. 8.7.24#20210906-sha1:DEV
+[23:57:11] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[23:57:11]
+[23:57:11] Ignite documentation: http://gridgain.com
+[23:57:11]
+[23:57:11] Quiet mode.
+[23:57:11]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[23:57:11]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[23:57:11]
+[23:57:11] OS: Mac OS X 10.12.1 x86_64
+[23:57:12] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[23:57:12] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[23:57:12] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[23:57:12] Configured plugins:
+[23:57:12]   ^-- None
+[23:57:12]
+[23:57:12] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[23:57:12] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[23:57:13] Security status [authentication=off, tls/ssl=off]
+[23:57:15] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[23:57:15] Failed to send multicast message (is multicast enabled on this node?).
+[23:57:17] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[23:57:17] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[23:57:17]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[23:57:17]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[23:57:17]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[23:57:17]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[23:57:17] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[23:57:17]
+[23:57:17] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[23:57:17]
+[23:57:17] Ignite node started OK (id=5bf3bbde, instance name=服务网格专用部署)
+[23:57:17] Topology snapshot [ver=2, locNode=5bf3bbde, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[23:57:17]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+=> #'core/sql_select
+=> #'core/m
+=>
+{:pk [{:column_name "categoryid", :column_type "INTEGER", :pkid true, :auto_increment false, :index 0}],
+ :data [{:column_name "categoryname", :column_type "VARCHAR(15)", :pkid false, :auto_increment false, :index 1}
+        {:column_name "description", :column_type "VARCHAR", :pkid false, :auto_increment false, :index 2}]}
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init15710939599898831997.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Connecting to local nREPL server...
+nREPL server started on port 49674 on host 127.0.0.1 - nrepl://127.0.0.1:49674
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+                     (org.apache.ignite.internal IgnitionEx)
+                     (com.google.common.base Strings)
+                     (org.tools MyConvertUtil)
+                     (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+                     (cn.plus.tools KvSql)
+                     (org.gridgain.dml.util MyCacheExUtil)
+                     (cn.plus.model.db MyScenesCache)
+                     (org.apache.ignite.configuration CacheConfiguration)
+                     (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+                     (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+                     (org.gridgain.meta.cache MyContextCacheUtil)
+                     (org.gridgain.mydml MyTransUtil)
+                     (java.util ArrayList Date Iterator)
+                     (java.sql Timestamp)
+                     (java.math BigDecimal)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+(def sql_select "INSERT INTO categories (categoryid, categoryname, description) (SELECT a.categoryid + 1000, concat(a.categoryname, '吴大富'), a.description FROM categories a WHERE a.categoryid > 1 AND a.categoryid < 10)")
+(def m (my-insert/get_plus_insert ignite 1 sql_select))
+(my-insert/select-kv (my-insert/get_pk_data ignite (:table_name m)) (my-insert/item_seq_index (:item_seq m) 0 []))
+
+=> nil
+=> cn.plus.model.scene.MySences
+九月 06, 2021 11:57:49 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[23:57:50]    __________  ________________
+[23:57:50]   /  _/ ___/ |/ /  _/_  __/ __/
+[23:57:50]  _/ // (7 7    // /  / / / _/
+[23:57:50] /___/\___/_/|_/___/ /_/ /___/
+[23:57:50]
+[23:57:50] ver. 8.7.24#20210906-sha1:DEV
+[23:57:50] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[23:57:50]
+[23:57:50] Ignite documentation: http://gridgain.com
+[23:57:50]
+[23:57:50] Quiet mode.
+[23:57:50]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[23:57:50]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[23:57:50]
+[23:57:50] OS: Mac OS X 10.12.1 x86_64
+[23:57:50] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[23:57:50] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[23:57:50] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[23:57:50] Configured plugins:
+[23:57:50]   ^-- None
+[23:57:50]
+[23:57:50] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[23:57:50] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[23:57:51] Security status [authentication=off, tls/ssl=off]
+[23:57:52] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[23:57:52] Failed to send multicast message (is multicast enabled on this node?).
+[23:57:54] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[23:57:54] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[23:57:54]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[23:57:54]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[23:57:54]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[23:57:54]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[23:57:54] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[23:57:54]
+[23:57:54] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[23:57:54]
+[23:57:54] Ignite node started OK (id=f398d805, instance name=服务网格专用部署)
+[23:57:54] Topology snapshot [ver=4, locNode=f398d805, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[23:57:54]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+=> #'core/sql_select
+=> #'core/m
+=>
+{:pk [{:column_name "categoryid", :column_type "INTEGER", :pkid true, :auto_increment false, :index 0}],
+ :data [{:column_name "categoryname", :column_type "VARCHAR(15)", :pkid false, :auto_increment false, :index 1}
+        {:column_name "description", :column_type "VARCHAR", :pkid false, :auto_increment false, :index 2}]}
+(my-insert/get_plus_insert ignite 0 "INSERT INTO categories (categoryid, categoryname, description) VALUES (2, '白酒', '喝的')")
+=>
+#org.gridgain.plus.dml.my_insert.insert_obj{:table_name "categories",
+                                            :kv_seq (#org.gridgain.plus.dml.my_insert.insert_kv{:item_name "description",
+                                                                                                :iten_value "'喝的'"}
+                                                     #org.gridgain.plus.dml.my_insert.insert_kv{:item_name "categoryname",
+                                                                                                :iten_value "'白酒'"}
+                                                     #org.gridgain.plus.dml.my_insert.insert_kv{:item_name "categoryid",
+                                                                                                :iten_value "2"})}
+(my-insert/insert_run_log ignite 0 "INSERT INTO categories (categoryid, categoryname, description) VALUES (2, '白酒', '喝的')")
+Execution error (NullPointerException) at org.apache.ignite.internal.util.GridArgumentCheck/notNull (GridArgumentCheck.java:48).
+Ouch! Argument cannot be null: key
+(my-insert/insert_run_log ignite 1 "INSERT INTO categories (categoryid, categoryname, description) VALUES (2, '白酒', '喝的')")
+Execution error (NullPointerException) at org.apache.ignite.internal.util.GridArgumentCheck/notNull (GridArgumentCheck.java:48).
+Ouch! Argument cannot be null: key
+(my-insert/insert_run_log ignite 0 "INSERT INTO categories (categoryid, categoryname, description) VALUES (2, '白酒', '喝的')")
+Execution error (NullPointerException) at org.apache.ignite.internal.util.GridArgumentCheck/notNull (GridArgumentCheck.java:48).
+Ouch! Argument cannot be null: key
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)

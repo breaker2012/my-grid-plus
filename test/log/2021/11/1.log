@@ -1,0 +1,70 @@
+(def code "CREATE TABLE IF NOT EXISTS Customers (\n    -- 客户ID\n    CustomerID VARCHAR(5) NOT NULL,\n    -- 所在公司名称\n    CompanyName VARCHAR(40) NOT NULL,\n    -- 客户姓名\n    ContactName VARCHAR(30),\n    -- 客户头衔\n    ContactTitle VARCHAR(30),\n    -- 联系地址\n    Address VARCHAR(60),\n    -- 所在城市\n    City VARCHAR(15),\n    -- 所在地区\n    Region VARCHAR(15),\n    -- 邮编\n    PostalCode VARCHAR(10),\n    -- 国家\n    Country VARCHAR(15),\n    -- 电话\n    Phone VARCHAR(24),\n    -- 传真\n    Fax VARCHAR(24),\n    PRIMARY KEY (CustomerID)\n) WITH \"template=manage\"")
+
+(my-create-table/to_ddl_lst ignite (str/lower-case code) "wudafu")
+(def lst_table_item (-> (my-create-table/to_ddl_lst code) :lst_table_item))
+(def lst_ddl (-> (my-create-table/to_ddl_lst code) :lst_ddl))
+
+(my-create-table/get_my_table ignite "customers" "" code lst_table_item)
+(def lst_dml_table (my-create-table/get_my_table ignite "customers" "" code lst_table_item))
+
+(my-create-table/get_items_tp (str/replace code #"^(?i)CREATE\sTABLE\sIF\sNOT\sEXISTS\s\w+\s\(" "("))
+(def items_line (-> (my-create-table/get_items_tp (str/replace (str/lower-case code) #"^(?i)CREATE\sTABLE\sIF\sNOT\sEXISTS\s\w+\s\(" "(")) :items_line))
+(def template (-> (my-create-table/get_items_tp (str/replace (str/lower-case code) #"^(?i)CREATE\sTABLE\sIF\sNOT\sEXISTS\s\w+\s\(" "(")) :template))
+(my-create-table/get_items_obj items_line)
+(my-create-table/get_obj (my-create-table/get_items_obj items_line) "customer" nil)
+
+
+(def sql_line "CREATE TABLE OrderDetails (\n    -- 订单编号\n    OrderID INTEGER NOT NULL comment('订单编号'),\n    -- 产品编号\n    ProductID INTEGER NOT NULL comment('产品编号'),\n    -- 单价\n    UnitPrice DECIMAL(10,4) NOT NULL DEFAULT 0 comment('单价'),\n    -- 订购数量\n    Quantity SMALLINT(2) NOT NULL DEFAULT 1 comment('订购数量'),\n    -- 折扣\n    Discount REAL NOT NULL DEFAULT 0 comment('折扣'),\n    PRIMARY KEY (OrderID, ProductID)\n) WITH \"template=manage\"")
+(def sql_code (str/lower-case sql_line))
+(my-create-table/get_table_line_obj ignite sql_code ["wudafu"])
+(defn get_template [^String table_name ^String data_set_name ^String template ^clojure.lang.PersistentVector lst_table_item]
+    (if (not (Strings/isNullOrEmpty data_set_name))
+        (str/replace template #"\"$" (format ",cache_name=%s\"" (format "%s_%s" data_set_name table_name)))
+        ))
+
+(.getTemplateConfiguration (.configuration ignite))
+(.keySet (.getTemplateConfiguration (.configuration ignite)))
+(.containsKey (.getTemplateConfiguration (.configuration ignite)) "base")
+
+; 获取 template value
+(.getTemplateValue (.get (.getTemplateConfiguration (.configuration ignite)) "base"))
+
+
+(my-alter-table/get_ddl_objs (my-alter-table/get_lst_obj ignite (str/lower-case "ALTER TABLE Customers ADD COLUMN city varchar")))
+
+
+
+
+
+
+
+
+(def code "CREATE TABLE IF NOT EXISTS Customers (\n    -- 客户ID\n    CustomerID VARCHAR(5) NOT NULL,\n    -- 所在公司名称\n    CompanyName VARCHAR(40) NOT NULL,\n    -- 客户姓名\n    ContactName VARCHAR(30),\n    -- 客户头衔\n    ContactTitle VARCHAR(30),\n    -- 联系地址\n    Address VARCHAR(60),\n    -- 所在城市\n    City VARCHAR(15),\n    -- 所在地区\n    Region VARCHAR(15),\n    -- 邮编\n    PostalCode VARCHAR(10),\n    -- 国家\n    Country VARCHAR(15),\n    -- 电话\n    Phone VARCHAR(24),\n    -- 传真\n    Fax VARCHAR(24),\n    PRIMARY KEY (CustomerID)\n) WITH \"template=manage\"")
+(my-create-table/my_create_table ignite 0 "customers" "客户表" code)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

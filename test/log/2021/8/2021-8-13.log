@@ -1,0 +1,68 @@
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+八月 14, 2021 8:13:03 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[20:13:03]    __________  ________________
+[20:13:03]   /  _/ ___/ |/ /  _/_  __/ __/
+[20:13:03]  _/ // (7 7    // /  / / / _/
+[20:13:03] /___/\___/_/|_/___/ /_/ /___/
+[20:13:03]
+[20:13:03] ver. 8.7.24#20210814-sha1:DEV
+[20:13:03] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[20:13:03]
+[20:13:03] Ignite documentation: http://gridgain.com
+[20:13:03]
+[20:13:03] Quiet mode.
+[20:13:03]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[20:13:03]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[20:13:03]
+[20:13:03] OS: Mac OS X 10.12.1 x86_64
+[20:13:04] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[20:13:04] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[20:13:04] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[20:13:04] Configured plugins:
+[20:13:04]   ^-- None
+[20:13:04]
+[20:13:04] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[20:13:04] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[20:13:05] Security status [authentication=off, tls/ssl=off]
+[20:13:06] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[20:13:08] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[20:13:08] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[20:13:08]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[20:13:08]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[20:13:08]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[20:13:08]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[20:13:08] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[20:13:08]
+[20:13:08] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[20:13:08]
+[20:13:08] Ignite node started OK (id=8bff3ef5, instance name=服务网格专用部署)
+[20:13:08] Topology snapshot [ver=8, locNode=8bff3ef5, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[20:13:08]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+(def sql "select count(1) from\n   (select distinct a.empno from agent_info a,staff_info b\n      where\n      (((c_rank_type='03' and mgrno=c_empno)\n      or a.empno=c_empno)\n      or ((c_rank_type='04' and chiefno=c_empno)\n      or a.empno=c_empno))\n      and ((a.end_date is null or a.end_date>p_sdate)\n      and a.start_date<p_edate+1)\n      and ((b.leave_reson_no not in('07','08','09','10','12')\n      and b.leave_date>p_sdate)\n      or b.leave_date is null)\n      and b.empno=a.empno\n      and substr(a.empno,1,4) not in('1EC0','1008')\n      and b.emp_name<>'AUTOUNDW'\n      union\n      select distinct a.empno from agent_info a,staff_info b\n      where (((c_rank_type='03' and mgrno=c_empno)\n      or a.empno=c_empno)\n      or ((c_rank_type='04' and chiefno=c_empno)\n      or a.empno=c_empno))\n      and ((a.end_date is null or a.end_date>p_sdate)\n      and a.start_date<p_edate+1)\n      and b.empno=a.empno\n      and substr(a.empno,1,4)\n      not in('1EC0','1008') and b.emp_name<>'AUTOUNDW'\n      and b.leave_reson_no in('07','08','09','10','12')\n      and b.leave_date>=add_months(p_sdate,1))")
+=> #'core/sql
+(def ast (my-select/sql-to-ast (my-lexical/to-back sql)))
+=> #'core/ast
+(def ast_sql_obj (get (first ast) :sql_obj))
+=> #'core/ast_sql_obj
+(my-select/token-to-sql ignite 1 (-> (nth ast 0) :sql_obj :table-items))

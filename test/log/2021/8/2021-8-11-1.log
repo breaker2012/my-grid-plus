@@ -1,0 +1,1700 @@
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init17039766355529005594.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Compiling org.gridgain.plus.dml.my-select
+Connecting to local nREPL server...
+nREPL server started on port 49734 on host 127.0.0.1 - nrepl://127.0.0.1:49734
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+八月 11, 2021 9:37:00 上午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[09:37:01]    __________  ________________
+[09:37:01]   /  _/ ___/ |/ /  _/_  __/ __/
+[09:37:01]  _/ // (7 7    // /  / / / _/
+[09:37:01] /___/\___/_/|_/___/ /_/ /___/
+[09:37:01]
+[09:37:01] ver. 8.7.24#20210811-sha1:DEV
+[09:37:01] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[09:37:01]
+[09:37:01] Ignite documentation: http://gridgain.com
+[09:37:01]
+[09:37:01] Quiet mode.
+[09:37:01]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[09:37:01]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[09:37:01]
+[09:37:01] OS: Mac OS X 10.12.1 x86_64
+[09:37:01] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[09:37:01] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[09:37:01] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[09:37:01] Configured plugins:
+[09:37:01]   ^-- None
+[09:37:01]
+[09:37:01] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[09:37:02] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[09:37:03] Security status [authentication=off, tls/ssl=off]
+[09:37:04] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[09:37:07] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[09:37:07] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[09:37:07]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[09:37:07]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[09:37:07]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[09:37:07]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[09:37:07] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[09:37:07]
+[09:37:07] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[09:37:07]
+[09:37:07] Ignite node started OK (id=cf3e25c3, instance name=服务网格专用部署)
+[09:37:07] Topology snapshot [ver=2, locNode=cf3e25c3, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[09:37:07]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+[09:37:20] New version is available at gridgain.com: 8.8.7
+(def sql_symbol #{\( \) \/ \* \- \+ \= \> \<})
+(declare ar-to-sql item-to-line table-to-line func-to-line select-to-sql token-to-sql map-token-to-sql)
+
+=> #'core/sql_symbol
+=> #'core/map-token-to-sql
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                         :else
+                                         (ar-to-sql rs (.append sb f))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                           (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                           :else
+                                                           (ar-to-sql rs (.append sb f_sb))
+                                                           ))) sb))
+
+(defn item-to-line [m]
+    (let [{table_alias :table_alias item_name :item_name alias :alias} m]
+        (cond
+            (and (not (Strings/isNullOrEmpty table_alias)) (not (nil? alias)) (not (Strings/isNullOrEmpty alias))) (str/join [table_alias "." item_name " as " alias])
+            (and (not (Strings/isNullOrEmpty table_alias)) (Strings/isNullOrEmpty alias)) (str/join [table_alias "." item_name])
+            (and (Strings/isNullOrEmpty table_alias) (Strings/isNullOrEmpty alias)) item_name
+            )))
+
+; table item 转换成 line
+(defn table-to-line [m] ())
+
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [") as "] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")"])))
+
+(defn select-to-sql [ignite group_id ast]
+    (if (and (some? ast) (map? ast))
+        (when-let [{query-items :query-items table-items :table-items where-items :where-items group-by :group-by having :having order-by :order-by limit :limit} ast]
+            (cond (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (some? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["group by"] (token-to-sql ignite group_id group-by) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (some? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["where"] (token-to-sql ignite group_id where-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (empty having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (some? group-by) (some? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["group by"] (token-to-sql ignite group_id group-by) ["having"] (token-to-sql ignite group_id having) ["limit"] (token-to-sql ignite group_id limit))
+
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (empty? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (some? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["order by"] (token-to-sql ignite group_id order-by) ["limit"] (token-to-sql ignite group_id limit))
+                  (and (some? query-items) (some? table-items) (empty? where-items) (empty? group-by) (empty? having) (empty? order-by) (some? limit)) (concat ["select"] (token-to-sql ignite group_id query-items) ["from"] (token-to-sql ignite group_id table-items) ["limit"] (token-to-sql ignite group_id limit))
+
+                  ))))
+
+
+(defn token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond (instance? clojure.lang.LazySeq m) (map (partial token-to-sql ignite group_id) m)
+              (map? m) (map-token-to-sql ignite group_id m))))
+
+; map token to sql
+(defn map-token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond
+            (contains? m :sql_obj) (if (not (nil? (get m :sql_obj))) (select-to-sql ignite group_id (get m :sql_obj)) (throw (Exception. "select 语句错误！")))
+            (and (contains? m :func-name) (contains? m :lst_ps)) (func-to-line ignite group_id m)
+            (contains? m :and_or_symbol) (get m :and_or_symbol)
+            (contains? m :operation) (map (partial token-to-sql ignite group_id) (get m :operation))
+            (contains? m :comparison_symbol) (get m :comparison_symbol)
+            (contains? m :in_symbol) (get m :in_symbol)
+            (contains? m :operation_symbol) (get m :operation_symbol)
+            (contains? m :comma_symbol) (get m :comma_symbol)
+            (contains? m :item_name) (item-to-line m)
+            (contains? m :table_name) (table-to-line m)
+            (contains? m :parenthesis) (concat ["("] (token-to-sql ignite group_id (get m :parenthesis)) [")"])
+            )))
+=> #'core/ar-to-sql
+=> #'core/table-to-line
+=> #'core/item-to-line
+=> #'core/func-to-line
+=> #'core/select-to-sql
+=> #'core/token-to-sql
+=> #'core/map-token-to-sql
+(ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x549c4be5 "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"]
+(ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "(m.a+m.c-(my.id - you.id) * (wu.id + da.id)* fu.id)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x7ed728cc "(m.a+m.c-(my.id-you.id)*(wu.id+da.id)*fu.id)"]
+(.toString (ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "(m.a+m.c-(my.id - you.id) * (wu.id + da.id)* fu.id)"))) (StringBuilder.)))
+=> "(m.a+m.c-(my.id-you.id)*(wu.id+da.id)*fu.id)"
+(ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)  as acc_dir_sal"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x78957b3 ""]
+(ar-to-sql (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "select m.emp_no, m.emp_name, f.id from emp_table as m, scenes_b('wu', 'dafu') as f where m.id = func_a(m.category)"))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x50f311c4 ""]
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)  as acc_dir_sal")))
+=> nil
+(my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)  as acc_dir_sal"))
+=> nil
+(string? "吴大富")
+=> true
+(string? ["吴大富"])
+=> false
+(string? ["吴" "大" "富"])
+=> false
+(string? "吴" "大" "富")
+Execution error (ArityException) at core/eval2313 (form-init17039766355529005594.clj:1).
+Wrong number of args (3) passed to: clojure.core/string?--5410
+(string? 12)
+=> false
+(ar-to-sql (token-to-sql ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select m.emp_no, m.emp_name, f.id from emp_table as m, scenes_b('wu', 'dafu') as f where m.id = func_a(m.category)"))) (StringBuilder.))
+Execution error (NullPointerException) at core/ar-to-sql (form-init17039766355529005594.clj:10).
+null
+(my-select/sql-to-ast (my-lexical/to-back "select m.emp_no, m.emp_name, f.id from emp_table as m, scenes_b('wu', 'dafu') as f where m.id = func_a(m.category)"))
+=>
+({:sql_obj {:query-items ({:item_name "emp_no", :table_alias "m", :const false, :alias nil}
+                          {:comma_symbol ",", :alias nil}
+                          {:item_name "emp_name", :table_alias "m", :const false, :alias nil}
+                          {:comma_symbol ",", :alias nil}
+                          {:item_name "id", :table_alias "f", :const false, :alias nil}),
+            :table-items ({:table_name "emp_table", :table_alias "m"}
+                          {:comma_symbol ","}
+                          {:func-name "scenes_b",
+                           :lst_ps ({:table_alias "",
+                                     :item_name "'wu'",
+                                     :item_type "",
+                                     :java_item_type java.lang.String,
+                                     :const true}
+                                    {:comma_symbol ","}
+                                    {:table_alias "",
+                                     :item_name "'dafu'",
+                                     :item_type "",
+                                     :java_item_type java.lang.String,
+                                     :const true}),
+                           :alias "f"}),
+            :where-items ({:item_name "id", :table_alias "m", :const false}
+                          {:comparison_symbol "="}
+                          {:func-name "func_a", :lst_ps ({:item_name "category", :table_alias "m", :const false})}),
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})
+(def ast (my-select/sql-to-ast (my-lexical/to-back "select m.emp_no, m.emp_name, f.id from emp_table as m, scenes_b('wu', 'dafu') as f where m.id = func_a(m.category)")))
+=> #'core/ast
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(def ast_sql (token-to-sql ignite 1 ast))
+=> #'core/ast_sql
+(type ast_sql)
+=> clojure.lang.LazySeq
+(type (nth ast_sql 0))
+=> clojure.lang.LazySeq
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                         :else
+                                         (ar-to-sql rs (.append sb f))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (do
+                                                         (println f_sb)
+                                                         (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                               (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                               (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                               (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                               :else
+                                                               (ar-to-sql rs (.append sb f_sb))
+                                                               )))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.))
+Execution error (NullPointerException) at core/ar-to-sql (form-init17039766355529005594.clj:10).
+null
+(ar-to-sql (my-lexical/to-lazy []) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x3e35978d ""]
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (try
+                                       (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                             (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                             (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                             (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                             :else
+                                             (ar-to-sql rs (.append sb f))
+                                             )
+                                       (catch Exception e (.getMessage e)))
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (try
+                                                         (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                               (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                               (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                               (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                               :else
+                                                               (ar-to-sql rs (.append sb f_sb))
+                                                               )
+                                                         (catch Exception e (.getMessage e))))) sb))
+=> #'core/ar-to-sql
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.))
+Execution error (NullPointerException) at core/ar-to-sql (form-init17039766355529005594.clj:12).
+null
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (try
+                                       (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                             (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                             (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                             (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                             :else
+                                             (ar-to-sql rs (.append sb f))
+                                             )
+                                       (catch Exception e (println f)))
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (try
+                                                         (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                               (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                               (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                               (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                               :else
+                                                               (ar-to-sql rs (.append sb f_sb))
+                                                               )
+                                                         (catch Exception e (println f))))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.))
+Execution error (NullPointerException) at core/ar-to-sql (form-init17039766355529005594.clj:12).
+null
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(def ast_line (token-to-sql ignite 1 ast))
+=> #'core/ast_line
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (try
+            (cond (instance? String f) (try
+                                           (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                                 (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                                 (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                                 (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                                 :else
+                                                 (ar-to-sql rs (.append sb f))
+                                                 )
+                                           (catch Exception e (println f)))
+                  (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                         (try
+                                                             (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                                   (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                                   (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                                   (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                                   :else
+                                                                   (ar-to-sql rs (.append sb f_sb))
+                                                                   )
+                                                             (catch Exception e (println f)))))
+            (catch Exception e (println f))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.))
+(select m.emp_no , m.emp_name , f.id from () , (scenes_b ( 'wu' , 'dafu' ) as  f) where m.id = (func_a ( m.category )))
+=> nil
+(first ast_line)
+=>
+("select"
+ "m.emp_no"
+ ","
+ "m.emp_name"
+ ","
+ "f.id"
+ "from"
+ ()
+ ","
+ ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+ "where"
+ "m.id"
+ "="
+ ("func_a" "(" "m.category" ")"))
+(ar-to-sql (first ast_line) (StringBuilder.))
+=> nil
+(ar-to-sql (first ast_line) (StringBuilder.))
+=> nil
+(ar-to-sql (my-lexical/to-lazy '("select"
+                                   "m.emp_no"
+                                   ","
+                                   "m.emp_name"
+                                   ","
+                                   "f.id"
+                                   "from"
+                                   ","
+                                   (my-lexical/to-lazy '("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f"))
+                                   "where"
+                                   "m.id"
+                                   "="
+                                   (my-lexical/to-lazy '("func_a" "(" "m.category" ")")))) (StringBuilder.))
+=> nil
+(my-lexical/to-lazy '("select"
+                         "m.emp_no"
+                         ","
+                         "m.emp_name"
+                         ","
+                         "f.id"
+                         "from"
+                         ","
+                         (my-lexical/to-lazy '("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f"))
+                         "where"
+                         "m.id"
+                         "="
+                         (my-lexical/to-lazy '("func_a" "(" "m.category" ")"))))
+=>
+("select"
+ "m.emp_no"
+ ","
+ "m.emp_name"
+ ","
+ "f.id"
+ "from"
+ ","
+ (my-lexical/to-lazy (quote ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")))
+ "where"
+ "m.id"
+ "="
+ (my-lexical/to-lazy (quote ("func_a" "(" "m.category" ")"))))
+(my-lexical/to-lazy '("select"
+                         "m.emp_no"
+                         ","
+                         "m.emp_name"
+                         ","
+                         "f.id"
+                         "from"
+                         ","
+                         '("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+                         "where"
+                         "m.id"
+                         "="
+                         '("func_a" "(" "m.category" ")")))
+=>
+("select"
+ "m.emp_no"
+ ","
+ "m.emp_name"
+ ","
+ "f.id"
+ "from"
+ ","
+ (quote ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f"))
+ "where"
+ "m.id"
+ "="
+ (quote ("func_a" "(" "m.category" ")")))
+(ar-to-sql (my-lexical/to-lazy '("select"
+                                   "m.emp_no"
+                                   ","
+                                   "m.emp_name"
+                                   ","
+                                   "f.id"
+                                   "from")) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x3985183f "selectm.emp_no,m.emp_name,f.idfrom"]
+; 重新写 ar-to-sql
+(last (StringBuffer.))
+=> nil
+(when-let [last_line (last (StringBuffer.))]
+    (println "OK"))
+=> nil
+(if-let [last_line (last (StringBuffer.))]
+    (println "OK")
+    (println "为空"))
+为空
+=> nil
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (if (string? f)
+            (if-let [qian_line (last (.toString sb))]
+                (cond (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                      :else
+                      (ar-to-sql rs (.append sb f)))
+                (ar-to-sql rs (.append sb f)))
+            (let [qian_line (last (.toString sb)) f_line (.toString (ar-to-sql f (StringBuilder.)))]
+                (cond (Strings/isNullOrEmpty qian_line) (ar-to-sql rs (.append (StringBuilder.) f))
+                      (Strings/isNullOrEmpty f_line) (ar-to-sql rs sb)
+                      (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f_line)))) (ar-to-sql rs (.append (.append sb " ") f_line))
+                      :else
+                      (ar-to-sql rs (.append sb f))))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (my-lexical/to-lazy '("select"
+                                   "m.emp_no"
+                                   ","
+                                   "m.emp_name"
+                                   ","
+                                   "f.id"
+                                   "from")) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x16dee677 "select m.emp_no , m.emp_name , f.id from"]
+(ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.))
+Execution error (ClassCastException) at core/ar-to-sql (form-init17039766355529005594.clj:10).
+java.lang.Character cannot be cast to java.lang.String
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (if (string? f)
+            (if-let [qian_line (last (.toString sb))]
+                (cond (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                      :else
+                      (ar-to-sql rs (.append sb f)))
+                (ar-to-sql rs (.append sb f)))
+            (let [qian_line (last (.toString sb)) f_line (.toString (ar-to-sql f (StringBuilder.)))]
+                (cond (Strings/isNullOrEmpty (.toString sb)) (ar-to-sql rs (.append (StringBuilder.) f))
+                      (Strings/isNullOrEmpty f_line) (ar-to-sql rs sb)
+                      (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f_line)))) (ar-to-sql rs (.append (.append sb " ") f_line))
+                      :else
+                      (ar-to-sql rs (.append sb f))))) sb))
+=> #'core/ar-to-sql
+(ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x77968443 "clojure.lang.LazySeq@f3fc81f6"]
+(.toString (ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.)))
+=> "clojure.lang.LazySeq@f3fc81f6"
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (if (string? f)
+            (if-let [qian_line (last (.toString sb))]
+                (cond (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                      :else
+                      (ar-to-sql rs (.append sb f)))
+                (ar-to-sql rs (.append sb f)))
+            (let [qian_line (last (.toString sb)) f_line (.toString (ar-to-sql f (StringBuilder.)))]
+                (cond
+                      (Strings/isNullOrEmpty f_line) (ar-to-sql rs sb)
+                      (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f_line)))) (ar-to-sql rs (.append (.append sb " ") f_line))
+                      :else
+                      (ar-to-sql rs (.append sb f))))) sb))
+=> #'core/ar-to-sql
+(.toString (ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.)))
+=> " select m.emp_no , m.emp_name , f.id from , scenes_b('wu' , 'dafu') as  f where m.id=clojure.lang.LazySeq@9e67c8ed"
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (if (string? f)
+            (if-let [qian_line (last (.toString sb))]
+                (cond (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                      :else
+                      (ar-to-sql rs (.append sb f)))
+                (ar-to-sql rs (.append sb f)))
+            (let [qian_line (last (.toString sb)) f_line (.toString (ar-to-sql f (StringBuilder.)))]
+                (do (println f_line)
+                    (cond
+                        (Strings/isNullOrEmpty f_line) (ar-to-sql rs sb)
+                        (and (not (contains? sql_symbol qian_line)) (not (contains? sql_symbol (first f_line)))) (ar-to-sql rs (.append (.append sb " ") f_line))
+                        :else
+                        (ar-to-sql rs (.append sb f)))))) sb))
+=> #'core/ar-to-sql
+(.toString (ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.)))
+
+scenes_b('wu' , 'dafu') as  f
+func_a(m.category)
+select m.emp_no , m.emp_name , f.id from , scenes_b('wu' , 'dafu') as  f where m.id=clojure.lang.LazySeq@9e67c8ed
+=> " select m.emp_no , m.emp_name , f.id from , scenes_b('wu' , 'dafu') as  f where m.id=clojure.lang.LazySeq@9e67c8ed"
+(.toString (ar-to-sql '("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f") (StringBuilder.)))
+=> "scenes_b('wu' , 'dafu') as  f"
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                         :else
+                                         (ar-to-sql rs (.append sb f))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                           (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                           :else
+                                                           (ar-to-sql rs (.append sb f_sb))
+                                                           ))) sb))
+=> #'core/ar-to-sql
+(.toString (ar-to-sql '("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f") (StringBuilder.)))
+=> "scenes_b('wu','dafu') as  f"
+(.toString (ar-to-sql (token-to-sql ignite 1 ast) (StringBuilder.)))
+Execution error (NullPointerException) at core/ar-to-sql (form-init17039766355529005594.clj:10).
+null
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (cond (string? f) (ar-to-lst rs (conj lst f))
+              (instance? clojure.lang.LazySeq f) (ar-to-sql rs (concat lst (ar-to-sql f [])))) lst))
+=> #'core/ar-to-lst
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (cond (string? f) (ar-to-lst rs (conj lst f))
+              :else (ar-to-sql rs (concat lst (ar-to-sql f [])))) lst))
+=> #'core/ar-to-lst
+(ar-to-sql '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j"") [])
+Execution error (ClassCastException) at core/ar-to-sql (form-init17039766355529005594.clj:3).
+clojure.lang.PersistentVector cannot be cast to java.lang.StringBuilder
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j"") [])
+Execution error (ClassCastException) at core/ar-to-sql (form-init17039766355529005594.clj:3).
+clojure.lang.PersistentVector cannot be cast to java.lang.StringBuilder
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (cond (string? f) (ar-to-lst rs (conj lst f))
+              :else (ar-to-lst rs (concat lst (ar-to-lst f [])))) lst))
+=> #'core/ar-to-lst
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j"") [])
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: clojure.lang.Symbol
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j"") [])
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: clojure.lang.Symbol
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (if (string? f) (ar-to-lst rs (conj lst f))
+                        (let [lst_rs (ar-to-lst f [])]
+                            (ar-to-lst rs lst_rs))) lst))
+=> #'core/ar-to-lst
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j"") [])
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: clojure.lang.Symbol
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (if (string? f) (ar-to-lst rs (conj lst f))
+                        (let [lst_rs (ar-to-lst f [])]
+                            (do
+                                (println lst_rs)
+                                (ar-to-lst rs (concat lst lst_rs))))) lst))
+=> #'core/ar-to-lst
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j"") [])
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: clojure.lang.Symbol
+(defn ar-to-lst [[f & rs]]
+    (if (some? f)
+       (do (println f)
+           (ar-to-lst rs))))
+=> #'core/ar-to-lst
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j""))
+a
+b
+[c d (quote (e f)) g h]
+i
+j
+
+=> nil
+(defn ar-to-lst [[f & rs]]
+    (if (some? f)
+       (if (string? f) (cons f (ar-to-lst rs))
+                       (concat (ar-to-lst f) (ar-to-lst rs))) []))
+=> #'core/ar-to-lst
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" j""))
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: clojure.lang.Symbol
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"] "i" "j"))
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: clojure.lang.Symbol
+(ar-to-lst '("a" "b"))
+=> ("a" "b")
+(ar-to-lst '("a" "b" ["c" "d" '("e" "f") "g" "h"]))
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: clojure.lang.Symbol
+(defn ar-to-lst [[f & rs]]
+    (if (some? f)
+       (if (string? f) (cons f (ar-to-lst rs))
+                       (concat (ar-to-lst f) (ar-to-lst rs))) []))
+=> #'core/ar-to-lst
+(ar-to-lst '("a" "b" ["c" "d"]))
+=> ("a" "b" "c" "d")
+(ar-to-lst '("a" "b" ["c" "d" ["e" "f"]]))
+=> ("a" "b" "c" "d" "e" "f")
+(ar-to-lst (token-to-sql ignite 1 ast))
+=>
+("select"
+ "m.emp_no"
+ ","
+ "m.emp_name"
+ ","
+ "f.id"
+ "from"
+ ","
+ "scenes_b"
+ "("
+ "'wu'"
+ ","
+ "'dafu'"
+ ") as "
+ "f"
+ "where"
+ "m.id"
+ "="
+ "func_a"
+ "("
+ "m.category"
+ ")")
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (cond (string? f) (recur rs (conj lst f))
+              :else (recur rs (concat lst (recur f [])))) lst))
+Syntax error (UnsupportedOperationException) compiling recur at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init17039766355529005594.clj:4:43).
+Can only recur from tail position
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (if (string? f) (ar-to-lst rs (conj lst f))
+                        (let [lst_rs (ar-to-lst f [])]
+                            (do
+                                (println lst_rs)
+                                (ar-to-lst rs (concat lst lst_rs))))) lst))
+=> #'core/ar-to-lst
+(ar-to-lst (token-to-sql ignite 1 ast))
+Execution error (ArityException) at core/eval2707 (form-init17039766355529005594.clj:1).
+Wrong number of args (1) passed to: core/ar-to-lst
+(ar-to-lst (token-to-sql ignite 1 ast) [])
+[]
+[scenes_b ( 'wu' , 'dafu' ) as  f]
+[func_a ( m.category )]
+(= m.id where , select m.emp_no , m.emp_name , f.id from scenes_b ( 'wu' , 'dafu' ) as  f func_a ( m.category ))
+=>
+("="
+ "m.id"
+ "where"
+ ","
+ "select"
+ "m.emp_no"
+ ","
+ "m.emp_name"
+ ","
+ "f.id"
+ "from"
+ "scenes_b"
+ "("
+ "'wu'"
+ ","
+ "'dafu'"
+ ") as "
+ "f"
+ "func_a"
+ "("
+ "m.category"
+ ")")
+(defn ar-to-lst [[f & rs] lst]
+    (if (some? f)
+        (if (string? f) (recur rs (conj lst f))
+                        (let [lst_rs (recur f [])]
+                            (do
+                                (println lst_rs)
+                                (recur rs (concat lst lst_rs))))) lst))
+Syntax error (UnsupportedOperationException) compiling recur at (/private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init17039766355529005594.clj:4:38).
+Can only recur from tail position
+(def sql_symbol #{\( \) \/ \* \- \+ \= \> \< \,})
+=> #'core/sql_symbol
+(defn ar-to-lst [[f & rs]]
+    (if (some? f)
+        (if (string? f) (cons f (ar-to-lst rs))
+                        (concat (ar-to-lst f) (ar-to-lst rs))) []))
+=> #'core/ar-to-lst
+(ar-to-lst (token-to-sql ignite 1 ast))
+=>
+("select"
+ "m.emp_no"
+ ","
+ "m.emp_name"
+ ","
+ "f.id"
+ "from"
+ ","
+ "scenes_b"
+ "("
+ "'wu'"
+ ","
+ "'dafu'"
+ ") as "
+ "f"
+ "where"
+ "m.id"
+ "="
+ "func_a"
+ "("
+ "m.category"
+ ")")
+(def sb (StringBuilder.))
+=> #'core/sb
+(.append (.append sb "吴") "大富")
+=> #object[java.lang.StringBuilder 0x7eb2e83c "吴大富"]
+(doto sb (.append sb "吴") (.append sb "大富"))
+Execution error (IllegalArgumentException) at core/eval2741 (form-init17039766355529005594.clj:1).
+No matching method append found taking 2 args for class java.lang.StringBuilder
+(doto (.append sb "吴") (.append sb "大富"))
+Execution error (IllegalArgumentException) at core/eval2746 (form-init17039766355529005594.clj:1).
+No matching method append found taking 2 args for class java.lang.StringBuilder
+(def sql_symbol #{"(" ")" "/" "*" "-" "+" "=" ">" "<" ">=" "<=" "<>" ","})
+
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (cond (and (some? f) (some? (first rs))) (if (and (not (contains? sql_symbol f)) (not (contains? sql_symbol (first rs))))
+                                                 (recur rs (.append (.append sb f) " "))
+                                                 (recur rs (.append sb f)))
+          (and (some? f) (Strings/isNullOrEmpty (first rs))) (recur rs (.append sb f))
+          :else
+          sb))
+=> #'core/sql_symbol
+=> #'core/ar-to-sql
+(ar-to-sql (ar-to-lst (token-to-sql ignite 1 ast)) (StringBuilder.))
+=>
+#object[java.lang.StringBuilder
+        0x708095a7
+        "select m.emp_no,m.emp_name,f.id from,scenes_b('wu','dafu' ) as  f where m.id=func_a(m.category)"]
+(ar-to-lst (token-to-sql ignite 1 ast))
+=>
+("select"
+ "m.emp_no"
+ ","
+ "m.emp_name"
+ ","
+ "f.id"
+ "from"
+ ","
+ "scenes_b"
+ "("
+ "'wu'"
+ ","
+ "'dafu'"
+ ") as "
+ "f"
+ "where"
+ "m.id"
+ "="
+ "func_a"
+ "("
+ "m.category"
+ ")")
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ") as " "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")" "as"] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")"])))
+
+=> #'core/func-to-line
+(token-to-sql ignite 1 ast)
+=>
+(("select"
+  "m.emp_no"
+  ","
+  "m.emp_name"
+  ","
+  "f.id"
+  "from"
+  ()
+  ","
+  ("scenes_b" "(" "'wu'" "," "'dafu'" ")" "as" "f")
+  "where"
+  "m.id"
+  "="
+  ("func_a" "(" "m.category" ")")))
+(ar-to-sql (ar-to-lst (token-to-sql ignite 1 ast)) (StringBuilder.))
+=>
+#object[java.lang.StringBuilder
+        0x695f4f2f
+        "select m.emp_no,m.emp_name,f.id from,scenes_b('wu','dafu')as f where m.id=func_a(m.category)"]
+(defn func-to-line [ignite group_id m]
+    (if (and (contains? m :alias) (not (nil? (-> m :alias))))
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")" " as"] [(-> m :alias)])
+        (concat [(-> m :func-name) "("] (map (partial token-to-sql ignite group_id) (-> m :lst_ps)) [")"])))
+
+=> #'core/func-to-line
+(ar-to-sql (ar-to-lst (token-to-sql ignite 1 ast)) (StringBuilder.))
+=>
+#object[java.lang.StringBuilder
+        0x32cb9a45
+        "select m.emp_no,m.emp_name,f.id from,scenes_b('wu','dafu') as f where m.id=func_a(m.category)"]
+(ar-to-sql (ar-to-lst (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))) (StringBuilder.))
+=> #object[java.lang.StringBuilder 0x7ea90975 "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"]
+(defn map-token-to-sql [ignite group_id m]
+    (if (some? m)
+        (cond
+            (contains? m :sql_obj) (if (not (nil? (get m :sql_obj))) (select-to-sql ignite group_id (get m :sql_obj)) (throw (Exception. "select 语句错误！")))
+            (and (contains? m :func-name) (contains? m :lst_ps)) (.toString (ar-to-sql (ar-to-lst (func-to-line ignite group_id m)) (StringBuilder.)))
+            (contains? m :and_or_symbol) (get m :and_or_symbol)
+            (contains? m :operation) (.toString (ar-to-sql (ar-to-lst (map (partial token-to-sql ignite group_id) (get m :operation))) (StringBuilder.)))
+            (contains? m :comparison_symbol) (get m :comparison_symbol)
+            (contains? m :in_symbol) (get m :in_symbol)
+            (contains? m :operation_symbol) (get m :operation_symbol)
+            (contains? m :comma_symbol) (get m :comma_symbol)
+            (contains? m :item_name) (item-to-line m)
+            (contains? m :table_name) (table-to-line m)
+            (contains? m :parenthesis) (.toString (ar-to-sql (ar-to-lst (concat ["("] (token-to-sql ignite group_id (get m :parenthesis)) [")"])) (StringBuilder.)))
+            )))
+
+=> #'core/map-token-to-sql
+(ar-to-sql (ar-to-lst (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))) (StringBuilder.))
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:1).
+Don't know how to create ISeq from: java.lang.Character
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"
+八月 11, 2021 6:31:10 下午 org.apache.ignite.logger.java.JavaLogger error
+严重: Blocked system-critical thread has been detected. This can lead to cluster-wide undefined behaviour [workerName=grid-nio-worker-tcp-comm-0, threadName=grid-nio-worker-tcp-comm-0-#23%TcpCommunicationSpi%, blockedFor=562s]
+[18:31:10] Possible failure suppressed accordingly to a configured handler [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]], failureCtx=FailureContext [type=SYSTEM_WORKER_BLOCKED, err=class o.a.i.IgniteException: GridWorker [name=grid-nio-worker-tcp-comm-0, igniteInstanceName=TcpCommunicationSpi, finished=false, heartbeatTs=1628677870006]]]
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "select a.empno from agent_info a, staff_info b, (select emp_name from my_staff_info where empno=:a)")))
+=> nil
+(token-to-sql ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select a.empno from agent_info a, staff_info b, (select emp_name from my_staff_info where empno=:a)")))
+=> (("select" "a.empno" "from" () "," () "," "(select emp_name from where empno=:a)"))
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (cond (and (some? f) (some? (first rs))) (if (and (not (contains? sql_symbol f)) (not (contains? sql_symbol (first rs))))
+                                                 (recur rs (.append (.append sb f) " "))
+                                                 (recur rs (.append sb f)))
+          (and (some? f) (Strings/isNullOrEmpty (first rs))) (recur rs (.append sb f))
+          :else
+          sb))
+
+(defn ar-to-lst [[f & rs]]
+    (if (some? f)
+        (if (string? f) (cons f (ar-to-lst rs))
+                        (concat (ar-to-lst f) (ar-to-lst rs))) []))
+
+(defn my-array-to-sql [lst]
+    (if (nil? lst) nil
+                   (if (string? lst) lst
+                                     (ar-to-sql (ar-to-lst lst) (StringBuilder.)))))
+=> #'core/ar-to-sql
+=> #'core/ar-to-lst
+=> #'core/my-array-to-sql
+(ar-to-sql (ar-to-lst (token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))) (StringBuilder.))
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:9).
+Don't know how to create ISeq from: java.lang.Character
+(token-to-sql ignite 1 (my-select/get-token (my-lexical/to-back "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)")))
+=> "round(nvl(sum(nvl(b.data,0)),0)*0.12,2)"
+(ar-to-sql (ar-to-lst (token-to-sql ignite 1 ast)) (StringBuilder.))
+=>
+#object[java.lang.StringBuilder
+        0x23107c0e
+        "select m.emp_no,m.emp_name,f.id from,scenes_b('wu','dafu') as f where m.id=func_a(m.category)"]
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (cond (and (some? f) (some? (first rs))) (if (and (not (contains? sql_symbol f)) (not (contains? sql_symbol (first rs))))
+                                                 (recur rs (.append (.append sb f) " "))
+                                                 (recur rs (.append sb f)))
+          (and (some? f) (Strings/isNullOrEmpty (first rs))) (recur rs (.append sb f))
+          :else
+          sb))
+
+(defn ar-to-lst [[f & rs]]
+    (if (some? f)
+        (if (string? f) (cons f (ar-to-lst rs))
+                        (concat (ar-to-lst f) (ar-to-lst rs))) []))
+
+(defn my-array-to-sql [lst]
+    (if (nil? lst) nil
+                   (if (string? lst) lst
+                                     (ar-to-sql (ar-to-lst lst) (StringBuilder.)))))
+=> #'core/ar-to-sql
+=> #'core/ar-to-lst
+=> #'core/my-array-to-sql
+(defn my-array-to-sql [lst]
+    (if (nil? lst) nil
+                   (if (string? lst) lst
+                                     (.toString (ar-to-sql (ar-to-lst lst) (StringBuilder.))))))
+=> #'core/my-array-to-sql
+(my-array-to-sql (token-to-sql ignite 1 ast))
+=> "select m.emp_no,m.emp_name,f.id from,scenes_b('wu','dafu') as f where m.id=func_a(m.category)"
+(my-select/sql-to-ast (my-lexical/to-back "select count(1) from (select distinct a.empno from agent_info a,staff_info b where (((c_rank_type='03' and mgrno=c_empno) or a.empno=c_empno) or ((c_rank_type='04' and chiefno=c_empno) or a.empno=c_empno)) and ((a.end_date is null or a.end_date>p_sdate) and a.start_date<p_edate+1) and ((b.leave_reson_no not in('07','08','09','10','12') and b.leave_date>p_sdate) or b.leave_date is null) and b.empno=a.empno and substr(a.empno,1,4) not in('1EC0','1008') and b.emp_name<>'AUTOUNDW' union select distinct a.empno from agent_info a,staff_info b where (((c_rank_type='03' and mgrno=c_empno) or a.empno=c_empno) or ((c_rank_type='04' and chiefno=c_empno) or a.empno=c_empno)) and ((a.end_date is null or a.end_date>p_sdate) and a.start_date<p_edate+1) and b.empno=a.empno and substr(a.empno,1,4) not in('1EC0','1008') and b.emp_name<>'AUTOUNDW' and b.leave_reson_no in('07','08','09','10','12') and b.leave_date>=add_months(p_sdate,1))"))
+=>
+({:sql_obj {:query-items ({:func-name "count",
+                           :lst_ps ({:table_alias "",
+                                     :item_name "1",
+                                     :item_type "",
+                                     :java_item_type java.lang.Integer,
+                                     :const true}),
+                           :alias nil}),
+            :table-items {:parenthesis ({:sql_obj {:query-items ({:keyword "distinct"}
+                                                                 {:item_name "empno",
+                                                                  :table_alias "a",
+                                                                  :const false,
+                                                                  :alias nil}),
+                                                   :table-items ({:table_name "agent_info", :table_alias "a"}
+                                                                 {:comma_symbol ","}
+                                                                 {:table_name "staff_info", :table_alias "b"}),
+                                                   :where-items ({:parenthesis ({:parenthesis ({:parenthesis (({:table_alias "",
+                                                                                                                :item_name "c_rank_type",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'03'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true})
+                                                                                                              {:and_or_symbol "and"}
+                                                                                                              ({:table_alias "",
+                                                                                                                :item_name "mgrno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "c_empno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}))}
+                                                                                               {:and_or_symbol "or"}
+                                                                                               ({:item_name "empno",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:comparison_symbol "="}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "c_empno",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false}))}
+                                                                                {:and_or_symbol "or"}
+                                                                                {:parenthesis ({:parenthesis (({:table_alias "",
+                                                                                                                :item_name "c_rank_type",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'04'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true})
+                                                                                                              {:and_or_symbol "and"}
+                                                                                                              ({:table_alias "",
+                                                                                                                :item_name "chiefno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "c_empno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}))}
+                                                                                               {:and_or_symbol "or"}
+                                                                                               ({:item_name "empno",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:comparison_symbol "="}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "c_empno",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false}))})}
+                                                                 {:and_or_symbol "and"}
+                                                                 {:parenthesis ({:parenthesis (({:item_name "end_date",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "is",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false})
+                                                                                               {:and_or_symbol "or"}
+                                                                                               ({:item_name "end_date",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:comparison_symbol ">"}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "p_sdate",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false}))}
+                                                                                {:and_or_symbol "and"}
+                                                                                ({:item_name "start_date",
+                                                                                  :table_alias "a",
+                                                                                  :const false}
+                                                                                 {:comparison_symbol "<"}
+                                                                                 {:operation ({:table_alias "",
+                                                                                               :item_name "p_edate",
+                                                                                               :item_type "",
+                                                                                               :java_item_type nil,
+                                                                                               :const false}
+                                                                                              {:operation_symbol "+"}
+                                                                                              {:table_alias "",
+                                                                                               :item_name "1",
+                                                                                               :item_type "",
+                                                                                               :java_item_type java.lang.Integer,
+                                                                                               :const true})}))}
+                                                                 {:and_or_symbol "and"}
+                                                                 {:parenthesis ({:parenthesis (({:item_name "leave_reson_no",
+                                                                                                 :table_alias "b",
+                                                                                                 :const false}
+                                                                                                {:in_symbol "not in"}
+                                                                                                {:parenthesis ({:table_alias "",
+                                                                                                                :item_name "'07'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true}
+                                                                                                               {:comma_symbol ","}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'08'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true}
+                                                                                                               {:comma_symbol ","}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'09'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true}
+                                                                                                               {:comma_symbol ","}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'10'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true}
+                                                                                                               {:comma_symbol ","}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'12'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true})})
+                                                                                               {:and_or_symbol "and"}
+                                                                                               ({:item_name "leave_date",
+                                                                                                 :table_alias "b",
+                                                                                                 :const false}
+                                                                                                {:comparison_symbol ">"}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "p_sdate",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false}))}
+                                                                                {:and_or_symbol "or"}
+                                                                                ({:item_name "leave_date",
+                                                                                  :table_alias "b",
+                                                                                  :const false}
+                                                                                 {:table_alias "",
+                                                                                  :item_name "is",
+                                                                                  :item_type "",
+                                                                                  :java_item_type nil,
+                                                                                  :const false}))}
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:item_name "empno", :table_alias "b", :const false}
+                                                                  {:comparison_symbol "="}
+                                                                  {:item_name "empno", :table_alias "a", :const false})
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:func-name "substr",
+                                                                   :lst_ps ({:item_name "empno",
+                                                                             :table_alias "a",
+                                                                             :const false}
+                                                                            {:comma_symbol ","}
+                                                                            {:table_alias "",
+                                                                             :item_name "1",
+                                                                             :item_type "",
+                                                                             :java_item_type java.lang.Integer,
+                                                                             :const true}
+                                                                            {:comma_symbol ","}
+                                                                            {:table_alias "",
+                                                                             :item_name "4",
+                                                                             :item_type "",
+                                                                             :java_item_type java.lang.Integer,
+                                                                             :const true})}
+                                                                  {:in_symbol "not in"}
+                                                                  {:parenthesis ({:table_alias "",
+                                                                                  :item_name "'1EC0'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true}
+                                                                                 {:comma_symbol ","}
+                                                                                 {:table_alias "",
+                                                                                  :item_name "'1008'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true})})
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:item_name "emp_name",
+                                                                   :table_alias "b",
+                                                                   :const false}
+                                                                  {:comparison_symbol "<>"}
+                                                                  {:table_alias "",
+                                                                   :item_name "'AUTOUNDW'",
+                                                                   :item_type "",
+                                                                   :java_item_type java.lang.String,
+                                                                   :const true})),
+                                                   :group-by nil,
+                                                   :having nil,
+                                                   :order-by nil,
+                                                   :limit nil}}
+                                        {:keyword "union"}
+                                        {:sql_obj {:query-items ({:keyword "distinct"}
+                                                                 {:item_name "empno",
+                                                                  :table_alias "a",
+                                                                  :const false,
+                                                                  :alias nil}),
+                                                   :table-items ({:table_name "agent_info", :table_alias "a"}
+                                                                 {:comma_symbol ","}
+                                                                 {:table_name "staff_info", :table_alias "b"}),
+                                                   :where-items ({:parenthesis ({:parenthesis ({:parenthesis (({:table_alias "",
+                                                                                                                :item_name "c_rank_type",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'03'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true})
+                                                                                                              {:and_or_symbol "and"}
+                                                                                                              ({:table_alias "",
+                                                                                                                :item_name "mgrno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "c_empno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}))}
+                                                                                               {:and_or_symbol "or"}
+                                                                                               ({:item_name "empno",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:comparison_symbol "="}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "c_empno",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false}))}
+                                                                                {:and_or_symbol "or"}
+                                                                                {:parenthesis ({:parenthesis (({:table_alias "",
+                                                                                                                :item_name "c_rank_type",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "'04'",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type java.lang.String,
+                                                                                                                :const true})
+                                                                                                              {:and_or_symbol "and"}
+                                                                                                              ({:table_alias "",
+                                                                                                                :item_name "chiefno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}
+                                                                                                               {:comparison_symbol "="}
+                                                                                                               {:table_alias "",
+                                                                                                                :item_name "c_empno",
+                                                                                                                :item_type "",
+                                                                                                                :java_item_type nil,
+                                                                                                                :const false}))}
+                                                                                               {:and_or_symbol "or"}
+                                                                                               ({:item_name "empno",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:comparison_symbol "="}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "c_empno",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false}))})}
+                                                                 {:and_or_symbol "and"}
+                                                                 {:parenthesis ({:parenthesis (({:item_name "end_date",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "is",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false})
+                                                                                               {:and_or_symbol "or"}
+                                                                                               ({:item_name "end_date",
+                                                                                                 :table_alias "a",
+                                                                                                 :const false}
+                                                                                                {:comparison_symbol ">"}
+                                                                                                {:table_alias "",
+                                                                                                 :item_name "p_sdate",
+                                                                                                 :item_type "",
+                                                                                                 :java_item_type nil,
+                                                                                                 :const false}))}
+                                                                                {:and_or_symbol "and"}
+                                                                                ({:item_name "start_date",
+                                                                                  :table_alias "a",
+                                                                                  :const false}
+                                                                                 {:comparison_symbol "<"}
+                                                                                 {:operation ({:table_alias "",
+                                                                                               :item_name "p_edate",
+                                                                                               :item_type "",
+                                                                                               :java_item_type nil,
+                                                                                               :const false}
+                                                                                              {:operation_symbol "+"}
+                                                                                              {:table_alias "",
+                                                                                               :item_name "1",
+                                                                                               :item_type "",
+                                                                                               :java_item_type java.lang.Integer,
+                                                                                               :const true})}))}
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:item_name "empno", :table_alias "b", :const false}
+                                                                  {:comparison_symbol "="}
+                                                                  {:item_name "empno", :table_alias "a", :const false})
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:func-name "substr",
+                                                                   :lst_ps ({:item_name "empno",
+                                                                             :table_alias "a",
+                                                                             :const false}
+                                                                            {:comma_symbol ","}
+                                                                            {:table_alias "",
+                                                                             :item_name "1",
+                                                                             :item_type "",
+                                                                             :java_item_type java.lang.Integer,
+                                                                             :const true}
+                                                                            {:comma_symbol ","}
+                                                                            {:table_alias "",
+                                                                             :item_name "4",
+                                                                             :item_type "",
+                                                                             :java_item_type java.lang.Integer,
+                                                                             :const true})}
+                                                                  {:in_symbol "not in"}
+                                                                  {:parenthesis ({:table_alias "",
+                                                                                  :item_name "'1EC0'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true}
+                                                                                 {:comma_symbol ","}
+                                                                                 {:table_alias "",
+                                                                                  :item_name "'1008'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true})})
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:item_name "emp_name",
+                                                                   :table_alias "b",
+                                                                   :const false}
+                                                                  {:comparison_symbol "<>"}
+                                                                  {:table_alias "",
+                                                                   :item_name "'AUTOUNDW'",
+                                                                   :item_type "",
+                                                                   :java_item_type java.lang.String,
+                                                                   :const true})
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:item_name "leave_reson_no",
+                                                                   :table_alias "b",
+                                                                   :const false}
+                                                                  {:in_symbol "in"}
+                                                                  {:parenthesis ({:table_alias "",
+                                                                                  :item_name "'07'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true}
+                                                                                 {:comma_symbol ","}
+                                                                                 {:table_alias "",
+                                                                                  :item_name "'08'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true}
+                                                                                 {:comma_symbol ","}
+                                                                                 {:table_alias "",
+                                                                                  :item_name "'09'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true}
+                                                                                 {:comma_symbol ","}
+                                                                                 {:table_alias "",
+                                                                                  :item_name "'10'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true}
+                                                                                 {:comma_symbol ","}
+                                                                                 {:table_alias "",
+                                                                                  :item_name "'12'",
+                                                                                  :item_type "",
+                                                                                  :java_item_type java.lang.String,
+                                                                                  :const true})})
+                                                                 {:and_or_symbol "and"}
+                                                                 ({:item_name "leave_date",
+                                                                   :table_alias "b",
+                                                                   :const false}
+                                                                  {:comparison_symbol ">="}
+                                                                  {:func-name "add_months",
+                                                                   :lst_ps ({:table_alias "",
+                                                                             :item_name "p_sdate",
+                                                                             :item_type "",
+                                                                             :java_item_type nil,
+                                                                             :const false}
+                                                                            {:comma_symbol ","}
+                                                                            {:table_alias "",
+                                                                             :item_name "1",
+                                                                             :item_type "",
+                                                                             :java_item_type java.lang.Integer,
+                                                                             :const true})})),
+                                                   :group-by nil,
+                                                   :having nil,
+                                                   :order-by nil,
+                                                   :limit nil}})},
+            :where-items nil,
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})
+(my-array-to-sql (token-to-sql ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select count(1) from (select distinct a.empno from agent_info a,staff_info b where (((c_rank_type='03' and mgrno=c_empno) or a.empno=c_empno) or ((c_rank_type='04' and chiefno=c_empno) or a.empno=c_empno)) and ((a.end_date is null or a.end_date>p_sdate) and a.start_date<p_edate+1) and ((b.leave_reson_no not in('07','08','09','10','12') and b.leave_date>p_sdate) or b.leave_date is null) and b.empno=a.empno and substr(a.empno,1,4) not in('1EC0','1008') and b.emp_name<>'AUTOUNDW' union select distinct a.empno from agent_info a,staff_info b where (((c_rank_type='03' and mgrno=c_empno) or a.empno=c_empno) or ((c_rank_type='04' and chiefno=c_empno) or a.empno=c_empno)) and ((a.end_date is null or a.end_date>p_sdate) and a.start_date<p_edate+1) and b.empno=a.empno and substr(a.empno,1,4) not in('1EC0','1008') and b.emp_name<>'AUTOUNDW' and b.leave_reson_no in('07','08','09','10','12') and b.leave_date>=add_months(p_sdate,1))"))))
+Execution error (IllegalArgumentException) at core/ar-to-lst (form-init17039766355529005594.clj:9).
+Don't know how to create ISeq from: java.lang.Character
+(println ast)
+({:sql_obj {:query-items ({:item_name emp_no, :table_alias m, :const false, :alias nil} {:comma_symbol ,, :alias nil} {:item_name emp_name, :table_alias m, :const false, :alias nil} {:comma_symbol ,, :alias nil} {:item_name id, :table_alias f, :const false, :alias nil}), :table-items ({:table_name emp_table, :table_alias m} {:comma_symbol ,} {:func-name scenes_b, :lst_ps ({:table_alias , :item_name 'wu', :item_type , :java_item_type java.lang.String, :const true} {:comma_symbol ,} {:table_alias , :item_name 'dafu', :item_type , :java_item_type java.lang.String, :const true}), :alias f}), :where-items ({:item_name id, :table_alias m, :const false} {:comparison_symbol =} {:func-name func_a, :lst_ps ({:item_name category, :table_alias m, :const false})}), :group-by nil, :having nil, :order-by nil, :limit nil}})
+=> nil
+(my-array-to-sql (token-to-sql ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from,scenes_b('wu','dafu') as f where m.id=func_a(m.category)"))))
+Execution error (IllegalArgumentException) at org.gridgain.plus.dml.my-select/get-query-items (my_select.clj:294).
+No matching field found: getMessage for class clojure.lang.PersistentList
+(my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from,scenes_b('wu','dafu') as f where m.id=func_a(m.category)"))
+Error printing return value (IllegalArgumentException) at clojure.lang.Reflector/getInstanceField (Reflector.java:397).
+No matching field found: getMessage for class clojure.lang.PersistentList
+(my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from scenes_b('wu','dafu') as f where m.id=func_a(m.category)"))
+Error printing return value (IllegalArgumentException) at clojure.lang.Reflector/getInstanceField (Reflector.java:397).
+No matching field found: getMessage for class clojure.lang.PersistentList
+(my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from scenes_b('wu','dafu') as f where m.id=func_a(m.category)"))
+Error printing return value (IllegalArgumentException) at clojure.lang.Reflector/getInstanceField (Reflector.java:397).
+No matching field found: getMessage for class clojure.lang.PersistentList
+(my-lexical/get-segments-list (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from scenes_b('wu','dafu') as f where m.id=func_a(m.category)"))
+=>
+{:query-items (("m.emp_no") "," ("m.emp_name") "," ("f.id")),
+ :table-items [("scenes_b" "(" "'wu'" "," "'dafu'" ")" "as" "f")],
+ :where-items ("m.id" "=" "func_a" "(" "m.category" ")"),
+ :group-by nil,
+ :having nil,
+ :order-by nil,
+ :limit nil}
+(my-select/get-table-items (get (my-lexical/get-segments-list (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from scenes_b('wu','dafu') as f where m.id=func_a(m.category)")) :table-items))
+Execution error (IllegalArgumentException) at org.gridgain.plus.dml.my-select/get-query-items (my_select.clj:294).
+No matching field found: getMessage for class clojure.lang.PersistentList
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init2396512891519054011.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Connecting to local nREPL server...
+nREPL server started on port 57747 on host 127.0.0.1 - nrepl://127.0.0.1:57747
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+八月 11, 2021 11:00:54 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[23:00:54]    __________  ________________
+[23:00:54]   /  _/ ___/ |/ /  _/_  __/ __/
+[23:00:54]  _/ // (7 7    // /  / / / _/
+[23:00:54] /___/\___/_/|_/___/ /_/ /___/
+[23:00:54]
+[23:00:54] ver. 8.7.24#20210811-sha1:DEV
+[23:00:54] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[23:00:54]
+[23:00:54] Ignite documentation: http://gridgain.com
+[23:00:54]
+[23:00:54] Quiet mode.
+[23:00:54]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[23:00:54]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[23:00:54]
+[23:00:54] OS: Mac OS X 10.12.1 x86_64
+[23:00:55] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[23:00:55] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[23:00:55] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[23:00:55] Configured plugins:
+[23:00:55]   ^-- None
+[23:00:55]
+[23:00:55] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[23:00:55] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[23:00:56] Security status [authentication=off, tls/ssl=off]
+[23:00:57] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[23:01:00] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[23:01:00] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[23:01:00]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[23:01:00]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[23:01:00]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[23:01:00]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[23:01:00] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[23:01:00]
+[23:01:00] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[23:01:00]
+[23:01:00] Ignite node started OK (id=e2819067, instance name=服务网格专用部署)
+[23:01:00] Topology snapshot [ver=4, locNode=e2819067, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[23:01:00]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+(my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from scenes_b('wu','dafu') as f where m.id=func_a(m.category)"))
+Error printing return value (IllegalArgumentException) at clojure.lang.Reflector/getInstanceField (Reflector.java:397).
+No matching field found: getMessage for class clojure.lang.PersistentList
+(my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from my_table f where m.id=func_a(m.category)"))
+=>
+({:sql_obj {:query-items ({:item_name "emp_no", :table_alias "m", :const false, :alias nil}
+                          {:comma_symbol ",", :alias nil}
+                          {:item_name "emp_name", :table_alias "m", :const false, :alias nil}
+                          {:comma_symbol ",", :alias nil}
+                          {:item_name "id", :table_alias "f", :const false, :alias nil}),
+            :table-items ({:table_name "my_table", :table_alias "f"}),
+            :where-items ({:item_name "id", :table_alias "m", :const false}
+                          {:comparison_symbol "="}
+                          {:func-name "func_a", :lst_ps ({:item_name "category", :table_alias "m", :const false})}),
+            :group-by nil,
+            :having nil,
+            :order-by nil,
+            :limit nil}})
+(my-select/my-array-to-sql (my-select/token-to-sql ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from my_table f where m.id=func_a(m.category)"))))
+=> "select m.emp_no , m.emp_name , f.id from where m.id = func_a ( m.category )"
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+
+Starting nREPL server...
+/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -XX:-OmitStackTraceInFastThrow -Dclojure.compile.path=/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes -Dmy-grid-plus.version=0.1.0-SNAPSHOT -Dclojure.debug=false -classpath /Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/test/main/java:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/src/main/clojure:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/dev-resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources:/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/target/classes:/Users/chenfei/.m2/repository/nrepl/nrepl/0.6.0/nrepl-0.6.0.jar:/Users/chenfei/.m2/repository/org/checkerframework/checker-qual/2.0.0/checker-qual-2.0.0.jar:/Users/chenfei/.m2/repository/clojure-complete/clojure-complete/0.2.5/clojure-complete-0.2.5.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-spring/8.7.24/ignite-spring-8.7.24.jar:/Users/chenfei/.m2/repository/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2.jar:/Users/chenfei/.m2/repository/commons-codec/commons-codec/1.12/commons-codec-1.12.jar:/Users/chenfei/.m2/repository/org/quartz-scheduler/quartz/2.3.2/quartz-2.3.2.jar:/Users/chenfei/.m2/repository/org/locationtech/jts/jts-core/1.15.0/jts-core-1.15.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-shmem/8.7.3/ignite-shmem-8.7.3.jar:/Users/chenfei/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar:/Users/chenfei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-h2/8.7.24/ignite-h2-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-aop/4.3.25.RELEASE/spring-aop-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/Users/chenfei/.m2/repository/org/springframework/spring-core/4.3.25.RELEASE/spring-core-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-analyzers-common/7.4.0/lucene-analyzers-common-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/mchange-commons-java/0.2.15/mchange-commons-java-0.2.15.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar:/Users/chenfei/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/chenfei/.m2/repository/org/apache/thrift/libthrift/0.12.0/libthrift-0.12.0.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-indexing/8.7.24/ignite-indexing-8.7.24.jar:/Users/chenfei/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2.jar:/Users/chenfei/.m2/repository/org/springframework/spring-jdbc/4.3.25.RELEASE/spring-jdbc-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar:/Users/chenfei/.m2/repository/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar:/Users/chenfei/.m2/repository/org/springframework/spring-expression/4.3.25.RELEASE/spring-expression-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/core.async/1.1.587/core.async-1.1.587.jar:/Users/chenfei/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/core.cache/0.8.2/core.cache-0.8.2.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer/1.0.0/tools.analyzer-1.0.0.jar:/Users/chenfei/.m2/repository/javax/cache/cache-api/1.0.0/cache-api-1.0.0.jar:/Users/chenfei/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar:/Users/chenfei/.m2/repository/org/clojure/core.memoize/0.8.2/core.memoize-0.8.2.jar:/Users/chenfei/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/chenfei/.m2/repository/org/jetbrains/annotations/16.0.3/annotations-16.0.3.jar:/Users/chenfei/.m2/repository/org/springframework/spring-beans/4.3.25.RELEASE/spring-beans-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/clojure/tools.analyzer.jvm/1.0.0/tools.analyzer.jvm-1.0.0.jar:/Users/chenfei/.m2/repository/org/springframework/spring-context/4.3.25.RELEASE/spring-context-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-queries/7.4.0/lucene-queries-7.4.0.jar:/Users/chenfei/.m2/repository/org/clojure/spec.alpha/0.2.176/spec.alpha-0.2.176.jar:/Users/chenfei/.m2/repository/org/clojure/core.specs.alpha/0.2.44/core.specs.alpha-0.2.44.jar:/Users/chenfei/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar:/Users/chenfei/.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar:/Users/chenfei/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/chenfei/.m2/repository/org/clojure/clojure/1.10.1/clojure-1.10.1.jar:/Users/chenfei/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar:/Users/chenfei/.m2/repository/com/google/guava/guava/25.1-jre/guava-25.1-jre.jar:/Users/chenfei/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/chenfei/.m2/repository/org/gridgain/ignite-core/8.7.24/ignite-core-8.7.24.jar:/Users/chenfei/.m2/repository/org/springframework/spring-tx/4.3.25.RELEASE/spring-tx-4.3.25.RELEASE.jar:/Users/chenfei/.m2/repository/org/apache/lucene/lucene-sandbox/7.4.0/lucene-sandbox-7.4.0.jar:/Users/chenfei/.m2/repository/com/zaxxer/HikariCP-java7/2.4.13/HikariCP-java7-2.4.13.jar clojure.main -i /private/var/folders/lx/ff4rbzj10fb35yvljzngf4g80000gn/T/form-init4148802207841430940.clj
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Compiling org.gridgain.plus.dml.my-select
+Connecting to local nREPL server...
+nREPL server started on port 58102 on host 127.0.0.1 - nrepl://127.0.0.1:58102
+Clojure 1.10.1
+(require
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        )
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyPlus/my-plus-deploy/src/main/resources/default-config.xml"))
+
+=> nil
+=> org.gridgain.meta.cache.MyContextCacheUtil
+八月 11, 2021 11:07:27 下午 java.util.logging.LogManager$RootLogger log
+警告: Failed to resolve default logging config file: config/java.util.logging.properties
+[23:07:27]    __________  ________________
+[23:07:27]   /  _/ ___/ |/ /  _/_  __/ __/
+[23:07:27]  _/ // (7 7    // /  / / / _/
+[23:07:27] /___/\___/_/|_/___/ /_/ /___/
+[23:07:27]
+[23:07:27] ver. 8.7.24#20210811-sha1:DEV
+[23:07:27] 2021 Copyright(C) GridGain Systems, Inc. and Contributors
+[23:07:27]
+[23:07:27] Ignite documentation: http://gridgain.com
+[23:07:27]
+[23:07:27] Quiet mode.
+[23:07:27]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[23:07:27]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[23:07:27]
+[23:07:27] OS: Mac OS X 10.12.1 x86_64
+[23:07:28] VM information: Java(TM) SE Runtime Environment 1.8.0_111-b14 Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+[23:07:28] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[23:07:28] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[23:07:28] Configured plugins:
+[23:07:28]   ^-- None
+[23:07:28]
+[23:07:28] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=UnmodifiableSet [SYSTEM_WORKER_BLOCKED, SYSTEM_CRITICAL_OPERATION_TIMEOUT]]]]
+[23:07:28] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[23:07:28] Security status [authentication=off, tls/ssl=off]
+[23:07:29] REST protocols do not start on client node. To start the protocols on client node set '-DIGNITE_REST_START_ON_CLIENT=true' system property.
+[23:07:32] Performance suggestions for grid '服务网格专用部署' (fix if possible)
+[23:07:32] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[23:07:32]   ^-- Enable G1 Garbage Collector (add '-XX:+UseG1GC' to JVM options)
+[23:07:32]   ^-- Specify JVM heap max size (add '-Xmx<size>[g|G|m|M|k|K]' to JVM options)
+[23:07:32]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[23:07:32]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[23:07:32] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[23:07:32]
+[23:07:32] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[23:07:32]
+[23:07:32] Ignite node started OK (id=4fcd3471, instance name=服务网格专用部署)
+[23:07:32] Topology snapshot [ver=6, locNode=4fcd3471, servers=1, clients=1, state=ACTIVE, CPUs=4, offheap=0.12GB, heap=3.6GB]
+[23:07:32]   ^-- Baseline [id=0, size=1, online=1, offline=0]
+=> #'core/ignite
+[23:07:42] New version is available at gridgain.com: 8.8.7
+(my-select/my-array-to-sql (my-select/token-to-sql ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from my_table f where m.id=func_a(m.category)"))))
+=> "select m.emp_no,m.emp_name,f.id from where m.id=func_a(m.category)"
+(my-select/my-array-to-sql (my-select/token-to-sql ignite 1 (my-select/sql-to-ast (my-lexical/to-back "select count(1) from\n   (select distinct a.empno from agent_info a,staff_info b\n      where\n      (((c_rank_type='03' and mgrno=c_empno)\n      or a.empno=c_empno)\n      or ((c_rank_type='04' and chiefno=c_empno)\n      or a.empno=c_empno))\n      and ((a.end_date is null or a.end_date>p_sdate)\n      and a.start_date<p_edate+1)\n      and ((b.leave_reson_no not in('07','08','09','10','12')\n      and b.leave_date>p_sdate)\n      or b.leave_date is null)\n      and b.empno=a.empno\n      and substr(a.empno,1,4) not in('1EC0','1008')\n      and b.emp_name<>'AUTOUNDW'\n      union\n      select distinct a.empno from agent_info a,staff_info b\n      where (((c_rank_type='03' and mgrno=c_empno)\n      or a.empno=c_empno)\n      or ((c_rank_type='04' and chiefno=c_empno)\n      or a.empno=c_empno))\n      and ((a.end_date is null or a.end_date>p_sdate)\n      and a.start_date<p_edate+1)\n      and b.empno=a.empno\n      and substr(a.empno,1,4)\n      not in('1EC0','1008') and b.emp_name<>'AUTOUNDW'\n      and b.leave_reson_no in('07','08','09','10','12')\n      and b.leave_date>=add_months(p_sdate,1))"))))
+=>
+"select count(1)from(select distinct a.empno from,where(((c_rank_type='03' and mgrno=c_empno)or a.empno=c_empno)or((c_rank_type='04' and chiefno=c_empno)or a.empno=c_empno))and((a.end_date is or a.end_date>p_sdate)and a.start_date<p_edate+1)and((b.leave_reson_no not in('07','08','09','10','12')and b.leave_date>p_sdate)or b.leave_date is)and b.empno=a.empno and substr(a.empno,1,4)not in('1EC0','1008')and b.emp_name<>'AUTOUNDW' union select distinct a.empno from,where(((c_rank_type='03' and mgrno=c_empno)or a.empno=c_empno)or((c_rank_type='04' and chiefno=c_empno)or a.empno=c_empno))and((a.end_date is or a.end_date>p_sdate)and a.start_date<p_edate+1)and b.empno=a.empno and substr(a.empno,1,4)not in('1EC0','1008')and b.emp_name<>'AUTOUNDW' and b.leave_reson_no in('07','08','09','10','12')and b.leave_date>=add_months(p_sdate,1))"
+(my-select/sql-to-ast (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from scenes_b('wu','dafu') as f where m.id=func_a(m.category)"))
+Error printing return value (IllegalArgumentException) at clojure.lang.Reflector/getInstanceField (Reflector.java:397).
+No matching field found: getMessage for class clojure.lang.PersistentList
+(get (my-lexical/get-segments-list (my-lexical/to-back "select m.emp_no,m.emp_name,f.id from scenes_b('wu','dafu') as f where m.id=func_a(m.category)")) :table-items)
+=> [("scenes_b" "(" "'wu'" "," "'dafu'" ")" "as" "f")]
+(my-select/get-table-items '(("scenes_b" "(" "'wu'" "," "'dafu'" ")" "as" "f")))
+Execution error (IllegalArgumentException) at org.gridgain.plus.dml.my-select/get-query-items (my_select.clj:294).
+No matching field found: getMessage for class clojure.lang.PersistentList
+(my-select/get-table-items (my-lexical/to-lazy '("scenes_b" "(" "'wu'" "," "'dafu'" ")" "as" "f")))
+Error printing return value (IllegalArgumentException) at clojure.lang.Reflector/getInstanceField (Reflector.java:397).
+No matching field found: getMessage for class clojure.lang.PersistentVector
+
+
+
+(defn ar-to-sql [[f & rs] ^StringBuilder sb]
+    (if (some? f)
+        (cond (instance? String f) (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f))
+                                         (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append (.append sb " ") f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f))) (ar-to-sql rs (.append sb f))
+                                         (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f)))) (ar-to-sql rs (.append sb f))
+                                         :else
+                                         (ar-to-sql rs (.append sb f))
+                                         )
+              (instance? clojure.lang.LazySeq f) (let [f_sb (.toString (ar-to-sql f (StringBuilder.)))]
+                                                     (cond (and (= (last (.toString sb)) \space) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append (.deleteCharAt sb (- (.length sb) 1)) f_sb))
+                                                           (and (= (last (.toString sb)) \space) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append (.append sb " ") f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (contains? sql_symbol (first f_sb))) (ar-to-sql rs (.append sb f_sb))
+                                                           (and (contains? sql_symbol (last (.toString sb))) (not (contains? sql_symbol (first f_sb)))) (ar-to-sql rs (.append sb f_sb))
+                                                           :else
+                                                           (ar-to-sql rs (.append sb f_sb))
+                                                           ))) sb))

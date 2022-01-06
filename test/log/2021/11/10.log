@@ -1,0 +1,120 @@
+(require
+    '[org.gridgain.plus.ddl.my-create-table :as my-create-table]
+    '[org.gridgain.plus.ddl.my-alter-table :as my-alter-table]
+    '[org.gridgain.plus.ddl.my-create-index :as my-create-index]
+    '[org.gridgain.plus.ddl.my-drop-index :as my-drop-index]
+    '[org.gridgain.plus.ddl.my-drop-table :as my-drop-table]
+    '[org.gridgain.plus.ddl.my-create-dataset :as my-create-dataset]
+    '[org.gridgain.plus.ddl.my-alter-dataset :as my-alter-dataset]
+    '[org.gridgain.plus.ddl.my-drop-dataset :as my-drop-dataset]
+    '[org.gridgain.plus.dml.my-select :as my-select]
+    '[org.gridgain.plus.dml.my-insert :as my-insert]
+    '[org.gridgain.plus.dml.my-update :as my-update]
+    '[org.gridgain.plus.dml.my-delete :as my-delete]
+    '[org.gridgain.plus.dml.my-trans :as my-trans]
+    '[org.gridgain.plus.dml.select-lexical :as my-lexical]
+    '[org.gridgain.plus.dml.my-expression :as my-expression]
+    '[org.gridgain.plus.context.my-context :as my-context]
+    '[org.gridgain.plus.init.plus-init-sql :as plus-init-sql]
+    '[org.gridgain.plus.init.plus-init :as plus-init]
+    '[clojure.core.reducers :as r]
+    '[clojure.string :as str]
+    '[clojure.walk :as w])
+(import (org.apache.ignite Ignite IgniteCache)
+        (org.apache.ignite.internal IgnitionEx)
+        (com.google.common.base Strings)
+        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+        (org.tools MyConvertUtil)
+        (cn.plus.model.ddl MyDataSet MyDatasetTable MyDatasetRealTable MyDatasetTablePK MyDeleteViews MyInsertViews MySelectViews MyTable MyTableIndex MyTableIndexItem MyTableItem MyTableItemPK MyTableObj MyUpdateViews MyViewObj ViewOperateType ViewType)
+        (cn.plus.tools KvSql)
+        (org.gridgain.dml.util MyCacheExUtil)
+        (cn.plus.model.db MyScenesCache)
+        (org.apache.ignite.configuration CacheConfiguration)
+        (org.apache.ignite.cache CacheMode CacheAtomicityMode)
+        (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
+        (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
+        (org.gridgain.meta.cache MyContextCacheUtil)
+        (org.gridgain.mydml MyTransUtil)
+        (org.gridgain.ddl MyCreateTableUtil MyDdlUtil)
+        (java.util ArrayList Date Iterator)
+        (java.sql Timestamp)
+        (java.math BigDecimal)
+        (org.tools MyTools)
+        )
+
+(defn get-code-lst
+    [code]
+    (str/split (MyTools/eliminate_comment code) #";"))
+
+(defn replace-space [[f & r] lst]
+    (if (some? f)
+        (recur r (conj lst (str/replace f #"\s+" " ")))
+        lst))
+
+(def ignite (IgnitionEx/start "/Users/chenfei/Documents/Java/MyGridGain/my-grid-plus/resources/default-config.xml"))
+
+(def code (str/lower-case "CREATE TABLE EmployeeTerritories (\n    -- Territory\n    Territory INTEGER,\n    -- 员工编号\n    EmployeeID INTEGER NOT NULL,\n    -- 区域代号\n    TerritoryID VARCHAR(20) NOT NULL,\n    PRIMARY KEY (EmployeeID, TerritoryID)\n) WITH \"template=manage\""))
+
+(my-create-table/to_ddl_lst ignite (str/lower-case code) "wudafu")
+
+; 修改数据集
+(my-alter-dataset/get_data_set_alter_obj "alter dataset my_ds add (customers)")
+
+(def data_set_name (-> (my-alter-dataset/get_data_set_alter_obj "alter dataset my_ds add (customers)") :data_set_name))
+(def colums (-> (my-alter-dataset/get_data_set_alter_obj "alter dataset my_ds add (customers)") :colums))
+
+(my-drop-dataset/get_drop_data_set_obj (str/lower-case "DROP DATASET Customers"))
+(my-drop-dataset/get_drop_data_set_obj (str/lower-case "DROP DATASET IF EXISTS Customers"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
