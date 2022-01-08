@@ -1,6 +1,7 @@
 package cn.plus.model.tmp;
 
 import cn.plus.model.db.MyScenesParams;
+import cn.plus.model.db.ScenesType;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,8 +21,10 @@ public class MScenesCache implements Serializable {
     private Boolean is_batch;
     // 参数
     private List<MyScenesParams> params;
+    // 场景类型
+    private ScenesType scenesType;
 
-    public MScenesCache(final Long group_id, final String scenes_name, final String sql_code, final String descrip, final Boolean is_batch, final List<MyScenesParams> params)
+    public MScenesCache(final Long group_id, final String scenes_name, final String sql_code, final String descrip, final Boolean is_batch, final List<MyScenesParams> params, final ScenesType scenesType)
     {
         this.group_id = group_id;
         this.scenes_name = scenes_name;
@@ -29,10 +32,19 @@ public class MScenesCache implements Serializable {
         this.descrip = descrip;
         this.is_batch = is_batch;
         this.params = params;
+        this.scenesType = scenesType;
     }
 
     public MScenesCache()
     {}
+
+    public ScenesType getScenesType() {
+        return scenesType;
+    }
+
+    public void setScenesType(ScenesType scenesType) {
+        this.scenesType = scenesType;
+    }
 
     public Long getGroup_id() {
         return group_id;

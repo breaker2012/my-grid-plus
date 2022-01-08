@@ -1,11 +1,12 @@
-package cn.plus.tools;
+package org.tools;
 
 import clojure.lang.RT;
 import clojure.lang.Var;
-import cn.plus.model.MyCron;
+import cn.plus.model.db.MyScenesCache;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.Ignition;
 import org.apache.ignite.scheduler.SchedulerFuture;
+import org.gridgain.plus.dml.*;
 import org.tools.MyPlusUtil;
 
 import java.util.List;
@@ -41,14 +42,6 @@ public class MyPlusFunc {
     }
 
     /**
-     * 执行场景代码
-     * */
-    public static Boolean scenes(final String code)
-    {
-        return false;
-    }
-
-    /**
      * 显示信息
      * */
     public static String showMsg(final String msg)
@@ -81,8 +74,23 @@ public class MyPlusFunc {
     public static Object myInvoke(final String methodName, final Object... ps)
     {
         Ignite ignite = Ignition.ignite();
-        RT.init();
-        Var myscenes_obj = (Var)ignite.cache("myscenes").get(methodName);
-        return myscenes_obj.invoke(ps);
+        MyScenesCache cache = (MyScenesCache) ignite.cache("my_scenes").get(methodName);
+        switch (cache.getScenesType())
+        {
+            case UPDATE:
+                MyUpdate.my_call_scenes(ignite, 0L, cache.getAst(), null);
+                break;
+            case INSERT:
+                MyInsert.my_call_scenes(ignite, 0L, cache.getAst(), null);
+                break;
+            case SELECT:
+                //MySelect.my_call_scenes(ignite, 0L, cache.getAst(), null);
+                break;
+            case DELETE:
+                MyDelete.my_call_scenes(ignite, 0L, cache.getAst(), null);
+                break;
+        }
+        //MyInsert.my_call_scenes()
+        return null;
     }
 }

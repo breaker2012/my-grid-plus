@@ -8,7 +8,7 @@
     (:import (org.apache.ignite Ignite IgniteCache)
              (org.apache.ignite.internal IgnitionEx)
              (com.google.common.base Strings)
-             (org.tools MyConvertUtil MySqlFunc KvSql)
+             (org.tools MyConvertUtil MyPlusFunc KvSql)
              (java.sql Timestamp)
              (java.math BigDecimal)
              (org.gridgain.dml.util MyCacheExUtil)
@@ -361,14 +361,14 @@
 ; 对函数求值
 (defn func_eval [ignite group_id func_obj]
     (if (some? func_obj)
-        {:express (MySqlFunc/myInvoke ignite (-> func_obj :func-name) (to-array (cons group_id (func_lst_ps_eval ignite group_id (-> func_obj :lst_ps))))) :item_type nil :java_type Object}))
+        {:express (MyPlusFunc/myInvoke (-> func_obj :func-name) (to-array (cons group_id (func_lst_ps_eval ignite group_id (-> func_obj :lst_ps))))) :item_type nil :java_type Object}))
 
 ; 对函数求值
 ; dic 表示 名字: 数据类型的键值对
 ; :dic {"discount" "DECIMAL", "orderid" "integer", "productid" "integer", "quantity" "INTEGER", "unitprice" "decimal"}
 (defn func_eval_binary [ignite group_id func_obj ^BinaryObject binaryObject dic]
     (if (some? func_obj)
-        {:express (MySqlFunc/myInvoke ignite (-> func_obj :func-name) (to-array (func_lst_ps_eval_binaryObject ignite group_id binaryObject dic (-> func_obj :lst_ps)))) :item_type nil :java_type Object}))
+        {:express (MyPlusFunc/myInvoke (-> func_obj :func-name) (to-array (func_lst_ps_eval_binaryObject ignite group_id binaryObject dic (-> func_obj :lst_ps)))) :item_type nil :java_type Object}))
 
 ; 处理函数的参数
 (defn func_lst_ps_eval

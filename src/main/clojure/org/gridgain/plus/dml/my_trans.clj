@@ -16,7 +16,7 @@
              (org.tools MyConvertUtil KvSql MyDbUtil)
              (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
              (org.gridgain.dml.util MyCacheExUtil)
-             (cn.plus.model.db MyScenesCache MyScenesParams MyScenesParamsPk)
+             (cn.plus.model.db MyScenesCache ScenesType MyScenesParams MyScenesParamsPk)
              (org.apache.ignite.configuration CacheConfiguration)
              (org.apache.ignite.cache CacheMode CacheAtomicityMode)
              (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
@@ -31,6 +31,7 @@
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
+        :methods [^:static [my_call_scenes [org.apache.ignite.Ignite Long clojure.lang.PersistentArrayMap java.util.ArrayList] Object]]
         ;:methods [^:static [getPlusInsert [org.apache.ignite.Ignite Long String] clojure.lang.PersistentArrayMap]]
         ))
 
@@ -191,7 +192,7 @@
 
 (defn save_scenes [^Ignite ignite ^Long group_id ^String scenes_code ^String descrip]
     (let [{scenes_name :name params :params trans :trans} (my-scenes-util/tran_obj scenes_code)]
-        (let [m (MyScenesCache. group_id scenes_name scenes_code descrip false params (get_trans_to_json_lst trans))]
+        (let [m (MyScenesCache. group_id scenes_name scenes_code descrip false params (get_trans_to_json_lst trans) (ScenesType/TRAN))]
             (.put (.cache ignite "my_scenes") (str/lower-case scenes_name) m)))
     )
 
@@ -205,7 +206,14 @@
                 (throw (Exception. (format "用户组 %s 没有执行权限！" group_id)))))
         (throw (Exception. (format "场景名称 %s 不存在！" scenes_name)))))
 
-
+(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+    (let [dic_paras (my-lexical/get_scenes_dic vs lst_paras)]
+        (if (= (.getGroup_id vs) group_id)
+            (tran_run_fun_ast ignite group_id (.getAst vs) dic_paras)
+            (if-let [m_group_id (MyDbUtil/getGroupIdByCall ignite group_id (.getScenes_name vs))]
+                (tran_run_fun_ast ignite m_group_id (.getAst vs) dic_paras)
+                (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))
+    )
 
 
 

@@ -14,8 +14,8 @@
     (:import (org.apache.ignite Ignite IgniteCache)
              (org.apache.ignite.internal IgnitionEx)
              (com.google.common.base Strings)
-             (org.tools MyConvertUtil MyPlusUtil MySqlFunc KvSql MyDbUtil)
-             (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+             (org.tools MyConvertUtil MyPlusUtil MyPlusFunc KvSql MyDbUtil)
+             (cn.plus.model MyCacheEx MyKeyValue MyLogCache MCron SqlType)
              (org.gridgain.dml.util MyCacheExUtil)
              (cn.plus.model.db MyScenesCache MyScenesParams MyScenesParamsPk)
              (org.apache.ignite.configuration CacheConfiguration)
@@ -49,7 +49,7 @@
         (do
             ;(my-expression/func_eval ignite (my-select-plus/sql-to-ast f))
             (let [func_obj (my-select-plus/sql-to-ast f)]
-                (MySqlFunc/myInvoke ignite (-> func_obj :func-name) (to-array (cons group_id (my-expression/func_lst_ps_eval ignite group_id (-> func_obj :lst_ps))))))
+                (MyPlusFunc/myInvoke (-> func_obj :func-name) (to-array (cons group_id (my-expression/func_lst_ps_eval ignite group_id (-> func_obj :lst_ps))))))
             (recur ignite group_id r))))
 
 ; 批处理任务
@@ -72,7 +72,7 @@
                                                                                                         (do
                                                                                                             (run-map ignite group_id (-> (-> (-> ast :obj) :batch) :map))
                                                                                                             (run-map ignite group_id [(-> (-> (-> ast :obj) :batch) :reduce)])))) (cron-to-str (-> ast :cron)))]
-                        (.put (.cache ignite "my_cron") (-> ast :name) (MyCron. (-> ast :name) (cron-to-str (-> ast :cron)) (my-lexical/get_str_value (first (-> ast :descrip))) ast)))
+                        (.put (.cache ignite "my_cron") (-> ast :name) (MCron. (-> ast :name) (cron-to-str (-> ast :cron)) (my-lexical/get_str_value (first (-> ast :descrip))) ast)))
                     (catch Exception ex
                         (.remove scheduledFutures (-> ast :name)))
                     )

@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 定时任务
  * */
-public class MyCron implements Serializable {
+public class MCron implements Serializable {
 
     private static final long serialVersionUID = 5363891392457651930L;
     private String cron_name;
@@ -15,7 +15,7 @@ public class MyCron implements Serializable {
     private String descrip;
     private clojure.lang.PersistentArrayMap ast;
 
-    public MyCron(final String cron_name, final String cron, final String descrip, final clojure.lang.PersistentArrayMap ast)
+    public MCron(final String cron_name, final String cron, final String descrip, final clojure.lang.PersistentArrayMap ast)
     {
         this.cron_name = cron_name;
         this.cron = cron;
@@ -23,7 +23,7 @@ public class MyCron implements Serializable {
         this.ast = ast;
     }
 
-    public MyCron()
+    public MCron()
     {}
 
     public PersistentArrayMap getAst() {

@@ -26,8 +26,10 @@ public class MyScenesCache implements Serializable {
     private List<MyScenesParams> params;
     // ast 语法树
     private PersistentArrayMap ast;
+    // 场景类型
+    private ScenesType scenesType;
 
-    public MyScenesCache(final Long group_id, final String scenes_name, final String sql_code, final String descrip, final Boolean is_batch, final List<MyScenesParams> params, final PersistentArrayMap ast)
+    public MyScenesCache(final Long group_id, final String scenes_name, final String sql_code, final String descrip, final Boolean is_batch, final List<MyScenesParams> params, final PersistentArrayMap ast, final ScenesType scenesType)
     {
         this.group_id = group_id;
         this.scenes_name = scenes_name;
@@ -36,6 +38,7 @@ public class MyScenesCache implements Serializable {
         this.is_batch = is_batch;
         this.params = params;
         this.ast = ast;
+        this.scenesType = scenesType;
     }
 
     public MyScenesCache(final MScenesCache m, final PersistentArrayMap ast)
@@ -51,6 +54,14 @@ public class MyScenesCache implements Serializable {
 
     public MyScenesCache()
     {}
+
+    public ScenesType getScenesType() {
+        return scenesType;
+    }
+
+    public void setScenesType(ScenesType scenesType) {
+        this.scenesType = scenesType;
+    }
 
     public Long getGroup_id() {
         return group_id;

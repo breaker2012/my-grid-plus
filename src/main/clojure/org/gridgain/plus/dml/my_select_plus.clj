@@ -8,7 +8,7 @@
     (:import (org.apache.ignite Ignite)
              (com.google.common.base Strings)
              (org.tools MyConvertUtil MyDbUtil KvSql)
-             (cn.plus.model.db MyScenesCache MyScenesParams MyScenesParamsPk)
+             (cn.plus.model.db MyScenesCache ScenesType MyScenesParams MyScenesParamsPk)
              (org.apache.ignite.cache.query SqlFieldsQuery)
              (java.math BigDecimal)
              (java.util List ArrayList Date Iterator)
@@ -19,6 +19,7 @@
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
+        :methods [^:static [my_call_scenes [org.apache.ignite.Ignite Long clojure.lang.PersistentArrayMap java.util.ArrayList] Object]]
         ;:methods [^:static [get_plus_sql [org.apache.ignite.Ignite Long String] String]
         ;          ^:static [getSqlToAst [org.apache.ignite.Ignite String String] clojure.lang.LazySeq]
         ;          ^:static [putAstCache [org.apache.ignite.Ignite String String String] void]]
@@ -738,7 +739,7 @@
 ; 以下是保存到 cache 中的 scenes_name, ast, 参数列表
 (defn save_scenes [^Ignite ignite ^Long group_id ^String scenes_name ^String sql_code ^clojure.lang.PersistentVector sql_lst ^String descrip ^List params ^Boolean is_batch]
     (if-let [sql (my_plus_sql_lst ignite group_id sql_lst)]
-        (let [m (MyScenesCache. group_id scenes_name sql_code descrip is_batch params {:sql sql})]
+        (let [m (MyScenesCache. group_id scenes_name sql_code descrip is_batch params {:sql sql} (ScenesType/SELECT))]
             (.put (.cache ignite "my_scenes") (str/lower-case scenes_name) m))
         (throw (Exception. "更新语句错误！"))))
 
@@ -765,6 +766,28 @@
                     (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))
         (throw (Exception. (format "场景名称 %s 不存在！" scenes_name)))))
 
+; 调用
+; vs: my_scenes 的值
+(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+    (let [dic_paras (my-lexical/get_scenes_dic vs lst_paras)]
+        (letfn [(run_fun [^Ignite ignite ^String sql ^clojure.lang.PersistentArrayMap dic_paras]
+                    (if-let [{sql :sql args :args} (get_sql_args sql dic_paras)]
+                        (.getAll (.query (.getOrCreateCache ignite (MyDbUtil/getPublicCfg)) (.setArgs (SqlFieldsQuery. sql) args)))))
+                (run_fun_batch [^Ignite ignite ^String sql ^clojure.lang.PersistentArrayMap dic_paras]
+                    (if-let [{sql :sql args :args} (get_sql_args sql dic_paras)]
+                        (.iterator (.query (.getOrCreateCache ignite (MyDbUtil/getPublicCfg)) (doto (SqlFieldsQuery. sql)
+                                                                                                  (.setArgs args)
+                                                                                                  (.setLazy true))))))
+                ]
+            (if (= (.getGroup_id vs) group_id)
+                (if (true? (.getIs_batch vs))
+                    (run_fun_batch ignite group_id (-> (.getAst vs) :sql) dic_paras)
+                    (run_fun ignite group_id (-> (.getAst vs) :sql) dic_paras))
+                (if-let [m_group_id (MyDbUtil/getGroupIdByCall ignite group_id (.getScenes_name vs))]
+                    (if (true? (.getIs_batch vs))
+                        (run_fun_batch ignite m_group_id (-> (.getAst vs) :sql) dic_paras)
+                        (run_fun ignite m_group_id (-> (.getAst vs) :sql) dic_paras))
+                    (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))))
 
 
 

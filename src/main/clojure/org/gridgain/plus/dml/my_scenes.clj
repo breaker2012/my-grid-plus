@@ -18,7 +18,7 @@
              (org.tools MyConvertUtil KvSql MyDbUtil)
              (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
              (org.gridgain.dml.util MyCacheExUtil)
-             (cn.plus.model.db MyScenesCache MyScenesParams MyScenesParamsPk)
+             (cn.plus.model.db MyScenesCache ScenesType MyScenesParams MyScenesParamsPk)
              (org.apache.ignite.configuration CacheConfiguration)
              (org.apache.ignite.cache CacheMode CacheAtomicityMode)
              (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
@@ -47,13 +47,16 @@
                                                  )
                                            )
               (= scenes_type "tran") (let [{scenes_name :name params :params trans :trans descrip :descrip is_batch :is_batch} scenes_obj]
-                                           (let [m (MyScenesCache. group_id scenes_name scenes_code descrip is_batch params (my-trans/get_trans_to_json_lst trans))]
+                                           (let [m (MyScenesCache. group_id scenes_name scenes_code descrip is_batch params (my-trans/get_trans_to_json_lst trans) (ScenesType/TRAN))]
                                                (.put (.cache ignite "my_scenes") (str/lower-case scenes_name) m)))
               (= scenes_type "cron") (let [{scenes_name :name params :params descrip :descrip is_batch :is_batch} scenes_obj]
-                                           (let [m (MyScenesCache. group_id scenes_name scenes_code descrip is_batch params (my-cron/add-job ignite group_id scenes_obj))]
+                                           (let [m (MyScenesCache. group_id scenes_name scenes_code descrip is_batch params (my-cron/add-job ignite group_id scenes_obj) (ScenesType/CRON))]
                                                (.put (.cache ignite "my_scenes") (str/lower-case scenes_name) m)))
               )))
 
+; myInvoke sql 的方法
+(defn my-invoke [^Ignite ignite ^String methodName]
+    ())
 
 
 

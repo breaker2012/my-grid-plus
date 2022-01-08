@@ -9,7 +9,7 @@
     (:import (org.apache.ignite Ignite)
              (org.apache.ignite.binary BinaryObjectBuilder)
              (org.tools MyConvertUtil KvSql MyDbUtil)
-             (cn.plus.model.db MyScenesCache MyScenesParams MyScenesParamsPk)
+             (cn.plus.model.db MyScenesCache ScenesType MyScenesParams MyScenesParamsPk)
              (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType MyLog)
              (org.gridgain.dml.util MyCacheExUtil)
              (org.apache.ignite.cache.query SqlFieldsQuery)
@@ -20,6 +20,7 @@
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
+        :methods [^:static [my_call_scenes [org.apache.ignite.Ignite Long clojure.lang.PersistentArrayMap java.util.ArrayList] Object]]
         ;:methods [^:static [getPlusInsert [org.apache.ignite.Ignite Long String] clojure.lang.PersistentArrayMap]]
         ))
 
@@ -631,7 +632,7 @@
     (if-let [insert_obj (get_insert_obj_lst sql_lst)]
         (if-let [pk_data (get_pk_data ignite (-> insert_obj :table_name))]
             (if-let [pk_with_data (get_pk_data_with_data pk_data insert_obj)]
-                (let [m (MyScenesCache. group_id scenes_name sql_code descrip is_batch params (assoc pk_with_data :table_name (-> insert_obj :table_name)))]
+                (let [m (MyScenesCache. group_id scenes_name sql_code descrip is_batch params (assoc pk_with_data :table_name (-> insert_obj :table_name)) (ScenesType/INSERT))]
                     (.put (.cache ignite "my_scenes") (str/lower-case scenes_name) m)))
             (throw (Exception. "插入语句错误！")))
         (throw (Exception. "插入语句错误！")))
@@ -647,7 +648,15 @@
                 (throw (Exception. (format "用户组 %s 没有执行权限！" group_id)))))
         (throw (Exception. (format "场景名称 %s 不存在！" scenes_name)))))
 
-
+; 调用
+(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+    (let [dic_paras (my-lexical/get_scenes_dic vs lst_paras)]
+        (if (= (.getGroup_id vs) group_id)
+            (get_insert_cache ignite group_id (.getAst vs) dic_paras)
+            (if-let [m_group_id (MyDbUtil/getGroupIdByCall ignite group_id (.getScenes_name vs))]
+                (get_insert_cache ignite m_group_id (.getAst vs) dic_paras)
+                (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))
+    )
 
 
 

@@ -17,7 +17,7 @@
 ; 输入场景（方法的名字）实际参，输出 dic
 ; 在调用的时候，形成 dic 参数的名字做 key, 值和数据类型做为 value 调用的方法是
 ; dic = {user_name {:value "吴大富" :type String} pass_word {:value "123" :type String}}
-; lst_ps 是实参的列表
+; lst_ps 是实参的列表 ["吴大富" 123 true] 参数类型 ArrayList
 (defn get_scenes_dic [^MyScenesCache sences lst_ps]
     (if-let [lst_paras (.getParams sences)]
         (if (= (count lst_ps) (count lst_paras))

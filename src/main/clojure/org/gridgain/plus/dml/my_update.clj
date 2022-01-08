@@ -12,7 +12,7 @@
              (org.tools MyConvertUtil KvSql MyDbUtil)
              (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType MyLog)
              (org.gridgain.dml.util MyCacheExUtil)
-             (cn.plus.model.db MyScenesCache MyScenesParams MyScenesParamsPk)
+             (cn.plus.model.db MyScenesCache ScenesType MyScenesParams MyScenesParamsPk)
              (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
              (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
              (java.util ArrayList List Date Iterator)
@@ -25,6 +25,7 @@
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
+        :methods [^:static [my_call_scenes [org.apache.ignite.Ignite Long clojure.lang.PersistentArrayMap java.util.ArrayList] Object]]
         ;:methods [^:static [my_update_run_log [org.apache.ignite.Ignite Long String] java.util.ArrayList]]
         ))
 
@@ -505,7 +506,7 @@
 ; 以下是保存到 cache 中的 scenes_name, ast, 参数列表
 (defn save_scenes [^Ignite ignite ^Long group_id ^String scenes_name ^String sql_code ^clojure.lang.PersistentVector sql_lst ^String descrip ^List params ^Boolean is_batch]
     (if-let [ast (get-authority-lst ignite group_id sql_lst)]
-        (let [m (MyScenesCache. group_id scenes_name sql_code descrip is_batch params ast)]
+        (let [m (MyScenesCache. group_id scenes_name sql_code descrip is_batch params ast (ScenesType/UPDATE))]
             (.put (.cache ignite "my_scenes") (str/lower-case scenes_name) m))
         (throw (Exception. "更新语句错误！"))))
 
@@ -519,7 +520,15 @@
                 (throw (Exception. (format "用户组 %s 没有执行权限！" group_id)))))
         (throw (Exception. (format "场景名称 %s 不存在！" scenes_name)))))
 
-
+; 调用
+(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+    (let [dic_paras (my-lexical/get_scenes_dic vs lst_paras)]
+        (if (= (.getGroup_id vs) group_id)
+            (get_update_cache ignite group_id (.getAst vs) dic_paras)
+            (if-let [m_group_id (MyDbUtil/getGroupIdByCall ignite group_id (.getScenes_name vs))]
+                (get_update_cache ignite m_group_id (.getAst vs) dic_paras)
+                (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))
+    )
 
 
 
