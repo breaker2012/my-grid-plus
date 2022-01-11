@@ -332,6 +332,25 @@
                       PRIMARY KEY (cron_name)
                       ) WITH \"template=MyMeta_template,VALUE_TYPE=cn.plus.model.MyCron,cache_name=my_cron,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta\";
 
+    /**
+    24、自定义方法
+    */
+    CREATE TABLE IF NOT EXISTS my_func (
+                    method_name VARCHAR(30),
+                    java_method_name VARCHAR(30),
+                    cls_name VARCHAR,
+                    return_type VARCHAR(20),
+                    descrip VARCHAR,
+                    PRIMARY KEY (method_name)
+                    ) WITH \"template=MyMeta_template,VALUE_TYPE=cn.plus.model.ddl.MyFunc,cache_name=my_func,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta\";
+
+    CREATE TABLE IF NOT EXISTS my_func_ps (
+                    method_name VARCHAR(30),
+                    ps_index INTEGER,
+                    ps_type VARCHAR(20),
+                    PRIMARY KEY (method_name, ps_index)
+                    ) WITH \"template=MyMeta_template,affinityKey=method_name,VALUE_TYPE=cn.plus.model.ddl.MyFuncPs,cache_name=my_func_ps,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta\";
+
 ")
 
 (def my-un-grid-tables

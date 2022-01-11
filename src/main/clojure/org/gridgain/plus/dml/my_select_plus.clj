@@ -766,9 +766,7 @@
                     (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))
         (throw (Exception. (format "场景名称 %s 不存在！" scenes_name)))))
 
-; 调用
-; vs: my_scenes 的值
-(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+(defn my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
     (let [dic_paras (my-lexical/get_scenes_dic vs lst_paras)]
         (letfn [(run_fun [^Ignite ignite ^String sql ^clojure.lang.PersistentArrayMap dic_paras]
                     (if-let [{sql :sql args :args} (get_sql_args sql dic_paras)]
@@ -788,6 +786,11 @@
                         (run_fun_batch ignite m_group_id (-> (.getAst vs) :sql) dic_paras)
                         (run_fun ignite m_group_id (-> (.getAst vs) :sql) dic_paras))
                     (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))))
+
+; 调用
+; vs: my_scenes 的值
+(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+    (my_call_scenes ignite group_id vs lst_paras))
 
 
 

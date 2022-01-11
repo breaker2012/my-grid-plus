@@ -6,13 +6,23 @@
              (org.apache.ignite.transactions Transaction)
              (com.google.common.base Strings)
              (org.tools MyConvertUtil KvSql)
-             (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType)
+             (cn.plus.model MyLogCache SqlType)
+             (cn.mysuper.model MyUrlToken)
              (org.gridgain.dml.util MyCacheExUtil)
              (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
              (cn.plus.model.db MyScenesCache)
              (java.util ArrayList Date Iterator)
              (java.sql Timestamp)
-             (java.math BigDecimal)))
+             (java.math BigDecimal))
+    (:gen-class
+        ; 生成 class 的类名
+        :name org.gridgain.plus.dml.MyLexical
+        ; 是否生成 class 的 main 方法
+        :main false
+        ; 生成 java 静态的方法
+        :methods [^:static [my_url_tokens [String] cn.mysuper.model.MyUrlToken]]
+        ;:methods [^:static [getPlusInsert [org.apache.ignite.Ignite Long String] clojure.lang.PersistentArrayMap]]
+        ))
 
 ; 输入场景（方法的名字）实际参，输出 dic
 ; 在调用的时候，形成 dic 参数的名字做 key, 值和数据类型做为 value 调用的方法是
@@ -549,7 +559,45 @@
 ;(def line "select \n                            (select emp_name from staff_info where empno=a.empno) as emp_name,\n                            c.description as description,\n                                           a.region_code\n                                      from lcs_dept_hiberarchy_trace b,\n                                           agent_info a,\n                                           agent_rank_tbl c,\n                                           (select emp_name from staff_info where empno=a.empno) as d\n                                     where a.empno = {c_empno}\n                                       and exists (select emp_name from staff_info where empno=a.empno)\n                                       GROUP BY b.authorid  HAVING my_count = 2 \n                                       order by c.region_grade desc, a.age asc  LIMIT 0, 2")
 ;(println (get-segments line))
 
+(defn get-tokens [^String url]
+    (letfn [(get-url-token
+                ([lst] (get-url-token lst [] []))
+                ([[f & r] stack lst]
+                 (if (some? f)
+                     (cond (and (= f \?) (> (count stack) 0)) (recur r [] (concat lst [(str/join stack) "?"]))
+                           (and (= f \;) (> (count stack) 0)) (recur r [] (concat lst [(str/join stack) ";"]))
+                           (contains? #{\space \( \) \* \- \, \+ \> \< \" \' \[ \] \{ \}} f) (throw (Exception. (format "连接字符串，不能包含字符 %s！" f)))
+                           :else
+                           (recur r (conj stack f) lst)
+                           )
+                     (if (> (count stack) 0)
+                         (concat lst [(str/join stack)])
+                         lst))))
+            (url-tokens
+                ([lst] (url-tokens lst [] [] []))
+                ([[f & r] stack lst lst_rs]
+                 (if (some? f)
+                     (cond (and (is-eq? f "userToken") (= (count stack) 0)) (recur r (conj stack f) lst lst_rs)
+                           (and (> (count stack) 0) (< (count stack) 3)) (if (= (count stack) 2)
+                                                                             (recur r [] (conj stack f) lst_rs)
+                                                                             (recur r (conj stack f) lst lst_rs))
+                           (and (= f ";") (= (peek lst_rs) ";")) (recur r stack lst lst_rs)
+                           :else
+                           (recur r stack lst (conj lst_rs f))
+                           )
+                     (if (= (count lst) 3)
+                         {:userToken (peek lst) :url (str/join lst_rs)}
+                         {:userToken "" :url (str/join lst_rs)}))))]
+        (loop [[f & r] (to-back url) lst []]
+            (if (some? f)
+                (recur r (concat lst (get-url-token f)))
+                (url-tokens lst)))))
 
+; url : "jdbc:ignite:thin://127.0.0.1:10800/public?lazy=true;userToken=abde123"
+; 结果：{:userToken "abde123", :url "jdbc:ignite:thin://127.0.0.1:10800/public?lazy=true;"}
+(defn -my_url_tokens [^String url]
+    (if-let [{userToken :userToken my-url :url} (get-tokens url)]
+        (MyUrlToken. userToken my-url)))
 
 
 

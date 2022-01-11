@@ -6,8 +6,6 @@ import cn.plus.model.db.MyScenesCache;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.Ignition;
 import org.apache.ignite.scheduler.SchedulerFuture;
-import org.gridgain.plus.dml.*;
-import org.tools.MyPlusUtil;
 
 import java.util.List;
 
@@ -75,21 +73,21 @@ public class MyPlusFunc {
     {
         Ignite ignite = Ignition.ignite();
         MyScenesCache cache = (MyScenesCache) ignite.cache("my_scenes").get(methodName);
-        switch (cache.getScenesType())
-        {
-            case UPDATE:
-                MyUpdate.my_call_scenes(ignite, 0L, cache.getAst(), null);
-                break;
-            case INSERT:
-                MyInsert.my_call_scenes(ignite, 0L, cache.getAst(), null);
-                break;
-            case SELECT:
-                //MySelect.my_call_scenes(ignite, 0L, cache.getAst(), null);
-                break;
-            case DELETE:
-                MyDelete.my_call_scenes(ignite, 0L, cache.getAst(), null);
-                break;
-        }
+//        switch (cache.getScenesType())
+//        {
+//            case UPDATE:
+//                MyUpdate.my_call_scenes(ignite, 0L, cache.getAst(), null);
+//                break;
+//            case INSERT:
+//                MyInsert.my_call_scenes(ignite, 0L, cache.getAst(), null);
+//                break;
+//            case SELECT:
+//                //MySelect.my_call_scenes(ignite, 0L, cache.getAst(), null);
+//                break;
+//            case DELETE:
+//                MyDelete.my_call_scenes(ignite, 0L, cache.getAst(), null);
+//                break;
+//        }
         //MyInsert.my_call_scenes()
         return null;
     }

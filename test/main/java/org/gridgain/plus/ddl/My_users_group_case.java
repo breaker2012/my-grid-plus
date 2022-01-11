@@ -88,6 +88,7 @@ public class My_users_group_case {
                 "                  id BIGINT," +
                 "                  group_name VARCHAR(40)," +
                 "                  data_set_id BIGINT DEFAULT 0," +
+                "                  user_token VARCHAR," +
                 "                  group_type VARCHAR(8)," +
                 "                  PRIMARY KEY (id)" +
                 "                ) WITH \"template=MyMeta_template,cache_name=my_users_group,VALUE_TYPE=cn.plus.model.MyUsersGroup,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta\"";

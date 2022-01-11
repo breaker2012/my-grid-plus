@@ -8,31 +8,24 @@
         [org.gridgain.plus.dml.my-select-plus :as my-select-plus]
         [org.gridgain.plus.dml.my-expression :as my-expression]
         [org.gridgain.plus.dml.my-scenes-util :as my-scenes-util]
-        [org.gridgain.plus.context.my-context :as my-context]
         [clojure.core.reducers :as r]
         [clojure.string :as str])
     (:import (org.apache.ignite Ignite IgniteCache)
              (org.apache.ignite.internal IgnitionEx)
              (com.google.common.base Strings)
-             (org.tools MyConvertUtil MyPlusUtil MyPlusFunc KvSql MyDbUtil)
+             (org.tools MyConvertUtil MyPlusUtil KvSql MyDbUtil)
              (cn.plus.model MyCacheEx MyKeyValue MyLogCache MCron SqlType)
-             (org.gridgain.dml.util MyCacheExUtil)
-             (cn.plus.model.db MyScenesCache MyScenesParams MyScenesParamsPk)
-             (org.apache.ignite.configuration CacheConfiguration)
-             (org.apache.ignite.cache CacheMode CacheAtomicityMode)
-             (org.apache.ignite.cache.query FieldsQueryCursor SqlFieldsQuery)
-             (org.apache.ignite.binary BinaryObjectBuilder BinaryObject)
-             (java.util ArrayList List Date Iterator)
-             (java.sql Timestamp)
-             (java.math BigDecimal)
+             (org.gridgain.myservice MyScenesService)
              )
     (:gen-class
+        :implements [org.gridgain.superservice.IMyCron]
         ; 生成 class 的类名
         :name org.gridgain.plus.dml.MyCron
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
-        ;:methods [^:static [getPlusInsert [org.apache.ignite.Ignite Long String] clojure.lang.PersistentArrayMap]]
+        :methods [[addJob [org.apache.ignite.Ignite Long String] Object]
+                  [removeJob [org.apache.ignite.Ignite Long String] Object]]
         ))
 
 (defn cron-to-str
@@ -49,7 +42,8 @@
         (do
             ;(my-expression/func_eval ignite (my-select-plus/sql-to-ast f))
             (let [func_obj (my-select-plus/sql-to-ast f)]
-                (MyPlusFunc/myInvoke (-> func_obj :func-name) (to-array (cons group_id (my-expression/func_lst_ps_eval ignite group_id (-> func_obj :lst_ps))))))
+                (.myInvoke (.getMyScenes (MyScenesService/getInstance)) ignite (-> func_obj :func-name) (to-array (cons group_id (my-expression/func_lst_ps_eval ignite group_id (-> func_obj :lst_ps)))))
+                )
             (recur ignite group_id r))))
 
 ; 批处理任务
@@ -92,8 +86,13 @@
                     )
                 (throw (Exception. (format "任务 %s 不存在！" name)))))))
 
+; 添加批处理任务
+(defn -addJob [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap ast]
+    (add-job ignite group_id ast))
 
-
+; 删除批处理任务
+(defn -removeJob [^Ignite ignite ^Long group_id ^String name]
+    (remove-job ignite group_id name))
 
 
 

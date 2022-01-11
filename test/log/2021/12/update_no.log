@@ -27,7 +27,6 @@
 (import (org.apache.ignite Ignite IgniteCache)
         (org.apache.ignite.internal IgnitionEx)
         (com.google.common.base Strings)
-        (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType MyLog)
         (org.tools MyConvertUtil KvSql)
         (cn.plus.model MyCacheEx MyKeyValue MyLogCache SqlType DdlLog DataSetDdlLog)
         (cn.plus.model.ddl MyDataSet MyDatasetTable MyDatasetRealTable MyDatasetTablePK MyDeleteViews MyInsertViews MySelectViews MyTable MyTableIndex MyTableIndexItem MyTableItem MyTableItemPK MyTableObj MyUpdateViews MyViewObj ViewOperateType ViewType)

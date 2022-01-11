@@ -334,13 +334,17 @@
                 (throw (Exception. (format "用户组 %s 没有执行权限！" group_id)))))
         (throw (Exception. (format "场景名称 %s 不存在！" scenes_name)))))
 
-(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+(defn my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
     (let [dic_paras (my-lexical/get_scenes_dic vs lst_paras)]
         (if (= (.getGroup_id vs) group_id)
             (get_delete_cache ignite group_id (.getAst vs) dic_paras)
             (if-let [m_group_id (MyDbUtil/getGroupIdByCall ignite group_id (.getScenes_name vs))]
                 (get_delete_cache ignite m_group_id (.getAst vs) dic_paras)
                 (throw (Exception. (format "用户组 %s 没有执行权限！" group_id))))))
+    )
+
+(defn -my_call_scenes [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap vs ^java.util.ArrayList lst_paras]
+    (my_call_scenes ignite group_id vs lst_paras)
     )
 
 

@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS my_func (
                 return_type VARCHAR(20),
                 descrip VARCHAR,
                 PRIMARY KEY (method_name)
-) WITH "template=MyMeta_template,cache_name=my_func,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta";
+) WITH "template=MyMeta_template,VALUE_TYPE=cn.plus.model.ddl.MyFunc,cache_name=my_func,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta";
 
 DROP INDEX IF EXISTS my_func_method_name_idx;
 CREATE INDEX IF NOT EXISTS my_func_method_name_idx ON my_func (method_name);
@@ -399,6 +399,8 @@ CREATE TABLE IF NOT EXISTS my_users_group (
                   group_name VARCHAR(40),
                   -- 数据集
                   data_set_id BIGINT DEFAULT 0,
+                  -- userToken
+                  user_token VARCHAR,
                   -- 用户组类型
                   group_type VARCHAR(8),
                   PRIMARY KEY (id)

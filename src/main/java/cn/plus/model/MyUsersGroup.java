@@ -20,6 +20,11 @@ public class MyUsersGroup implements Serializable {
     private Long data_set_id;
 
     /**
+     * 用户 token 这个用在连接字符串
+     * */
+    private String user_token;
+
+    /**
      * 用户组对于 sql 的类型
      * DDL, DML, 或者都有
      * */
@@ -81,5 +86,13 @@ public class MyUsersGroup implements Serializable {
     public void setMyGroupSqlType(MyGroupSqlType myGroupSqlType) throws Exception {
         this.myGroupSqlType = myGroupSqlType;
         this.setGroup_type(this.myGroupSqlType.toString());
+    }
+
+    public String getUser_token() {
+        return user_token;
+    }
+
+    public void setUser_token(String user_token) {
+        this.user_token = user_token;
     }
 }
