@@ -27,8 +27,8 @@
 ;    (.getAll (.query cache (.setArgs (SqlFieldsQuery. sql) args))))
 
 ; 调用方法
-(defn my_invoke [^Ignite ignite ^String scenes_name]
-    ())
+;(defn my_invoke [^Ignite ignite ^String scenes_name]
+;    ())
 
 ; 通过 group_id 获取 data_set_id 和 is_real
 (defn get_ds_by_group_id [^Ignite ignite ^Long group_id]

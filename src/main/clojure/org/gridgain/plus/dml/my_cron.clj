@@ -24,8 +24,8 @@
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
-        :methods [[addJob [org.apache.ignite.Ignite Long String] Object]
-                  [removeJob [org.apache.ignite.Ignite Long String] Object]]
+        ;:methods [[addJob [org.apache.ignite.Ignite Long String] Object]
+        ;          [removeJob [org.apache.ignite.Ignite Long String] Object]]
         ))
 
 (defn cron-to-str
@@ -87,11 +87,11 @@
                 (throw (Exception. (format "任务 %s 不存在！" name)))))))
 
 ; 添加批处理任务
-(defn -addJob [^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap ast]
+(defn -addJob [this ^Ignite ignite ^Long group_id ^clojure.lang.PersistentArrayMap ast]
     (add-job ignite group_id ast))
 
 ; 删除批处理任务
-(defn -removeJob [^Ignite ignite ^Long group_id ^String name]
+(defn -removeJob [this ^Ignite ignite ^Long group_id ^String name]
     (remove-job ignite group_id name))
 
 

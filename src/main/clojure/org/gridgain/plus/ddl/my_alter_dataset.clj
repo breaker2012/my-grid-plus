@@ -208,7 +208,7 @@
             (throw (Exception. (format "要修改的数据集：%s 不存在！" data_set_name))))
         (throw (Exception. "修改数据集的语句错误！"))))
 
-; 删除数据集
+; 修改数据集
 (defn alter_data_set [^Ignite ignite ^Long group_id ^String sql_line]
     (if (= group_id 0)
         (get_run_dll ignite (str/lower-case sql_line))

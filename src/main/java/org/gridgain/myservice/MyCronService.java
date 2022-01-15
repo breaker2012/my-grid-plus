@@ -2,6 +2,10 @@ package org.gridgain.myservice;
 
 import org.gridgain.superservice.IMyCron;
 
+/**
+ * 这是个单例类，主要是第一次实例化了，后面就不需要在实例接口，直接使用就好了，
+ * 避免频繁使用时的性能问题
+ * */
 public class MyCronService {
     private IMyCron myCron;
 

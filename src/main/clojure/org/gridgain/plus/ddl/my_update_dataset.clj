@@ -46,6 +46,8 @@
                 (throw (Exception. "删除数据集语句错误！")))
             (throw (Exception. "删除数据集语句错误！")))))
 
+(defn update_dataset [^Ignite ignite ^Long group_id ^String sql_line]
+    ())
 
 
 

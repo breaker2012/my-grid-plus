@@ -586,8 +586,12 @@
                            (recur r stack lst (conj lst_rs f))
                            )
                      (if (= (count lst) 3)
-                         {:userToken (peek lst) :url (str/join lst_rs)}
-                         {:userToken "" :url (str/join lst_rs)}))))]
+                         (if (= (last lst_rs) ";")
+                             {:userToken (peek lst) :url (str/join (reverse (rest (reverse lst_rs))))}
+                             {:userToken (peek lst) :url (str/join lst_rs)})
+                         (if (= (last lst_rs) ";")
+                             {:userToken "" :url (str/join (str/join (reverse (rest (reverse lst_rs)))))}
+                             {:userToken "" :url (str/join lst_rs)})))))]
         (loop [[f & r] (to-back url) lst []]
             (if (some? f)
                 (recur r (concat lst (get-url-token f)))
@@ -596,8 +600,11 @@
 ; url : "jdbc:ignite:thin://127.0.0.1:10800/public?lazy=true;userToken=abde123"
 ; 结果：{:userToken "abde123", :url "jdbc:ignite:thin://127.0.0.1:10800/public?lazy=true;"}
 (defn -my_url_tokens [^String url]
-    (if-let [{userToken :userToken my-url :url} (get-tokens url)]
-        (MyUrlToken. userToken my-url)))
+    (try
+        (if-let [{userToken :userToken my-url :url} (get-tokens url)]
+            (MyUrlToken. userToken my-url))
+        (catch Exception e nil))
+    )
 
 
 

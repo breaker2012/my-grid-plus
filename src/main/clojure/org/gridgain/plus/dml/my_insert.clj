@@ -105,30 +105,6 @@
                         (if-let [items (get-insert-items (rest (rest r)))]
                             {:table_name (str/lower-case (second r)) :values items}
                             (throw (Exception. "insert 语句错误，必须是 insert into 表名 (...) values (...)！"))
-                            ;(if (my-lexical/is-eq? (first (rest (rest r))) "values")
-                            ;    (letfn [(get_columns [^Ignite ignite ^String table_name]
-                            ;                (loop [[f & r] (.getAll (.query (.cache ignite "my_meta_tables") (.setArgs (SqlFieldsQuery. "select m.column_name from table_item as m join my_meta_tables as t on m.table_id = t.id where t.table_name = ?") (to-array [table_name]))))
-                            ;                       lst []]
-                            ;                    (if (some? f)
-                            ;                        (recur r (conj lst (nth f 0)))
-                            ;                        lst)
-                            ;                    ))
-                            ;            (get_items [lst]
-                            ;                (if (and (my-lexical/is-eq? (first lst) "(") (my-lexical/is-eq? (last lst) ")"))
-                            ;                    (loop [[f & r] (reverse (rest (reverse (rest lst)))) lst_items []]
-                            ;                        (if (some? f)
-                            ;                            (if-not (my-lexical/is-eq? f ",")
-                            ;                                (recur r (conj lst_items f))
-                            ;                                (recur r lst_items))
-                            ;                            lst_items))))
-                            ;            (to-kv [n lst1 lst2 lst_kv]
-                            ;                (if (> n -1)
-                            ;                    (if (not (my-lexical/is-eq? (nth lst1 n) (nth lst2 n)))
-                            ;                        (recur (dec n) lst1 lst2 (concat lst_kv [{:item_name (nth lst1 n) :item_value (nth lst2 n)}]))
-                            ;                        (recur (dec n) lst1 lst2 lst_kv)) lst_kv))]
-                            ;        (let [columns (get_columns ignite (str/lower-case (second r))) items (get_items (rest (rest (rest r))))]
-                            ;            {:table_name (str/lower-case (second r)) :values (to-kv (dec (count columns)) columns items [])})
-                            ;        ))
                             )
                         ))]
             (insert_obj lst))))
@@ -139,33 +115,6 @@
                     (if (and (my-lexical/is-eq? f "insert") (my-lexical/is-eq? (first r) "into"))
                         (if-let [items (get-insert-items (rest (rest r)))]
                             {:table_name (str/lower-case (second r)) :values items}
-                            ;(if (my-lexical/is-eq? (first (rest (rest r))) "values")
-                            ;    (letfn [(get_columns [^Ignite ignite ^String table_name]
-                            ;                (loop [[f & r] (.getAll (.query (.cache ignite "my_meta_tables") (.setArgs (SqlFieldsQuery. "select m.column_name from table_item as m join my_meta_tables as t on m.table_id = t.id where t.table_name = ?") (to-array [table_name]))))
-                            ;                       lst []]
-                            ;                    (if (some? f)
-                            ;                        (recur r (conj lst (nth f 0)))
-                            ;                        lst)
-                            ;                    ))
-                            ;            (get_items [lst]
-                            ;                (if (and (my-lexical/is-eq? (first lst) "(") (my-lexical/is-eq? (last lst) ")"))
-                            ;                    (loop [[f & r] (reverse (rest (reverse (rest lst)))) lst_items []]
-                            ;                        (if (some? f)
-                            ;                            (if-not (my-lexical/is-eq? f ",")
-                            ;                                (recur r (conj lst_items f))
-                            ;                                (recur r lst_items))
-                            ;                            lst_items))))
-                            ;            (to-kv [n lst1 lst2 lst_kv]
-                            ;                (if (> n -1)
-                            ;                    (if (not (my-lexical/is-eq? (nth lst1 n) (nth lst2 n)))
-                            ;                        (if-not (and (= (first (nth lst1 n)) \:) (contains? dic_paras (str/join (rest (nth lst1 n)))))
-                            ;                            (recur (dec n) lst1 lst2 (concat lst_kv [{:item_name (nth lst1 n) :item_value (nth lst2 n)}]))
-                            ;                            (throw (Exception. (format "列不能作为参数！%s" (nth lst1 n)))))
-                            ;                        (recur (dec n) lst1 lst2 lst_kv))
-                            ;                    lst_kv))]
-                            ;        (let [columns (get_columns ignite (str/lower-case (second r))) items (get_items (rest (rest (rest r))))]
-                            ;            {:table_name (str/lower-case (second r)) :values (to-kv (dec (count columns)) columns items [])})
-                            ;        ))
                             )
                         ))]
             (insert_obj lst))))

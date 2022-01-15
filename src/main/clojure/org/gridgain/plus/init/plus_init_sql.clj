@@ -14,10 +14,14 @@
                     group_name VARCHAR(40),
                     -- 数据集
                     data_set_id BIGINT DEFAULT 0,
+                    -- userToken
+                    user_token VARCHAR,
                     -- 用户组类型
                     group_type VARCHAR(8),
                     PRIMARY KEY (id)
                     ) WITH \"template=MyMeta_template,cache_name=my_users_group,VALUE_TYPE=cn.plus.model.MyUsersGroup,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta\";
+
+    CREATE INDEX IF NOT EXISTS my_users_group_user_token_idx ON my_users_group (user_token);
     
     /**
     2、数据集：my_dataset

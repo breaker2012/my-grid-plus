@@ -1,6 +1,5 @@
 package org.gridgain.myservice;
 
-import cn.mysuper.service.IMyConnection;
 import org.gridgain.superservice.IMyScenes;
 
 public class MyScenesService {

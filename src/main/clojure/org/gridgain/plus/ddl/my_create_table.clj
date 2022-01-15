@@ -351,8 +351,8 @@
 (defn to_ddl_lst [^Ignite ignite ^String sql_line & data_set_name]
     (if-let [{create_table :create_table table_name :table_name lst_table_item :lst_table_item code_sb :code_sb indexs :indexs template :template} (get_table_line_obj ignite sql_line data_set_name)]
         (if (and (some? data_set_name) (not (Strings/isNullOrEmpty (first data_set_name))))
-            {:lst_table_item lst_table_item :lst_ddl (concat (conj [] {:sql (format "%s %s_%s (%s) WITH \"%s" create_table (first data_set_name) table_name code_sb template) :un_sql (format "DROP TABLE IF EXISTS %s_%s" (first data_set_name) table_name) :is_success nil}) indexs)}
-            {:lst_table_item lst_table_item :lst_ddl (concat (conj [] {:sql (format "%s %s (%s) WITH \"%s" create_table table_name code_sb template) :un_sql (format "DROP TABLE IF EXISTS %s" table_name) :is_success nil}) indexs)})
+            {:table_name table_name :lst_table_item lst_table_item :lst_ddl (concat (conj [] {:sql (format "%s %s_%s (%s) WITH \"%s" create_table (first data_set_name) table_name code_sb template) :un_sql (format "DROP TABLE IF EXISTS %s_%s" (first data_set_name) table_name) :is_success nil}) indexs)}
+            {:table_name table_name :lst_table_item lst_table_item :lst_ddl (concat (conj [] {:sql (format "%s %s (%s) WITH \"%s" create_table table_name code_sb template) :un_sql (format "DROP TABLE IF EXISTS %s" table_name) :is_success nil}) indexs)})
         (throw (Exception. "创建表的语句错误！"))))
 
 ; 生成 my_meta_tables
@@ -394,6 +394,40 @@
 ; 转成 ArrayList 用 java 来执行
 (defn run_ddl_dml [^Ignite ignite lst_ddl lst_dml_table]
     (MyCreateTableUtil/run_ddl_dml ignite (my-lexical/to_arryList lst_ddl) lst_dml_table))
+
+(defn create-table [^Ignite ignite ^Long group_id ^String code]
+    (let [sql_line (str/lower-case code) descrip ""]
+        (if (= group_id 0)
+            (if-let [{table_name :table_name lst_table_item :lst_table_item lst_ddl :lst_ddl} (to_ddl_lst ignite sql_line)]
+                (if-let [lst_dml_table (to_mycachex ignite (get_my_table ignite table_name descrip sql_line lst_table_item 0))]
+                    (if (true? (.isDataSetEnabled (.configuration ignite)))
+                        (let [ddl_id (.incrementAndGet (.atomicSequence ignite "ddl_log" 0 true))]
+                            (run_ddl_dml ignite lst_ddl (doto lst_dml_table (.add (MyCacheEx. (.cache ignite "ddl_log") ddl_id (DdlLog. ddl_id group_id code 0) (SqlType/INSERT))))))
+                        (run_ddl_dml ignite lst_ddl lst_dml_table))
+                    (throw (Exception. "创建表的语句错误！")))
+                (throw (Exception. "创建表的语句错误！")))
+            (if-let [my_group (.get (.cache ignite "my_users_group") group_id)]
+                (let [group_type (.getGroup_type my_group) dataset (.get (.cache ignite "my_dataset") (.getData_set_id my_group))]
+                    (if (contains? #{"ALL" "DDL"} group_type)
+                        (if (and (some? dataset) (false? (.getIs_real dataset)))
+                            (if-let [{table_name :table_name lst_table_item :lst_table_item lst_ddl :lst_ddl} (to_ddl_lst ignite sql_line (.getDataset_name dataset))]
+                                (if-let [lst_dml_table (to_mycachex ignite (get_my_table ignite table_name descrip sql_line lst_table_item (.getId dataset)))]
+                                    (if (true? (.isDataSetEnabled (.configuration ignite)))
+                                        (let [ddl_id (.incrementAndGet (.atomicSequence ignite "ddl_log" 0 true))]
+                                            (run_ddl_dml ignite lst_ddl (doto lst_dml_table (.add (MyCacheEx. (.cache ignite "ddl_log") ddl_id (DdlLog. ddl_id group_id code (.getData_set_id my_group)) (SqlType/INSERT))))))
+                                        (run_ddl_dml ignite lst_ddl lst_dml_table))
+                                    (throw (Exception. "创建表的语句错误！")))
+                                (throw (Exception. "创建表的语句错误！")))
+                            (if-let [{table_name :table_name lst_table_item :lst_table_item lst_ddl :lst_ddl} (to_ddl_lst ignite sql_line)]
+                                (if-let [lst_dml_table (to_mycachex ignite (get_my_table ignite table_name descrip sql_line lst_table_item 0))]
+                                    (if (true? (.isDataSetEnabled (.configuration ignite)))
+                                        (let [ddl_id (.incrementAndGet (.atomicSequence ignite "ddl_log" 0 true))]
+                                            (run_ddl_dml ignite lst_ddl (doto lst_dml_table (.add (MyCacheEx. (.cache ignite "ddl_log") ddl_id (DdlLog. ddl_id group_id code (.getData_set_id my_group)) (SqlType/INSERT))))))
+                                        (run_ddl_dml ignite lst_ddl lst_dml_table))
+                                    (throw (Exception. "创建表的语句错误！")))
+                                (throw (Exception. "创建表的语句错误！"))))
+                        (throw (Exception. "该用户组没有创建表的权限！"))))
+                (throw (Exception. "不存在该用户组！"))))))
 
 ; 执行 json
 ; 1、查询 group_id 看是否有 ddl 的权限

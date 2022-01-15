@@ -28,7 +28,7 @@
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
-        :methods [[myInvoke [org.apache.ignite.Ignite String java.util.ArrayList] Object]]
+        :methods [^:static [superInvoke [org.apache.ignite.Ignite String java.util.ArrayList] Object]]
         ;:methods [^:static [getPlusInsert [org.apache.ignite.Ignite Long String] clojure.lang.PersistentArrayMap]]
         ))
 
@@ -64,7 +64,11 @@
         (throw (Exception. (format "%s 场景不存在！" methodName)))))
 
 ; myInvoke sql 的方法
-(defn -myInvoke [^Ignite ignite ^String methodName ^ArrayList lst]
+(defn -myInvoke [this ^Ignite ignite ^String methodName ^ArrayList lst]
+    (my-invoke ignite methodName lst))
+
+; myInvoke sql 的方法
+(defn -superInvoke [^Ignite ignite ^String methodName ^ArrayList lst]
     (my-invoke ignite methodName lst))
 
 
