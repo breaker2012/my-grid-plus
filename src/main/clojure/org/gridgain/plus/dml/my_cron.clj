@@ -23,9 +23,6 @@
         :name org.gridgain.plus.dml.MyCron
         ; 是否生成 class 的 main 方法
         :main false
-        ; 生成 java 静态的方法
-        ;:methods [[addJob [org.apache.ignite.Ignite Long String] Object]
-        ;          [removeJob [org.apache.ignite.Ignite Long String] Object]]
         ))
 
 (defn cron-to-str

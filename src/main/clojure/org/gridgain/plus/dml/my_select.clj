@@ -189,7 +189,7 @@
     ([lst] (get-where-item-line lst [] [] []))
     ([[f & rs] stack lst result-lst]
      (if (some? f)
-         (cond (and (contains? #{">=" "<=" "<>" ">" "<" "=" "!=" "in" "exists"} f) (= (count stack) 0)) (if (> (count lst) 0) (recur rs stack [] (concat result-lst [lst f])) (recur rs stack [] result-lst))
+         (cond (and (contains? #{">=" "<=" "<>" ">" "<" "=" "!=" "in" "exists"} (str/lower-case f)) (= (count stack) 0)) (if (> (count lst) 0) (recur rs stack [] (concat result-lst [lst f])) (recur rs stack [] result-lst))
                (and (my-lexical/is-eq? "not" f) (my-lexical/is-eq? "in" (first rs)) (= (count stack) 0)) (if (> (count lst) 0) (recur (rest rs) stack [] (concat result-lst [lst "not in"])) (recur rs stack [] result-lst))
                (and (my-lexical/is-eq? "not" f) (my-lexical/is-eq? "exists" (first rs)) (= (count stack) 0)) (if (> (count lst) 0) (recur (rest rs) stack [] (concat result-lst [lst "not exists"])) (recur rs stack [] result-lst))
                (and (my-lexical/is-eq? "is" f) (my-lexical/is-eq? "not" (first rs)) (= (count stack) 0)) (if (> (count lst) 0) (recur (rest rs) stack [] (concat result-lst [lst "is not"])) (recur rs stack [] result-lst))
@@ -327,8 +327,8 @@
     ([[f & rs] stack lst]
      (if (some? f)
          (cond (and (my-lexical/is-eq? f "on") (= (count stack) 0)) (if (> (count lst) 0) (concat [{:on (reverse lst)}] (get-table rs stack [])) (get-table rs stack []))
-               (and (my-lexical/is-eq? f "join") (contains? #{"left" "inner" "right"} (first rs)) (= (count stack) 0)) (if (> (count lst) 0) (concat [{:tables (reverse lst) :join (str/join [(first rs) " " f])}] (get-table (rest rs) stack [])) (get-table (rest rs) stack []))
-               (and (my-lexical/is-eq? f "join") (not (contains? #{"left" "inner" "right"} (first rs))) (= (count stack) 0)) (if (> (count lst) 0) (concat [{:tables (reverse lst) :join f}] (get-table rs stack [])) (get-table rs stack []))
+               (and (my-lexical/is-eq? f "join") (contains? #{"left" "inner" "right"} (str/lower-case (first rs))) (= (count stack) 0)) (if (> (count lst) 0) (concat [{:tables (reverse lst) :join (str/join [(first rs) " " f])}] (get-table (rest rs) stack [])) (get-table (rest rs) stack []))
+               (and (my-lexical/is-eq? f "join") (not (contains? #{"left" "inner" "right"} (str/lower-case (first rs)))) (= (count stack) 0)) (if (> (count lst) 0) (concat [{:tables (reverse lst) :join f}] (get-table rs stack [])) (get-table rs stack []))
                (= f ")") (get-table rs (conj stack f) (conj lst f))
                (= f "(") (get-table rs (pop stack) (conj lst f))
                :else
