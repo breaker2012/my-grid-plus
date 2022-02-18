@@ -423,6 +423,15 @@ CREATE TABLE IF NOT EXISTS my_group_view (
                   PRIMARY KEY (id, my_group_id)
                 ) WITH "template=MyMeta_template,affinityKey=my_group_id,cache_name=my_group_view,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta";
 
+DROP TABLE IF EXISTS my_cache;
+CREATE TABLE IF NOT EXISTS my_cache (
+                sql_line VARCHAR,
+                data_regin VARCHAR,
+                cache_name VARCHAR(20),
+                group_id BIGINT,
+                PRIMARY KEY (cache_name, group_id)
+) WITH "template=MyMeta_template,KEY_TYPE=cn.plus.model.nosql.MyCacheGroup,VALUE_TYPE=cn.plus.model.nosql.MyCacheValue,cache_name=my_cache,ATOMICITY=TRANSACTIONAL_SNAPSHOT,cache_group=my_meta";
+
 /**
 对 DDL 的操作:
 DDL 只允许流程优化的人来执行，因为要改变底层数据结构。

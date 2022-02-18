@@ -16,6 +16,7 @@
         [org.gridgain.plus.ddl.my-update-dataset :as my-update-dataset]
         [org.gridgain.plus.dml.my-scenes :as my-scenes]
         [org.gridgain.plus.dml.my-trans :as my-trans]
+        [org.gridgain.plus.nosql.my-super-cache :as my-super-cache]
         [clojure.core.reducers :as r]
         [clojure.string :as str])
     (:import (org.apache.ignite Ignite IgniteCache)
@@ -39,15 +40,19 @@
         ; 是否生成 class 的 main 方法
         :main false
         ; 生成 java 静态的方法
-        :methods [^:static [superSql [org.apache.ignite.Ignite String String] String]]
+        :methods [^:static [superSql [org.apache.ignite.Ignite String Object] String]
+                  ^:static [getGroupId [org.apache.ignite.Ignite String] Boolean]]
         ;:methods [^:static [getPlusInsert [org.apache.ignite.Ignite Long String] clojure.lang.PersistentArrayMap]]
         ))
 
 ; 通过 userToken 获取 group_id
 (defn get_group_id [^Ignite ignite ^String userToken]
     ;(if (= userToken ))
-    (when-let [m (first (.getAll (.query (.cache ignite "my_users_group") (.setArgs (SqlFieldsQuery. "select g.id from my_users_group as g where g.userToken = ?") (to-array [userToken])))))]
-        (first m)))
+    (if (my-lexical/is-eq? userToken (.getRoot_token (.configuration ignite)))
+        0
+        (when-let [m (first (.getAll (.query (.cache ignite "my_users_group") (.setArgs (SqlFieldsQuery. "select g.id from my_users_group as g where g.userToken = ?") (to-array [userToken])))))]
+            (first m)))
+    )
 
 (def my_group_id (memoize get_group_id))
 
@@ -71,20 +76,20 @@
             (my-lexical/get_str_value (str/join " " rs)))))
 
 ; 输入 group_id, sql 转换为，可执行的 sql
-(defn super-sql [^Ignite ignite ^String userToken ^String sql]
+(defn super-sql [^Ignite ignite ^Long group_id ^String sql]
     (if-not (Strings/isNullOrEmpty sql)
-        (let [lst (my-lexical/to-back sql) group_id (my_group_id ignite userToken)]
+        (let [lst (my-lexical/to-back sql)]
             (cond (my-lexical/is-eq? (first lst) "insert") (let [rs (my-insert/insert_run ignite group_id sql)]
                                                                    (if (nil? rs)
-                                                                       (format "select showMsg('插入语句执行成功！')")))
+                                                                       (format "select show_msg('插入语句执行成功！')")))
                   (my-lexical/is-eq? (first lst) "update") (let [rs (my-update/update_run ignite group_id sql)]
                                                                    (if (nil? rs)
-                                                                       (format "select showMsg('更新语句执行成功！')")))
+                                                                       (format "select show_msg('更新语句执行成功！')")))
                   (my-lexical/is-eq? (first lst) "delete") (let [rs (my-delete/delete_run ignite group_id sql)]
                                                                    (if (nil? rs)
-                                                                       (format "select showMsg('删除语句执行成功！')")))
+                                                                       (format "select show_msg('删除语句执行成功！')")))
                   (my-lexical/is-eq? (first lst) "select") (if (has-from? (rest lst))
-                                                                   (my-select/get_my_ast ignite group_id sql)
+                                                                   (my-select/my_plus_sql ignite group_id sql)
                                                                    sql)
                   ; 执行事务
                   (and (= (first lst) "{") (= (last lst) "}")) (my-trans/tran_run ignite group_id sql)
@@ -94,27 +99,57 @@
 
                   ; ddl
                   ; create dataset
-                  (and (my-lexical/is-eq? (first lst) "create") (my-lexical/is-eq? (second lst) "dataset")) (my-create-dataset/create_data_set ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "create") (my-lexical/is-eq? (second lst) "dataset")) (let [rs (my-create-dataset/create_data_set ignite group_id sql)]
+                                                                                                                (if (nil? rs)
+                                                                                                                    (format "select show_msg('创建数据集语句执行成功！')")))
                   ; alert dataset
-                  (and (my-lexical/is-eq? (first lst) "ALTER") (my-lexical/is-eq? (second lst) "dataset")) (my-alter-dataset/alter_data_set ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "ALTER") (my-lexical/is-eq? (second lst) "dataset")) (let [rs (my-alter-dataset/alter_data_set ignite group_id sql)]
+                                                                                                               (if (nil? rs)
+                                                                                                                   (format "select show_msg('修改数据集语句执行成功！')")))
                   ; drop dataset
-                  (and (my-lexical/is-eq? (first lst) "DROP") (my-lexical/is-eq? (second lst) "dataset")) (my-drop-dataset/drop_data_set ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "DROP") (my-lexical/is-eq? (second lst) "dataset")) (let [rs (my-drop-dataset/drop_data_set ignite group_id sql)]
+                                                                                                              (if (nil? rs)
+                                                                                                                  (format "select show_msg('删除数据集语句执行成功！')")))
                   ; create table
-                  (and (my-lexical/is-eq? (first lst) "create") (my-lexical/is-eq? (second lst) "table")) (my-create-table/create-table ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "create") (my-lexical/is-eq? (second lst) "table")) (let [rs (my-create-table/create-table ignite group_id sql)]
+                                                                                                              (if (nil? rs)
+                                                                                                                  (format "select show_msg('创建表语句执行成功！')")))
                   ; alter table
-                  (and (my-lexical/is-eq? (first lst) "ALTER") (my-lexical/is-eq? (second lst) "table")) (my-alter-table/my_alter_table ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "ALTER") (my-lexical/is-eq? (second lst) "table")) (let [rs (my-alter-table/my_alter_table ignite group_id sql)]
+                                                                                                             (if (nil? rs)
+                                                                                                                 (format "select show_msg('修改表语句执行成功！')")))
                   ; drop table
-                  (and (my-lexical/is-eq? (first lst) "DROP") (my-lexical/is-eq? (second lst) "table")) (my-drop-table/drop_table ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "DROP") (my-lexical/is-eq? (second lst) "table")) (let [rs (my-drop-table/drop_table ignite group_id sql)]
+                                                                                                            (if (nil? rs)
+                                                                                                                (format "select show_msg('删除表语句执行成功！')")))
                   ; create index
-                  (and (my-lexical/is-eq? (first lst) "create") (my-lexical/is-eq? (second lst) "INDEX")) (my-create-index/create_index ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "create") (my-lexical/is-eq? (second lst) "INDEX")) (let [rs (my-create-index/create_index ignite group_id sql)]
+                                                                                                              (if (nil? rs)
+                                                                                                                  (format "select show_msg('创建表索引语句执行成功！')")))
                   ; drop index
-                  (and (my-lexical/is-eq? (first lst) "DROP") (my-lexical/is-eq? (second lst) "INDEX")) (my-drop-index/drop_index ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "DROP") (my-lexical/is-eq? (second lst) "INDEX")) (let [rs (my-drop-index/drop_index ignite group_id sql)]
+                                                                                                            (if (nil? rs)
+                                                                                                                (format "select show_msg('删除表索引语句执行成功！')")))
                   ; create table
-                  (and (my-lexical/is-eq? (first lst) "update") (my-lexical/is-eq? (second lst) "dataset")) (my-update-dataset/update_dataset ignite group_id sql)
+                  (and (my-lexical/is-eq? (first lst) "update") (my-lexical/is-eq? (second lst) "dataset")) (let [rs (my-update-dataset/update_dataset ignite group_id sql)]
+                                                                                                                (if (nil? rs)
+                                                                                                                    (format "select show_msg('更新数据集语句执行成功！')")))
+                  ; no sql
+                  (and (contains? #{"no_sql_create" "no_sql_insert" "no_sql_update" "no_sql_delete" "no_sql_query" "no_sql_drop" "push" "pop"} (str/lower-case (first lst)))) (my-super-cache/my-no-lst ignite group_id lst sql)
+                  :else
+                  (throw (Exception. "输入字符有错误！不能解析，请确认输入正确！"))
                   ))))
 
-(defn -superSql [^Ignite ignite ^String userToken ^String sql]
-    (super-sql ignite userToken sql))
+(defn -superSql [^Ignite ignite ^String group_id ^Object sql]
+    (if-not (Strings/isNullOrEmpty group_id)
+        (super-sql ignite (Long/parseLong group_id) (MyCacheExUtil/restoreToLine sql))
+        (MyCacheExUtil/restoreToLine sql)))
+
+(defn -getGroupId [^Ignite ignite ^String userToken]
+    (if-let [group_id (my_group_id ignite userToken)]
+        true
+        false))
+
 
 
 

@@ -2,7 +2,6 @@ package org.gridgain.ddl;
 
 import clojure.lang.*;
 import cn.plus.model.MyCacheEx;
-import com.google.common.base.Strings;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.IgniteTransactions;
@@ -12,8 +11,6 @@ import org.apache.ignite.transactions.Transaction;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class MyCreateTableUtil implements Serializable {
     private static final long serialVersionUID = 1484107803014288212L;

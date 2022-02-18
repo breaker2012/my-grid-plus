@@ -8,6 +8,7 @@ import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.binary.BinaryObject;
 import org.apache.ignite.binary.BinaryObjectBuilder;
+import org.tools.MyLineToBinary;
 
 import java.io.*;
 import java.util.List;
@@ -97,38 +98,8 @@ public class MyCacheExUtil implements Serializable {
         return value;
     }
 
-    /**
-     * 对象转变成二进制
-     * */
     public static byte[] objToBytes(final Object obj) {
-        ByteArrayOutputStream byteArrayOutputStream = null;
-        ObjectOutputStream objectOutputStream = null;
-
-        try {
-            byteArrayOutputStream = new ByteArrayOutputStream();
-            objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            objectOutputStream.writeObject(obj);
-            return byteArrayOutputStream.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (objectOutputStream != null) {
-                try {
-                    objectOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (byteArrayOutputStream != null) {
-                try {
-                    byteArrayOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return null;
+        return MyLineToBinary.objToBytes(obj);
     }
 
     /**
@@ -136,34 +107,81 @@ public class MyCacheExUtil implements Serializable {
      * */
     public static Object restore(final byte[] bytes)
     {
-        ByteArrayInputStream byteArrayInputStream = null;
-        ObjectInputStream objectInputStream = null;
-
-        try {
-            byteArrayInputStream = new ByteArrayInputStream(bytes);
-            objectInputStream = new ObjectInputStream(byteArrayInputStream);
-            return objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (objectInputStream != null) {
-                try {
-                    objectInputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (byteArrayInputStream != null) {
-                try {
-                    byteArrayInputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return null;
+        return MyLineToBinary.restore(bytes);
     }
+
+    public static String restoreToLine(final byte[] bytes)
+    {
+        return (String)restore(bytes);
+    }
+
+//    /**
+//     * 对象转变成二进制
+//     * */
+//    public static byte[] objToBytes(final Object obj) {
+//        ByteArrayOutputStream byteArrayOutputStream = null;
+//        ObjectOutputStream objectOutputStream = null;
+//
+//        try {
+//            byteArrayOutputStream = new ByteArrayOutputStream();
+//            objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+//            objectOutputStream.writeObject(obj);
+//            return byteArrayOutputStream.toByteArray();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (objectOutputStream != null) {
+//                try {
+//                    objectOutputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            if (byteArrayOutputStream != null) {
+//                try {
+//                    byteArrayOutputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        return null;
+//    }
+
+//    /**
+//     * 二进制数组转回对象
+//     * */
+//    public static Object restore(final byte[] bytes)
+//    {
+//        ByteArrayInputStream byteArrayInputStream = null;
+//        ObjectInputStream objectInputStream = null;
+//
+//        try {
+//            byteArrayInputStream = new ByteArrayInputStream(bytes);
+//            objectInputStream = new ObjectInputStream(byteArrayInputStream);
+//            return objectInputStream.readObject();
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (objectInputStream != null) {
+//                try {
+//                    objectInputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            if (byteArrayInputStream != null) {
+//                try {
+//                    byteArrayInputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        return null;
+//    }
 }
 
 
